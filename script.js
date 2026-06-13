@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   initTwitchLiveCheck();
 });
 
@@ -20,6 +22,8 @@ async function initTwitchLiveCheck() {
       const badge = document.getElementById(`live-${channel}`);
       const card = document.querySelector(`.twitch-card[data-channel="${channel}"]`);
 
+      if (!badge || !card) continue;
+
       if (isLive) {
         badge.textContent = "LIVE";
         badge.style.background = "#ff0033";
@@ -28,9 +32,8 @@ async function initTwitchLiveCheck() {
       } else {
         badge.textContent = "OFFLINE";
       }
-
     } catch (err) {
-      console.error("Fehler:", err);
+      console.error("Fehler beim Twitch-Status:", err);
     }
   }
 }
