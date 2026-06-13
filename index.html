@@ -2,192 +2,115 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Mostviertler Streaming Team – Tommecs & HyptryX</title>
+  <title>Mostviertler Streaming Team – HyptryX & Tommecs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mostviertler Streaming Team – Gaming & DJ Livestreams von Tommecs & HyptryX auf Twitch.">
+
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
-  <script defer src="cookie.js"></script>
 </head>
-<body>
-  <div class="bg-animation"></div>
 
-  <header class="main-header">
-    <div class="logo-wrap">
-      <img src="img/mostviertler-logo.png" alt="Mostviertler Streaming Team Logo">
-      <div class="logo-text">
-        <h1>Mostviertler Streaming Team</h1>
-        <p>Tommecs &amp; HyptryX</p>
-      </div>
+<body>
+
+  <!-- Hintergrund Animation -->
+  <div class="background"></div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="img/mostviertler-logo.png" class="hero-logo">
+
+    <h1 class="hero-title">Mostviertler Streaming Team</h1>
+    <p class="hero-sub">Gaming • DJ • Community • Mostviertler Power</p>
+
+    <div class="hero-buttons">
+      <a href="https://twitch.tv/hyptryx" target="_blank" class="btn-hero">HyptryX</a>
+      <a href="https://twitch.tv/tommecs" target="_blank" class="btn-hero">Tommecs</a>
     </div>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="#team">Team</a>
-      <a href="#twitch">Twitch</a>
-      <a href="#schedule">Streamingplan</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="impressum.html">Impressum</a>
-    </nav>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Gaming &amp; Beats aus dem Mostviertel</h2>
-        <p>
-          Wir sind <strong>Tommecs</strong> &amp; <strong>HyptryX</strong> – zwei Streamer aus dem Mostviertel,
-          die ihre Leidenschaft für Gaming und Musik live auf Twitch ausleben.
-          Von intensiven Ranked-Sessions bis zu fetten DJ-Sets: Bei uns gibt’s
-          ehrliche Unterhaltung, Community-Vibes und jede Menge Mostviertler Energie.
-        </p>
-        <div class="hero-buttons">
-          <a class="btn primary" href="https://www.twitch.tv/hyptryx" target="_blank" rel="noopener">
-            Zu HyptryX auf Twitch
-          </a>
-          <a class="btn secondary" href="https://www.twitch.tv/tommecs" target="_blank" rel="noopener">
-            Zu Tommecs auf Twitch
-          </a>
-        </div>
+  <!-- TEAM SECTION -->
+  <section class="team">
+    <h2 class="section-title">Wir sind HyptryX & Tommecs</h2>
+    <p class="section-text">
+      Zwei Streamer aus dem Mostviertel, die Gaming, DJ‑Beats und Community‑Vibes verbinden.
+      Authentisch, laut, unterhaltsam – Mostviertler Style.
+    </p>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img src="img/hyptryx.png" class="team-avatar">
+        <h3>HyptryX</h3>
+        <p>Gaming, Community, Chill‑Vibes & Competitiveness.</p>
+        <a href="https://twitch.tv/hyptryx" target="_blank" class="btn-small">Twitch Profil</a>
       </div>
-    </section>
 
-    <!-- Team Section -->
-    <section id="team" class="team-section">
-      <h3>Wer wir sind</h3>
-      <p>
-        Mostviertler Herz, digitale Bühne: Wir kommen beide aus dem Mostviertel und
-        verbinden unsere Heimat mit moderner Streaming-Kultur. Egal ob Shooter, Chill-Games
-        oder DJ-Performances – wir wollen euch nicht nur Gameplay liefern, sondern
-        eine Atmosphäre, in der man gerne hängen bleibt.
-      </p>
-      <div class="team-grid">
-        <article class="team-card">
-          <img src="img/hyptryx.png" alt="Logo HyptryX">
-          <h4>HyptryX</h4>
-          <p>
-            Fokus auf Gaming, Community-Talks und entspannten Sessions.
-            Immer mit einem Auge auf Competitiveness und einem auf Chat.
-          </p>
-          <a class="btn ghost" href="https://www.twitch.tv/hyptryx" target="_blank" rel="noopener">
-            Twitch-Profil
-          </a>
-        </article>
-        <article class="team-card">
-          <img src="img/tommecs.png" alt="Logo Tommecs">
-          <h4>Tommecs</h4>
-          <p>
-            Gaming-Streams kombiniert mit DJ-Sets – perfekte Mischung aus
-            Ingame-Action und Club-Feeling direkt aus dem Mostviertel.
-          </p>
-          <a class="btn ghost" href="https://www.twitch.tv/tommecs" target="_blank" rel="noopener">
-            Twitch-Profil
-          </a>
-        </article>
+      <div class="team-card">
+        <img src="img/tommecs.png" class="team-avatar">
+        <h3>Tommecs</h3>
+        <p>Gaming + DJ‑Sets – Action & Club‑Feeling.</p>
+        <a href="https://twitch.tv/tommecs" target="_blank" class="btn-small">Twitch Profil</a>
       </div>
-    </section>
 
-    <!-- Twitch Cards -->
-    <section id="twitch" class="twitch-section">
-      <h3>Unsere Twitch-Channels</h3>
-      <div class="twitch-grid">
-        <div class="twitch-card" data-channel="hyptryx">
-          <div class="twitch-card-header">
-            <img src="img/hyptryx.png" alt="HyptryX Logo">
-            <div>
-              <h4>HyptryX</h4>
-              <span class="status-badge" id="status-hyptryx">Offline</span>
-            </div>
+    </div>
+  </section>
+
+  <!-- TWITCH CARDS -->
+  <section class="twitch-section">
+    <h2 class="section-title">Unsere Twitch Kanäle</h2>
+
+    <div class="twitch-grid">
+
+      <!-- HyptryX -->
+      <div class="twitch-card" data-channel="hyptryx">
+        <div class="twitch-header">
+          <div class="avatar-wrap">
+            <img src="img/hyptryx.png" class="avatar">
+            <span class="live-badge" id="live-hyptryx">OFFLINE</span>
           </div>
-          <div class="twitch-embed">
-            <iframe
-              src="https://player.twitch.tv/?channel=hyptryx&parent=https://hyptryx.github.io/mostviertler-streaming-team/"
-              frameborder="0"
-              allowfullscreen="true"
-              scrolling="no">
-            </iframe>
+
+          <div class="info">
+            <h3>HyptryX</h3>
+            <p id="followers-hyptryx" class="followers">– Follower</p>
           </div>
-          <a class="btn primary full" href="https://www.twitch.tv/hyptryx" target="_blank" rel="noopener">
-            Kanal öffnen
-          </a>
         </div>
 
-        <div class="twitch-card" data-channel="tommecs">
-          <div class="twitch-card-header">
-            <img src="img/tommecs.png" alt="Tommecs Logo">
-            <div>
-              <h4>Tommecs</h4>
-              <span class="status-badge" id="status-tommecs">Offline</span>
-            </div>
-          </div>
-          <div class="twitch-embed">
-            <iframe
-              src="https://player.twitch.tv/?channel=tommecs&parent=https://hyptryx.github.io/mostviertler-streaming-team/"
-              frameborder="0"
-              allowfullscreen="true"
-              scrolling="no">
-            </iframe>
-          </div>
-          <a class="btn primary full" href="https://www.twitch.tv/tommecs" target="_blank" rel="noopener">
-            Kanal öffnen
-          </a>
-        </div>
+        <iframe
+          src="https://player.twitch.tv/?channel=hyptryx&parent=hyptryx.github.io"
+          allowfullscreen>
+        </iframe>
       </div>
-      <p class="hint">
-        Hinweis: Die Live-Umrandung und der Status werden über die Twitch-API gesteuert (siehe <code>script.js</code>).
-      </p>
-    </section>
 
-    <!-- Schedule Section -->
-    <section id="schedule" class="schedule-section">
-      <h3>Streamingplan</h3>
-      <p>
-        Unser Streamingplan wird direkt von Twitch geladen. Änderungen und spontane
-        Streams siehst du immer aktuell auf den eingebetteten Plänen.
-      </p>
-      <div class="schedule-grid">
-        <div class="schedule-card">
-          <h4>HyptryX – Schedule</h4>
-          <iframe
-            src="https://www.twitch.tv/hyptryx/schedule"
-            frameborder="0"
-            scrolling="yes">
-          </iframe>
+      <!-- Tommecs -->
+      <div class="twitch-card" data-channel="tommecs">
+        <div class="twitch-header">
+          <div class="avatar-wrap">
+            <img src="img/tommecs.png" class="avatar">
+            <span class="live-badge" id="live-tommecs">OFFLINE</span>
+          </div>
+
+          <div class="info">
+            <h3>Tommecs</h3>
+            <p id="followers-tommecs" class="followers">– Follower</p>
+          </div>
         </div>
-        <div class="schedule-card">
-          <h4>Tommecs – Schedule</h4>
-          <iframe
-            src="https://www.twitch.tv/tommecs/schedule"
-            frameborder="0"
-            scrolling="yes">
-          </iframe>
-        </div>
+
+        <iframe
+          src="https://player.twitch.tv/?channel=tommecs&parent=hyptryx.github.io"
+          allowfullscreen>
+        </iframe>
       </div>
-    </section>
-  </main>
 
-  <footer class="main-footer">
-    <p>© <span id="year"></span> Mostviertler Streaming Team – Tommecs &amp; HyptryX</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Mostviertler Streaming Team</p>
     <p>
       <a href="datenschutz.html">Datenschutz</a> ·
       <a href="impressum.html">Impressum</a>
     </p>
   </footer>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner hidden">
-    <div class="cookie-content">
-      <p>
-        Wir verwenden Cookies und eingebettete Inhalte (z.B. Twitch), um unsere Streams
-        und Statistiken anzuzeigen. Mit Klick auf „Akzeptieren“ stimmst du der Nutzung zu.
-        Details findest du in unserer Datenschutzerklärung.
-      </p>
-      <div class="cookie-buttons">
-        <button id="cookie-accept" class="btn primary">Akzeptieren</button>
-        <button id="cookie-decline" class="btn secondary">Ablehnen</button>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
-
