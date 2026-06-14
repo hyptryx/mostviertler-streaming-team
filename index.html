@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Mostviertler Streaming Team</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+  <script defer src="cookie.js"></script>
+</head>
+
+<body>
+
+  <!-- GOLD ORBS BACKGROUND -->
+  <div class="orbs">
+    <!-- Große Orbs -->
+    <div class="orb big" style="top: 10%; left: 15%; animation-duration: 18s;"></div>
+    <div class="orb big" style="top: 60%; left: 70%; animation-duration: 22s;"></div>
+
+    <!-- Kleine Orbs -->
+    <div class="orb small" style="top: 30%; left: 80%; animation-duration: 14s;"></div>
+    <div class="orb small" style="top: 75%; left: 25%; animation-duration: 16s;"></div>
+    <div class="orb small" style="top: 50%; left: 45%; animation-duration: 12s;"></div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="img/mostviertler-logo.png" class="hero-logo">
+
+    <img src="img/bannermosti.png" class="hero-banner">
+
+    <h1 class="hero-title bounce">Mostviertler Streaming Team</h1>
+  </header>
+
+  <!-- TEAM SECTION -->
+  <section class="team">
+    <h2 class="section-title">Wir sind HyptryX & Tommecs</h2>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img src="img/hyptryx.png" class="team-avatar">
+        <h3>HyptryX</h3>
+        <p>Gaming, Community, Chill‑Vibes & Competitiveness.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="img/tommecs.png" class="team-avatar">
+        <h3>Tommecs</h3>
+        <p>Gaming + DJ‑Sets – Action & Club‑Feeling.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TWITCH VOD SECTION -->
+  <section class="vod-section">
+    <h2 class="section-title">Unsere Twitch Kanäle</h2>
+
+    <div class="vod-grid">
+
+      <!-- HyptryX -->
+      <div class="vod-card">
+        <img src="img/hyptryx.png" class="vod-avatar">
+        <a href="https://www.twitch.tv/videos/2794184335" target="_blank">
+          <img id="vod-hyptryx" class="vod-thumb">
+        </a>
+      </div>
+
+      <!-- Tommecs -->
+      <div class="vod-card">
+        <img src="img/tommecs.png" class="vod-avatar">
+        <a href="https://www.twitch.tv/videos/2766880312" target="_blank">
+          <img id="vod-tommecs" class="vod-thumb">
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STREAMING PLÄNE -->
+  <section class="plans">
+    <h2 class="section-title">Streamingpläne</h2>
+
+    <div class="plan-grid">
+      <img src="img/hyptryxplan.png" class="plan-img">
+      <img src="img/tommecsplan.png" class="plan-img">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Mostviertler Streaming Team</p>
+    <p>
+      <a href="datenschutz.html">Datenschutz</a> ·
+      <a href="impressum.html">Impressum</a>
+    </p>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <p class="cookie-text">
+      Wir verwenden Cookies und eingebettete Inhalte (z.B. Twitch‑VODs).
+      Mit Klick auf „Akzeptieren“ stimmst du der Nutzung zu.
+    </p>
+    <div class="cookie-buttons">
+      <button id="cookie-accept" class="cookie-btn cookie-accept">Akzeptieren</button>
+      <button id="cookie-decline" class="cookie-btn cookie-decline">Ablehnen</button>
+    </div>
+  </div>
+
+</body>
+</html>
