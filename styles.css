@@ -87,16 +87,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Bounce Animation */
-.bounce {
-  animation: bounce 2.5s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
 .hero-banner {
   width: 90%;
   max-width: 900px;
@@ -309,4 +299,52 @@ body {
   margin-top: 25px;
   margin-bottom: 10px;
   color: #ffd27f;
+}
+/* Pulse Glow + Shine Animation für den Titel */
+.hero-title {
+  position: relative;
+  display: inline-block;
+  animation: pulseGlow 3s infinite ease-in-out;
+  text-shadow: 0 0 12px rgba(255,200,0,0.5);
+  overflow: hidden;
+}
+
+/* Shine-Effekt */
+.hero-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 100%
+  );
+  animation: shineSweep 4s infinite ease-in-out;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255,200,0,0.4);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 28px rgba(255,200,0,1);
+    transform: scale(1.03);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255,200,0,0.4);
+    transform: scale(1);
+  }
+}
+
+/* Shine Sweep */
+@keyframes shineSweep {
+  0% { left: -120%; }
+  50% { left: 120%; }
+  100% { left: 120%; }
 }
