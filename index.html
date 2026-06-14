@@ -5,6 +5,9 @@
   <title>Mostviertler Streaming Team</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Orbitron Schrift -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
   <script defer src="cookie.js"></script>
@@ -14,11 +17,8 @@
 
   <!-- GOLD ORBS BACKGROUND -->
   <div class="orbs">
-    <!-- Große Orbs -->
     <div class="orb big" style="top: 10%; left: 15%; animation-duration: 18s;"></div>
     <div class="orb big" style="top: 60%; left: 70%; animation-duration: 22s;"></div>
-
-    <!-- Kleine Orbs -->
     <div class="orb small" style="top: 30%; left: 80%; animation-duration: 14s;"></div>
     <div class="orb small" style="top: 75%; left: 25%; animation-duration: 16s;"></div>
     <div class="orb small" style="top: 50%; left: 45%; animation-duration: 12s;"></div>
@@ -26,11 +26,16 @@
 
   <!-- HERO -->
   <header class="hero">
+
+    <!-- LOGO -->
     <img src="img/mostviertler-logo.png" class="hero-logo">
 
+    <!-- TITEL MIT COOLER SCHRIFT -->
+    <h1 class="hero-title bounce">Mostviertler Streaming Team</h1>
+
+    <!-- BANNER -->
     <img src="img/bannermosti.png" class="hero-banner">
 
-    <h1 class="hero-title bounce">Mostviertler Streaming Team</h1>
   </header>
 
   <!-- TEAM SECTION -->
@@ -84,8 +89,17 @@
     <h2 class="section-title">Streamingpläne</h2>
 
     <div class="plan-grid">
-      <img src="img/hyptryxplan.PNG" class="plan-img">
-      <img src="img/tommecsplan.PNG" class="plan-img">
+
+      <div class="plan-box">
+        <h3 class="plan-title">HyptryX Streamingplan</h3>
+        <img src="img/hyptryxplan.png" class="plan-img">
+      </div>
+
+      <div class="plan-box">
+        <h3 class="plan-title">Tommecs Streamingplan</h3>
+        <img src="img/tommecsplan.png" class="plan-img">
+      </div>
+
     </div>
   </section>
 
@@ -97,18 +111,6 @@
       <a href="impressum.html">Impressum</a>
     </p>
   </footer>
-
-  <!-- COOKIE BANNER -->
-  <div id="cookie-banner" class="cookie-banner hidden">
-    <p class="cookie-text">
-      Wir verwenden Cookies und eingebettete Inhalte (z.B. Twitch‑VODs).
-      Mit Klick auf „Akzeptieren“ stimmst du der Nutzung zu.
-    </p>
-    <div class="cookie-buttons">
-      <button id="cookie-accept" class="cookie-btn cookie-accept">Akzeptieren</button>
-      <button id="cookie-decline" class="cookie-btn cookie-decline">Ablehnen</button>
-    </div>
-  </div>
 
 </body>
 </html>
