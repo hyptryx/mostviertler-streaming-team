@@ -300,7 +300,8 @@ body {
   margin-bottom: 10px;
   color: #ffd27f;
 }
-/* Pulse Glow + Shine Animation für den Titel – FIXED */
+
+/* Pulse Glow Animation für den Titel – ohne Shine */
 .hero-title {
   position: relative;
   display: inline-block;
@@ -308,37 +309,12 @@ body {
   font-weight: 900;
   font-family: "Orbitron", sans-serif;
 
-  /* WICHTIG: Text sichtbar machen */
   background: linear-gradient(90deg, #ff9900, #ffd700);
   -webkit-background-clip: text;
   color: transparent;
 
-  /* Animation */
   animation: pulseGlow 3s infinite ease-in-out;
   text-shadow: 0 0 12px rgba(255,200,0,0.5);
-
-  /* Shine braucht das */
-  overflow: visible;
-}
-
-/* Shine-Effekt */
-.hero-title::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  pointer-events: none;
-
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0.4) 50%,
-    transparent 100%
-  );
-
-  animation: shineSweep 4s infinite ease-in-out;
 }
 
 /* Pulse Glow */
@@ -357,9 +333,3 @@ body {
   }
 }
 
-/* Shine Sweep */
-@keyframes shineSweep {
-  0% { left: -150%; }
-  50% { left: 150%; }
-  100% { left: 150%; }
-}
