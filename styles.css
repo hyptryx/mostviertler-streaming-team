@@ -92,6 +92,8 @@ body {
 
   animation: pulseGlow 3s infinite ease-in-out;
   text-shadow: 0 0 12px rgba(255,200,0,0.5);
+
+   margin-bottom: 35px; /* Abstand zum Banner */
 }
 
 @keyframes pulseGlow {
