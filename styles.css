@@ -114,7 +114,7 @@ body {
 .hero-banner {
   width: 90%;
   max-width: 900px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 5px auto;
   display: block;
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(255,165,0,0.25);
@@ -526,7 +526,7 @@ body {
 
 .about {
   max-width: 800px;
-  margin: 20px auto 40px auto;
+  margin: 20px auto 20px auto;
   padding: 20px;
   text-align: center;
 }
@@ -543,7 +543,7 @@ body {
 
 .focus {
   max-width: 900px;
-  margin: 0 auto 40px auto;
+  margin: 10px auto 40px auto;
   padding: 0 20px;
 }
 
@@ -557,13 +557,21 @@ body {
 .focus-box {
   flex: 1 1 220px;
   max-width: 260px;
-  background: rgba(255,165,0,0.05);
-  border: 1px solid rgba(255,165,0,0.25);
+  background: rgba(20,20,20,0.65);
+  border: 1px solid rgba(255,215,0,0.25);
   border-radius: 12px;
-  padding: 15px;
+  padding: 18px;
   text-align: center;
   font-size: 0.95rem;
   line-height: 1.6;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 18px rgba(255,215,0,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.focus-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px rgba(255,215,0,0.35);
 }
 
 .quotes {
@@ -598,13 +606,25 @@ body {
 }
 
 .hero-badge {
-  margin: 10px auto 20px auto;
-  padding: 6px 14px;
+  margin: 10px auto 10px auto;
+  padding: 8px 20px;
   border-radius: 999px;
-  border: 1px solid rgba(255,215,0,0.4);
-  font-size: 0.85rem;
-  opacity: 0.85;
+  border: 1px solid rgba(255,215,0,0.6);
+  font-size: 1rem;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(90deg, #ffb300, #ffe680);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 12px rgba(255,215,0,0.45);
+  opacity: 1;
   width: fit-content;
+  animation: badgePulse 3s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+  0% { text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+  50% { text-shadow: 0 0 22px rgba(255,215,0,0.9); }
+  100% { text-shadow: 0 0 10px rgba(255,215,0,0.3); }
 }
 
 .roadmap {
