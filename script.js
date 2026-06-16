@@ -45,7 +45,13 @@ async function checkLiveStatus() {
        if (!extra) continue;
        if (isLive) {
         const stream = data.data[0];
-        extra.textContent = `${stream.title} · ${stream.game_name}`;
+          
+      extra.innerHTML = `
+           <strong>${stream.title}</strong><br>
+           ${stream.game_name}<br>
+           👀 ${stream.viewer_count} Zuschauer
+      `;
+
       } else {
         extra.textContent = "";
       }
