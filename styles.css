@@ -499,10 +499,10 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255,215,0,0.35) 3px, transparent 3px);
-  background-size: 6px 6px;
-  animation: particlesMove 25s linear infinite;
-  opacity: 0.45;
+  background-image: radial-gradient(rgba(255,215,0,0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  animation: particlesMove 60s linear infinite;
+  opacity: 0.18;
   z-index: 1;
 }
 
