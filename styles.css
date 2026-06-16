@@ -606,20 +606,19 @@ body {
 }
 
 .hero-badge {
-  margin: 5px auto 5px auto;
-  padding: 12px 32px;
+  margin: 5px auto 10px auto;
+  padding: 10px 26px;
   border-radius: 999px;
-  border: 1px solid rgba(255,215,0,0.85);
-  font-size: 1.25rem;
+  border: 1px solid rgba(255,215,0,0.75);
+  font-size: 1.15rem;
   font-family: "Orbitron", sans-serif;
-  font-weight: 900;
-  background: linear-gradient(90deg, #ffd65c, #fff6c7);
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffcc33, #fff2a8);
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow:
-    0 0 15px rgba(255,215,0,0.6),
-    0 0 30px rgba(255,215,0,0.4),
-    0 0 45px rgba(255,215,0,0.25);
+  text-shadow: 
+    0 0 12px rgba(255,215,0,0.55),
+    0 0 22px rgba(255,215,0,0.35);
   animation: badgePulse 3s infinite ease-in-out;
 }
 
