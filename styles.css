@@ -458,3 +458,18 @@ body {
 .team-card:hover .team-avatar {
   transform: scale(1.08);
 }
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,215,0,0.15) 2px, transparent 2px);
+  background-size: 3px 3px;
+  animation: particlesMove 20s linear infinite;
+  opacity: 0.25;
+}
+
+@keyframes particlesMove {
+  from { background-position: 0 0; }
+  to { background-position: 300px 300px; }
+}
