@@ -499,10 +499,11 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255,215,0,0.15) 2px, transparent 2px);
-  background-size: 3px 3px;
-  animation: particlesMove 20s linear infinite;
-  opacity: 0.25;
+  background-image: radial-gradient(rgba(255,215,0,0.35) 3px, transparent 3px);
+  background-size: 6px 6px;
+  animation: particlesMove 25s linear infinite;
+  opacity: 0.45;
+  z-index: 1;
 }
 
 @keyframes particlesMove {
