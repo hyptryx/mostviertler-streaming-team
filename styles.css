@@ -616,7 +616,7 @@ body {
 .hero-rotate {
   font-size: 1.8rem;
   font-weight: 700;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Audiowide", sans-serif;
   text-align: center;
   margin: 10px auto 25px auto;
   color: #ffd86b;
@@ -636,30 +636,32 @@ body {
   100% { text-shadow: 0 0 8px rgba(255,215,0,0.4); }
 }
 
-/* Wort-Rotation */
+/* Fade-Only Rotation – perfekt smooth */
 .rotate-text {
-  height: 32px;
-  overflow: hidden;
   position: relative;
+  height: 32px;
 }
 
 .rotate-text span {
   position: absolute;
   width: 100%;
   left: 0;
-  opacity: 0; /* <<< verhindert Überschreiben */
-  animation: rotateWords 16s ease-in-out infinite; /* <<< langsamer + smoother */
+  top: 0;
+  opacity: 0;
+  animation: fadeRotate 16s ease-in-out infinite;
 }
 
+/* 4 Sätze → 4 Delays */
 .rotate-text span:nth-child(1) { animation-delay: 0s; }
-.rotate-text span:nth-child(2) { animation-delay: 3s; }
-.rotate-text span:nth-child(3) { animation-delay: 6s; }
-.rotate-text span:nth-child(4) { animation-delay: 9s; }
+.rotate-text span:nth-child(2) { animation-delay: 4s; }
+.rotate-text span:nth-child(3) { animation-delay: 8s; }
+.rotate-text span:nth-child(4) { animation-delay: 12s; }
 
-@keyframes rotateWords {
-  0%   { top: 100%; opacity: 0; }
-  8%   { top: 0%; opacity: 1; }
-  25%  { top: 0%; opacity: 1; }
-  33%  { top: -100%; opacity: 0; }
-  100% { top: -100%; opacity: 0; }
+@keyframes fadeRotate {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  25%  { opacity: 1; }
+  35%  { opacity: 0; }
+  100% { opacity: 0; }
 }
+
