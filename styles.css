@@ -662,7 +662,7 @@ body {
              goldPulse 3s ease-in-out infinite;
 }
 
-/* 4 Sätze → 5 Sekunden pro Satz */
+/* 4 Sätze → 20s / 4 = 5s pro Satz */
 .rotate-text span:nth-child(1) { animation-delay: 0s; }
 .rotate-text span:nth-child(2) { animation-delay: 5s; }
 .rotate-text span:nth-child(3) { animation-delay: 10s; }
@@ -671,9 +671,9 @@ body {
 /* Perfekter Übergang ohne Überschreiben */
 @keyframes fadeRotate {
   0%   { opacity: 0; }
-  18%  { opacity: 1; }
-  32%  { opacity: 1; }
-  38%  { opacity: 0; }
+  20%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
