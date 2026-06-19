@@ -281,8 +281,12 @@ document.getElementById("catch-save-name").onclick = () => {
 function saveHighscore(name, score) {
   const ref = db.ref("mostiCatchHighscores");
 
-  // 1. Prüfen, ob der Name bereits existiert
-  ref.orderByChild("name").equalTo(name).once("value", snapshot => {
+  // Name normal anzeigen, aber intern klein speichern
+  const cleanName = name.trim();
+  const keyName = cleanName.toLowerCase();
+
+  // 1. Prüfen, ob der Name bereits existiert (in lowercase)
+  ref.orderByChild("keyName").equalTo(keyName).once("value", snapshot => {
 
     if (snapshot.exists()) {
       // Spieler existiert → alten Score holen
@@ -292,7 +296,8 @@ function saveHighscore(name, score) {
       // 2. Nur überschreiben, wenn neuer Score besser ist
       if (score > oldData.score) {
         ref.child(key).update({
-          name,
+          name: cleanName,   // Anzeige-Name
+          keyName: keyName,  // Vergleichs-Name
           score,
           timestamp: Date.now()
         });
@@ -301,7 +306,8 @@ function saveHighscore(name, score) {
     } else {
       // Spieler existiert NICHT → neuen Eintrag anlegen
       ref.push({
-        name,
+        name: cleanName,     // Anzeige-Name
+        keyName: keyName,    // Vergleichs-Name
         score,
         timestamp: Date.now()
       });
