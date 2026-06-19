@@ -171,7 +171,8 @@ function startGame() {
   // Fall Movement
   fallInterval = setInterval(() => {
     let top = parseInt(item.style.top);
-    item.style.top = top + 6 + "px";
+if (isNaN(top)) top = -40; // verhindert Start-Bug
+item.style.top = top + 6 + "px";
 
     // Check Catch
     const itemRect = item.getBoundingClientRect();
@@ -219,7 +220,8 @@ game.addEventListener("mousemove", (e) => {
 
 // Player Movement – Handy
 game.addEventListener("touchmove", (e) => {
+  e.preventDefault(); // verhindert Scrollen während des Spiels
   const rect = game.getBoundingClientRect();
   let x = e.touches[0].clientX - rect.left - 20;
   player.style.left = x + "px";
-});
+}, { passive: false });
