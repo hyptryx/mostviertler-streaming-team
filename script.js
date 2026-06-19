@@ -225,3 +225,4 @@ game.addEventListener("touchmove", (e) => {
   let x = e.touches[0].clientX - rect.left - 20;
   player.style.left = x + "px";
 }, { passive: false });
+
