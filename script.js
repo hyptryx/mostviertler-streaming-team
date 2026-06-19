@@ -121,7 +121,7 @@ btn.addEventListener("click", () => {
     } else if (s1 === s2 || s2 === s3 || s1 === s3) {
       result.textContent = "✨ Fast! Zwei Treffer – probier’s nochmal!";
     } else {
-      result.textContent = "😅 Nix geworden… typisch Mostviertler Glück!";
+      result.textContent = "😅 Nix geworden… typisch Mostviertler Pech!";
     }
   }, 500);
 });
