@@ -127,7 +127,7 @@ btn.addEventListener("click", () => {
 });
 
 /* ---------------------------------------------------
-   MOSTI CATCH – MINI GAME
+   MOSTI CATCH – MINI GAME (FINAL FIXED VERSION)
 --------------------------------------------------- */
 
 const game = document.getElementById("catch-game");
@@ -143,6 +143,29 @@ let time = 20;
 let gameInterval;
 let fallInterval;
 
+/* ---------------------------------------------------
+   TOUCH CONTROL (aktiv nur während des Spiels)
+--------------------------------------------------- */
+
+function enableTouchControl() {
+  game.addEventListener("touchmove", touchHandler, { passive: false });
+}
+
+function disableTouchControl() {
+  game.removeEventListener("touchmove", touchHandler);
+}
+
+function touchHandler(e) {
+  e.preventDefault();
+  const rect = game.getBoundingClientRect();
+  let x = e.touches[0].clientX - rect.left - 20;
+  player.style.left = x + "px";
+}
+
+/* ---------------------------------------------------
+   GAME START
+--------------------------------------------------- */
+
 function startGame() {
   score = 0;
   time = 20;
@@ -152,11 +175,14 @@ function startGame() {
 
   startBtn.disabled = true;
 
-  // Player Position
+  // Player Position (zentriert)
   player.style.left = (game.clientWidth / 2 - 20) + "px";
 
   // Item Reset
   resetItem();
+
+  // Touch aktivieren
+  enableTouchControl();
 
   // Timer
   gameInterval = setInterval(() => {
@@ -171,39 +197,52 @@ function startGame() {
   // Fall Movement
   fallInterval = setInterval(() => {
     let top = parseInt(item.style.top);
-if (isNaN(top)) top = -40; // verhindert Start-Bug
-item.style.top = top + 6 + "px";
+    if (isNaN(top)) top = -40; // Start-Bug Fix
 
-    // Check Catch
+    item.style.top = top + 6 + "px";
+
+    // Kollision prüfen
     const itemRect = item.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
 
     if (
       itemRect.bottom >= playerRect.top &&
-      itemRect.left >= playerRect.left &&
-      itemRect.right <= playerRect.right
+      itemRect.top <= playerRect.bottom &&
+      itemRect.right >= playerRect.left &&
+      itemRect.left <= playerRect.right
     ) {
       score++;
       scoreEl.textContent = score;
       resetItem();
     }
 
-    // Missed
+    // Verpasst
     if (top > 300) {
       resetItem();
     }
   }, 30);
 }
 
+/* ---------------------------------------------------
+   ITEM RESET
+--------------------------------------------------- */
+
 function resetItem() {
   item.style.top = "-40px";
   item.style.left = Math.random() * (game.clientWidth - 40) + "px";
 }
 
+/* ---------------------------------------------------
+   GAME END
+--------------------------------------------------- */
+
 function endGame() {
   clearInterval(gameInterval);
   clearInterval(fallInterval);
   startBtn.disabled = false;
+
+  // Touch deaktivieren
+  disableTouchControl();
 
   endEl.textContent =
     score >= 10
@@ -211,20 +250,19 @@ function endGame() {
       : "😅 Ui… da geht noch was!";
 }
 
-// Player Movement – PC
+/* ---------------------------------------------------
+   PLAYER MOVEMENT – PC
+--------------------------------------------------- */
+
 game.addEventListener("mousemove", (e) => {
   const rect = game.getBoundingClientRect();
   let x = e.clientX - rect.left - 20;
   player.style.left = x + "px";
 });
 
-// Player Movement – Handy
-game.addEventListener("touchmove", (e) => {
-  e.preventDefault(); // verhindert Scrollen während des Spiels
-  const rect = game.getBoundingClientRect();
-  let x = e.touches[0].clientX - rect.left - 20;
-  player.style.left = x + "px";
-}, { passive: false });
+/* ---------------------------------------------------
+   START BUTTON
+--------------------------------------------------- */
 
-// ⭐ SPIEL STARTEN – FEHLTE BISHER
 startBtn.addEventListener("click", startGame);
+
