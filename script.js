@@ -125,3 +125,101 @@ btn.addEventListener("click", () => {
     }
   }, 500);
 });
+
+/* ---------------------------------------------------
+   MOSTI CATCH – MINI GAME
+--------------------------------------------------- */
+
+const game = document.getElementById("catch-game");
+const player = document.getElementById("catch-player");
+const item = document.getElementById("catch-item");
+const startBtn = document.getElementById("catch-start");
+const scoreEl = document.getElementById("catch-score");
+const timeEl = document.getElementById("catch-time");
+const endEl = document.getElementById("catch-end");
+
+let score = 0;
+let time = 20;
+let gameInterval;
+let fallInterval;
+
+function startGame() {
+  score = 0;
+  time = 20;
+  scoreEl.textContent = score;
+  timeEl.textContent = time;
+  endEl.textContent = "";
+
+  startBtn.disabled = true;
+
+  // Player Position
+  player.style.left = "50%";
+
+  // Item Reset
+  resetItem();
+
+  // Timer
+  gameInterval = setInterval(() => {
+    time--;
+    timeEl.textContent = time;
+
+    if (time <= 0) {
+      endGame();
+    }
+  }, 1000);
+
+  // Fall Movement
+  fallInterval = setInterval(() => {
+    let top = parseInt(item.style.top);
+    item.style.top = top + 6 + "px";
+
+    // Check Catch
+    const itemRect = item.getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+
+    if (
+      itemRect.bottom >= playerRect.top &&
+      itemRect.left >= playerRect.left &&
+      itemRect.right <= playerRect.right
+    ) {
+      score++;
+      scoreEl.textContent = score;
+      resetItem();
+    }
+
+    // Missed
+    if (top > 300) {
+      resetItem();
+    }
+  }, 30);
+}
+
+function resetItem() {
+  item.style.top = "-40px";
+  item.style.left = Math.random() * (game.clientWidth - 40) + "px";
+}
+
+function endGame() {
+  clearInterval(gameInterval);
+  clearInterval(fallInterval);
+  startBtn.disabled = false;
+
+  endEl.textContent =
+    score >= 10
+      ? "🔥 Stark! Du bist ein echter Mosti‑Fänger!"
+      : "😅 Ui… da geht noch was!";
+}
+
+// Player Movement – PC
+game.addEventListener("mousemove", (e) => {
+  const rect = game.getBoundingClientRect();
+  let x = e.clientX - rect.left - 20;
+  player.style.left = x + "px";
+});
+
+// Player Movement – Handy
+game.addEventListener("touchmove", (e) => {
+  const rect = game.getBoundingClientRect();
+  let x = e.touches[0].clientX - rect.left - 20;
+  player.style.left = x + "px";
+});
