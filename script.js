@@ -360,3 +360,4 @@ game.addEventListener("mousemove", (e) => {
 startBtn.addEventListener("click", startGame);
 
 renderHighscores();
+
