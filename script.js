@@ -335,7 +335,7 @@ function spawnObstacle() {
   const size = sizes[Math.floor(Math.random() * sizes.length)];
   box.style.width = size + "px";
 
-  const heights = [20, 35, 50]; // weniger extreme Höhen
+  const heights = [20, 30, 40]; // weniger extreme Höhen
   const h = heights[Math.floor(Math.random() * heights.length)];
   box.style.bottom = h + "px";
 
