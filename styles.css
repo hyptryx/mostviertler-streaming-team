@@ -985,9 +985,9 @@ body {
   inset: 0;
   z-index: 0;
 
-  /* sichtbarer, weicher Lichtstreifen */
+  /* Verlauf um 180° gedreht → hell rechts */
   background: linear-gradient(
-    90deg,
+    270deg,
     rgba(255,255,255,0.00) 0%,
     rgba(255,255,255,0.10) 40%,
     rgba(255,255,255,0.20) 50%,
@@ -995,9 +995,8 @@ body {
     rgba(255,255,255,0.00) 100%
   );
 
-  /* Bewegung von RECHTS → LINKS */
   background-size: 200% 100%;
-  animation: moveLeft 4s linear infinite;
+  animation: moveLeft 6s linear infinite;
 }
 
 @keyframes moveLeft {
