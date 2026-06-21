@@ -331,11 +331,11 @@ function spawnObstacle() {
   box.src = "img/bierkiste.png";
   box.classList.add("run-obstacle");
 
-  const sizes = [40, 55, 70];   // kleinere Kisten
+  const sizes = [40, 50, 60];   // kleinere Kisten
   const size = sizes[Math.floor(Math.random() * sizes.length)];
   box.style.width = size + "px";
 
-  const heights = [20, 40, 60]; // weniger extreme Höhen
+  const heights = [20, 35, 50]; // weniger extreme Höhen
   const h = heights[Math.floor(Math.random() * heights.length)];
   box.style.bottom = h + "px";
 
