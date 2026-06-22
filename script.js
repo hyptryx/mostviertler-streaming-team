@@ -610,4 +610,3 @@ function renderDropHighscores() {
 }
 
 renderDropHighscores();
-
