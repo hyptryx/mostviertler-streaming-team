@@ -395,13 +395,10 @@ function startDropGame() {
       dropGame.clientWidth / 2 - dropPlayer.offsetWidth / 2 + "px";
   }, 10);
 
-  // Erstes Item erzeugen
   spawnDropItem();
 
-  // Touch aktivieren
   dropGame.addEventListener("touchmove", dropTouchHandler, { passive: false });
 
-  // Geschwindigkeit steigt jede Sekunde
   dropSpeedInterval = setInterval(() => {
     dropSpeed += dropSpeedIncrease;
   }, 1000);
@@ -422,7 +419,6 @@ function spawnDropItem() {
   dropItem.style.top = "-40px";
   dropGame.appendChild(dropItem);
 
-  // Breite erst NACH append messen
   const itemWidth = dropItem.offsetWidth;
   dropItem.style.left =
     Math.random() * (dropGame.clientWidth - itemWidth) + "px";
@@ -441,7 +437,6 @@ function startDropFall(dropItem) {
 
     dropItem.style.top = top + dropSpeed + "px";
 
-    // Relative Kollision
     const gameRect = dropGame.getBoundingClientRect();
     const itemRect = dropItem.getBoundingClientRect();
     const playerRect = dropPlayer.getBoundingClientRect();
@@ -495,7 +490,6 @@ function endDropGame() {
 
   dropEndEl.textContent = `💀 Game Over – Score: ${dropScore}`;
 
-  // Name-Eingabe anzeigen
   document.getElementById("drop-name-input").style.display = "block";
 
   document.getElementById("drop-save-name").onclick = () => {
