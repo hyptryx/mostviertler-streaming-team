@@ -371,20 +371,21 @@ const dropStartBtn = document.getElementById("drop-start");
 const dropScoreEl = document.getElementById("drop-score");
 const dropEndEl = document.getElementById("drop-end");
 
-let dropScore = 0;
+let dropTime = 0;
 let dropSpeed = 5;
 let dropSpeedIncrease = 0.12;
 
 let dropSpeedInterval;
+let dropTimeInterval;
 
 /* ---------------------------------------------------
    MOSTI DROP – START
 --------------------------------------------------- */
 
 function startDropGame() {
-  dropScore = 0;
+  dropTime = 0;
   dropSpeed = 5;
-  dropScoreEl.textContent = dropScore;
+  dropScoreEl.textContent = "0.0s";
   dropEndEl.textContent = "";
 
   dropStartBtn.disabled = true;
@@ -399,9 +400,16 @@ function startDropGame() {
 
   dropGame.addEventListener("touchmove", dropTouchHandler, { passive: false });
 
+  // Geschwindigkeit steigt jede Sekunde
   dropSpeedInterval = setInterval(() => {
     dropSpeed += dropSpeedIncrease;
   }, 1000);
+
+  // Zeit läuft
+  dropTimeInterval = setInterval(() => {
+    dropTime += 0.1;
+    dropScoreEl.textContent = dropTime.toFixed(1) + "s";
+  }, 100);
 }
 
 /* ---------------------------------------------------
@@ -451,27 +459,24 @@ function startDropFall(dropItem) {
     const playerTop = playerRect.top - gameRect.top;
     const playerBottom = playerRect.bottom - gameRect.top;
 
-    // Kollision
+    // Kollision = GAME OVER
     if (
       itemBottom >= playerTop &&
       itemTop <= playerBottom &&
       itemRight >= playerLeft &&
       itemLeft <= playerRight
     ) {
-      dropScore++;
-      dropScoreEl.textContent = dropScore;
-
-      clearInterval(fall);
-      dropItem.remove();
-      spawnDropItem();
-      return;
-    }
-
-    // Verpasst → Game Over
-    if (itemTop > dropGame.clientHeight) {
       clearInterval(fall);
       dropItem.remove();
       endDropGame();
+      return;
+    }
+
+    // Verpasst → neues Item
+    if (itemTop > dropGame.clientHeight) {
+      clearInterval(fall);
+      dropItem.remove();
+      spawnDropItem();
       return;
     }
   }, 30);
@@ -483,12 +488,13 @@ function startDropFall(dropItem) {
 
 function endDropGame() {
   clearInterval(dropSpeedInterval);
+  clearInterval(dropTimeInterval);
 
   dropStartBtn.disabled = false;
 
   dropGame.removeEventListener("touchmove", dropTouchHandler);
 
-  dropEndEl.textContent = `💀 Game Over – Score: ${dropScore}`;
+  dropEndEl.textContent = `💀 Game Over – Zeit: ${dropTime.toFixed(1)}s`;
 
   document.getElementById("drop-name-input").style.display = "block";
 
@@ -496,7 +502,7 @@ function endDropGame() {
     const name =
       document.getElementById("drop-player-name").value.trim() || "Unbekannt";
 
-    saveDropHighscore(name, dropScore);
+    saveDropHighscore(name, dropTime);
     renderDropHighscores();
 
     document.getElementById("drop-name-input").style.display = "none";
@@ -549,7 +555,7 @@ dropStartBtn.addEventListener("click", startDropGame);
    MOSTI DROP – HIGHSCORE SPEICHERN
 --------------------------------------------------- */
 
-function saveDropHighscore(name, score) {
+function saveDropHighscore(name, time) {
   const ref = db.ref("mostiDropHighscores");
 
   const cleanName = name.trim();
@@ -560,11 +566,11 @@ function saveDropHighscore(name, score) {
       const key = Object.keys(snapshot.val())[0];
       const oldData = snapshot.val()[key];
 
-      if (score > oldData.score) {
+      if (time > oldData.time) {
         ref.child(key).update({
           name: cleanName,
           keyName: keyName,
-          score,
+          time,
           timestamp: Date.now(),
         });
       }
@@ -572,7 +578,7 @@ function saveDropHighscore(name, score) {
       ref.push({
         name: cleanName,
         keyName: keyName,
-        score,
+        time,
         timestamp: Date.now(),
       });
     }
@@ -588,7 +594,7 @@ function renderDropHighscores() {
   list.innerHTML = "";
 
   db.ref("mostiDropHighscores")
-    .orderByChild("score")
+    .orderByChild("time")
     .limitToLast(5)
     .on("value", (snapshot) => {
       const entries = [];
@@ -597,16 +603,17 @@ function renderDropHighscores() {
         entries.push(child.val());
       });
 
-      entries.sort((a, b) => b.score - a.score);
+      entries.sort((a, b) => b.time - a.time);
 
       list.innerHTML = "";
 
       entries.forEach((entry, i) => {
         const li = document.createElement("li");
-        li.textContent = `${i + 1}. ${entry.name} – ${entry.score} Punkte`;
+        li.textContent = `${i + 1}. ${entry.name} – ${entry.time.toFixed(1)}s`;
         list.appendChild(li);
       });
     });
 }
 
 renderDropHighscores();
+
