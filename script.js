@@ -373,10 +373,14 @@ const dropEndEl = document.getElementById("drop-end");
 
 let dropTime = 0;
 let dropSpeed = 5;
-let dropSpeedIncrease = 0.12;
+let dropSpeedIncrease = 0.18; // Hardcore Speed-Curve
 
 let dropSpeedInterval;
 let dropTimeInterval;
+
+// Hardcore Mode: Maximal 3 Items gleichzeitig
+let activeItems = 0;
+const maxItems = 3;
 
 /* ---------------------------------------------------
    MOSTI DROP – START
@@ -385,6 +389,8 @@ let dropTimeInterval;
 function startDropGame() {
   dropTime = 0;
   dropSpeed = 5;
+  activeItems = 0;
+
   dropScoreEl.textContent = "0.0s";
   dropEndEl.textContent = "";
 
@@ -413,10 +419,12 @@ function startDropGame() {
 }
 
 /* ---------------------------------------------------
-   MOSTI DROP – ITEM ERZEUGEN
+   MOSTI DROP – ITEM ERZEUGEN (Hardcore Version)
 --------------------------------------------------- */
 
 function spawnDropItem() {
+  if (activeItems >= maxItems) return; // nie mehr als 3 Items
+
   const emojiList = ["🍺", "🍏", "🍷", "🔥", "💣", "🍌"];
 
   const dropItem = document.createElement("div");
@@ -427,11 +435,34 @@ function spawnDropItem() {
   dropItem.style.top = "-40px";
   dropGame.appendChild(dropItem);
 
+  activeItems++;
+
   const itemWidth = dropItem.offsetWidth;
   dropItem.style.left =
     Math.random() * (dropGame.clientWidth - itemWidth) + "px";
 
   startDropFall(dropItem);
+
+  // kontrollierte Multi-Drops
+  maybeMultiDrop();
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – MULTI-DROP LOGIK
+--------------------------------------------------- */
+
+function maybeMultiDrop() {
+  const roll = Math.random();
+
+  // 15% Chance auf Doppel-Drop
+  if (roll < 0.15 && activeItems < maxItems) {
+    setTimeout(() => spawnDropItem(), 150);
+  }
+
+  // 5% Chance auf Triple-Drop
+  if (roll < 0.05 && activeItems < maxItems) {
+    setTimeout(() => spawnDropItem(), 300);
+  }
 }
 
 /* ---------------------------------------------------
@@ -468,6 +499,7 @@ function startDropFall(dropItem) {
     ) {
       clearInterval(fall);
       dropItem.remove();
+      activeItems--;
       endDropGame();
       return;
     }
@@ -476,6 +508,7 @@ function startDropFall(dropItem) {
     if (itemTop > dropGame.clientHeight) {
       clearInterval(fall);
       dropItem.remove();
+      activeItems--;
       spawnDropItem();
       return;
     }
@@ -616,46 +649,3 @@ function renderDropHighscores() {
 }
 
 renderDropHighscores();
-
-/* ---------------------------------------------------
-   MOSTI DROP – HARDCORE MODE
---------------------------------------------------- */
-
-// Speed-Curve verstärken
-dropSpeedIncrease = 0.25;
-
-// Zusätzliche Speed-Boosts
-setInterval(() => {
-  dropSpeed += 1.5;
-}, 5000);
-
-// Chaos-Waves
-setInterval(() => {
-  for (let i = 0; i < 5; i++) {
-    setTimeout(() => spawnDropItem(), i * 120);
-  }
-}, 12000);
-
-// Adaptive Difficulty
-setInterval(() => {
-  if (dropTime > 0 && Math.floor(dropTime) % 10 === 0) {
-    dropSpeed += 0.8;
-  }
-}, 1000);
-
-// Multi-Drops direkt in spawnDropItem einbauen
-const originalSpawn = spawnDropItem;
-spawnDropItem = function() {
-  originalSpawn();
-
-  const roll = Math.random();
-
-  if (roll < 0.15) {
-    setTimeout(() => originalSpawn(), 150);
-  }
-
-  if (roll < 0.05) {
-    setTimeout(() => originalSpawn(), 300);
-  }
-};
-
