@@ -375,7 +375,6 @@ let dropScore = 0;
 let dropSpeed = 5;
 let dropSpeedIncrease = 0.12;
 
-let dropFallInterval;
 let dropSpeedInterval;
 
 /* ---------------------------------------------------
@@ -390,10 +389,11 @@ function startDropGame() {
 
   dropStartBtn.disabled = true;
 
-  // Spieler zentrieren
+  // Spieler zentrieren (Emoji braucht 1 Render-Tick)
   setTimeout(() => {
-  dropPlayer.style.left = (dropGame.clientWidth / 2 - dropPlayer.offsetWidth / 2) + "px";
-}, 10);
+    dropPlayer.style.left =
+      dropGame.clientWidth / 2 - dropPlayer.offsetWidth / 2 + "px";
+  }, 10);
 
   // Erstes Item erzeugen
   spawnDropItem();
@@ -416,13 +416,16 @@ function spawnDropItem() {
 
   const dropItem = document.createElement("div");
   dropItem.classList.add("drop-item");
-  dropItem.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+  dropItem.textContent =
+    emojiList[Math.floor(Math.random() * emojiList.length)];
 
-  const itemWidth = dropItem.offsetWidth || 40;
-   dropItem.style.left = Math.random() * (dropGame.clientWidth - itemWidth) + "px";
   dropItem.style.top = "-40px";
-
   dropGame.appendChild(dropItem);
+
+  // Breite erst NACH append messen
+  const itemWidth = dropItem.offsetWidth;
+  dropItem.style.left =
+    Math.random() * (dropGame.clientWidth - itemWidth) + "px";
 
   startDropFall(dropItem);
 }
@@ -438,7 +441,7 @@ function startDropFall(dropItem) {
 
     dropItem.style.top = top + dropSpeed + "px";
 
-    // KORREKTE RELATIVE KOLLISION
+    // Relative Kollision
     const gameRect = dropGame.getBoundingClientRect();
     const itemRect = dropItem.getBoundingClientRect();
     const playerRect = dropPlayer.getBoundingClientRect();
@@ -470,12 +473,12 @@ function startDropFall(dropItem) {
     }
 
     // Verpasst → Game Over
-    if (itemTop > dropGame.clientHeight)
+    if (itemTop > dropGame.clientHeight) {
       clearInterval(fall);
       dropItem.remove();
       endDropGame();
+      return;
     }
-
   }, 30);
 }
 
@@ -496,7 +499,8 @@ function endDropGame() {
   document.getElementById("drop-name-input").style.display = "block";
 
   document.getElementById("drop-save-name").onclick = () => {
-    const name = document.getElementById("drop-player-name").value.trim() || "Unbekannt";
+    const name =
+      document.getElementById("drop-player-name").value.trim() || "Unbekannt";
 
     saveDropHighscore(name, dropScore);
     renderDropHighscores();
@@ -518,9 +522,8 @@ function dropTouchHandler(e) {
   let x = e.touches[0].clientX - rect.left - playerWidth / 2;
 
   if (x < 0) x = 0;
-  if (x > dropGame.clientWidth - playerWidth) {
+  if (x > dropGame.clientWidth - playerWidth)
     x = dropGame.clientWidth - playerWidth;
-  }
 
   dropPlayer.style.left = x + "px";
 }
@@ -536,9 +539,8 @@ dropGame.addEventListener("mousemove", (e) => {
   let x = e.clientX - rect.left - playerWidth / 2;
 
   if (x < 0) x = 0;
-  if (x > dropGame.clientWidth - playerWidth) {
+  if (x > dropGame.clientWidth - playerWidth)
     x = dropGame.clientWidth - playerWidth;
-  }
 
   dropPlayer.style.left = x + "px";
 });
@@ -559,8 +561,7 @@ function saveDropHighscore(name, score) {
   const cleanName = name.trim();
   const keyName = cleanName.toLowerCase();
 
-  ref.orderByChild("keyName").equalTo(keyName).once("value", snapshot => {
-
+  ref.orderByChild("keyName").equalTo(keyName).once("value", (snapshot) => {
     if (snapshot.exists()) {
       const key = Object.keys(snapshot.val())[0];
       const oldData = snapshot.val()[key];
@@ -570,16 +571,15 @@ function saveDropHighscore(name, score) {
           name: cleanName,
           keyName: keyName,
           score,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         });
       }
-
     } else {
       ref.push({
         name: cleanName,
         keyName: keyName,
         score,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       });
     }
   });
@@ -596,10 +596,10 @@ function renderDropHighscores() {
   db.ref("mostiDropHighscores")
     .orderByChild("score")
     .limitToLast(5)
-    .on("value", snapshot => {
+    .on("value", (snapshot) => {
       const entries = [];
 
-      snapshot.forEach(child => {
+      snapshot.forEach((child) => {
         entries.push(child.val());
       });
 
@@ -615,5 +615,5 @@ function renderDropHighscores() {
     });
 }
 
-// Beim Laden direkt anzeigen
 renderDropHighscores();
+
