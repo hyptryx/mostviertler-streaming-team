@@ -520,6 +520,10 @@ function startDropFall(dropItem) {
 --------------------------------------------------- */
 
 function endDropGame() {
+  // ALLE fallenden Items stoppen
+  activeFalls.forEach(f => clearInterval(f));
+  activeFalls = [];
+
   clearInterval(dropSpeedInterval);
   clearInterval(dropTimeInterval);
 
