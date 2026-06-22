@@ -391,7 +391,7 @@ function startDropGame() {
   dropStartBtn.disabled = true;
 
   // Spieler zentrieren
-  dropPlayer.style.left = (dropGame.clientWidth / 2 - 20) + "px";
+  dropPlayer.style.left = (dropGame.clientWidth / 2 - dropPlayer.offsetWidth / 2) + "px";
 
   // Erstes Item erzeugen
   spawnDropItem();
@@ -429,7 +429,7 @@ function spawnDropItem() {
 --------------------------------------------------- */
 
 function startDropFall(dropItem) {
-  dropFallInterval = setInterval(() => {
+  const fall = setInterval(() => {
     let top = parseInt(dropItem.style.top);
     if (isNaN(top)) top = -40;
 
@@ -448,12 +448,15 @@ function startDropFall(dropItem) {
       dropScore++;
       dropScoreEl.textContent = dropScore;
 
+      clearInterval(fall);
       dropItem.remove();
       spawnDropItem();
+      return;
     }
 
     // Verpasst → Game Over
     if (top > 300) {
+      clearInterval(fall);
       dropItem.remove();
       endDropGame();
     }
@@ -496,7 +499,15 @@ function endDropGame() {
 function dropTouchHandler(e) {
   e.preventDefault();
   const rect = dropGame.getBoundingClientRect();
-  let x = e.touches[0].clientX - rect.left - 20;
+  const playerWidth = dropPlayer.offsetWidth;
+
+  let x = e.touches[0].clientX - rect.left - playerWidth / 2;
+
+  if (x < 0) x = 0;
+  if (x > dropGame.clientWidth - playerWidth) {
+    x = dropGame.clientWidth - playerWidth;
+  }
+
   dropPlayer.style.left = x + "px";
 }
 
@@ -506,7 +517,16 @@ function dropTouchHandler(e) {
 
 dropGame.addEventListener("mousemove", (e) => {
   const rect = dropGame.getBoundingClientRect();
-  let x = e.clientX - rect.left - 20;
+  const playerWidth = dropPlayer.offsetWidth;
+
+  let x = e.clientX - rect.left - playerWidth / 2;
+
+  // Begrenzen
+  if (x < 0) x = 0;
+  if (x > dropGame.clientWidth - playerWidth) {
+    x = dropGame.clientWidth - playerWidth;
+  }
+
   dropPlayer.style.left = x + "px";
 });
 
