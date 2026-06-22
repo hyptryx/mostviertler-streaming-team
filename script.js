@@ -361,3 +361,226 @@ startBtn.addEventListener("click", startGame);
 
 renderHighscores();
 
+/* ---------------------------------------------------
+   MOSTI DROP – ELEMENTE
+--------------------------------------------------- */
+
+const dropGame = document.getElementById("drop-game");
+const dropPlayer = document.getElementById("drop-player");
+const dropStartBtn = document.getElementById("drop-start");
+const dropScoreEl = document.getElementById("drop-score");
+const dropEndEl = document.getElementById("drop-end");
+
+let dropScore = 0;
+let dropSpeed = 5;
+let dropSpeedIncrease = 0.12;
+
+let dropFallInterval;
+let dropSpeedInterval;
+
+/* ---------------------------------------------------
+   MOSTI DROP – START
+--------------------------------------------------- */
+
+function startDropGame() {
+  dropScore = 0;
+  dropSpeed = 5;
+  dropScoreEl.textContent = dropScore;
+  dropEndEl.textContent = "";
+
+  dropStartBtn.disabled = true;
+
+  // Spieler zentrieren
+  dropPlayer.style.left = (dropGame.clientWidth / 2 - 20) + "px";
+
+  // Erstes Item erzeugen
+  spawnDropItem();
+
+  // Touch aktivieren
+  dropGame.addEventListener("touchmove", dropTouchHandler, { passive: false });
+
+  // Geschwindigkeit steigt jede Sekunde
+  dropSpeedInterval = setInterval(() => {
+    dropSpeed += dropSpeedIncrease;
+  }, 1000);
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – ITEM ERZEUGEN
+--------------------------------------------------- */
+
+function spawnDropItem() {
+  const emojiList = ["🍺", "🍏", "🍷", "🔥", "💣", "🍌"];
+
+  const dropItem = document.createElement("div");
+  dropItem.classList.add("drop-item");
+  dropItem.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+
+  dropItem.style.left = Math.random() * (dropGame.clientWidth - 40) + "px";
+  dropItem.style.top = "-40px";
+
+  dropGame.appendChild(dropItem);
+
+  startDropFall(dropItem);
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – FALL LOOP
+--------------------------------------------------- */
+
+function startDropFall(dropItem) {
+  dropFallInterval = setInterval(() => {
+    let top = parseInt(dropItem.style.top);
+    if (isNaN(top)) top = -40;
+
+    dropItem.style.top = top + dropSpeed + "px";
+
+    const itemRect = dropItem.getBoundingClientRect();
+    const playerRect = dropPlayer.getBoundingClientRect();
+
+    // Kollision
+    if (
+      itemRect.bottom >= playerRect.top &&
+      itemRect.top <= playerRect.bottom &&
+      itemRect.right >= playerRect.left &&
+      itemRect.left <= playerRect.right
+    ) {
+      dropScore++;
+      dropScoreEl.textContent = dropScore;
+
+      dropItem.remove();
+      spawnDropItem();
+    }
+
+    // Verpasst → Game Over
+    if (top > 300) {
+      dropItem.remove();
+      endDropGame();
+    }
+
+  }, 30);
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – GAME OVER
+--------------------------------------------------- */
+
+function endDropGame() {
+  clearInterval(dropFallInterval);
+  clearInterval(dropSpeedInterval);
+
+  dropStartBtn.disabled = false;
+
+  dropGame.removeEventListener("touchmove", dropTouchHandler);
+
+  dropEndEl.textContent = `💀 Game Over – Score: ${dropScore}`;
+
+  // Name-Eingabe anzeigen
+  document.getElementById("drop-name-input").style.display = "block";
+
+  document.getElementById("drop-save-name").onclick = () => {
+    const name = document.getElementById("drop-player-name").value.trim() || "Unbekannt";
+
+    saveDropHighscore(name, dropScore);
+    renderDropHighscores();
+
+    document.getElementById("drop-name-input").style.display = "none";
+    document.getElementById("drop-player-name").value = "";
+  };
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – TOUCH CONTROL
+--------------------------------------------------- */
+
+function dropTouchHandler(e) {
+  e.preventDefault();
+  const rect = dropGame.getBoundingClientRect();
+  let x = e.touches[0].clientX - rect.left - 20;
+  dropPlayer.style.left = x + "px";
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – MOUSE CONTROL
+--------------------------------------------------- */
+
+dropGame.addEventListener("mousemove", (e) => {
+  const rect = dropGame.getBoundingClientRect();
+  let x = e.clientX - rect.left - 20;
+  dropPlayer.style.left = x + "px";
+});
+
+/* ---------------------------------------------------
+   MOSTI DROP – START BUTTON
+--------------------------------------------------- */
+
+dropStartBtn.addEventListener("click", startDropGame);
+
+/* ---------------------------------------------------
+   MOSTI DROP – HIGHSCORE SPEICHERN
+--------------------------------------------------- */
+
+function saveDropHighscore(name, score) {
+  const ref = db.ref("mostiDropHighscores");
+
+  const cleanName = name.trim();
+  const keyName = cleanName.toLowerCase();
+
+  ref.orderByChild("keyName").equalTo(keyName).once("value", snapshot => {
+
+    if (snapshot.exists()) {
+      const key = Object.keys(snapshot.val())[0];
+      const oldData = snapshot.val()[key];
+
+      if (score > oldData.score) {
+        ref.child(key).update({
+          name: cleanName,
+          keyName: keyName,
+          score,
+          timestamp: Date.now()
+        });
+      }
+
+    } else {
+      ref.push({
+        name: cleanName,
+        keyName: keyName,
+        score,
+        timestamp: Date.now()
+      });
+    }
+  });
+}
+
+/* ---------------------------------------------------
+   MOSTI DROP – HIGHSCORE ANZEIGE
+--------------------------------------------------- */
+
+function renderDropHighscores() {
+  const list = document.getElementById("drop-highscore-list");
+  list.innerHTML = "";
+
+  db.ref("mostiDropHighscores")
+    .orderByChild("score")
+    .limitToLast(5)
+    .on("value", snapshot => {
+      const entries = [];
+
+      snapshot.forEach(child => {
+        entries.push(child.val());
+      });
+
+      entries.sort((a, b) => b.score - a.score);
+
+      list.innerHTML = "";
+
+      entries.forEach((entry, i) => {
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}. ${entry.name} – ${entry.score} Punkte`;
+        list.appendChild(li);
+      });
+    });
+}
+
+// Beim Laden direkt anzeigen
+renderDropHighscores();
