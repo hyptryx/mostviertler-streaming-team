@@ -617,3 +617,44 @@ function renderDropHighscores() {
 
 renderDropHighscores();
 
+/* ---------------------------------------------------
+   MOSTI DROP – HARDCORE MODE
+--------------------------------------------------- */
+
+// Speed-Curve verstärken
+dropSpeedIncrease = 0.25;
+
+// Zusätzliche Speed-Boosts
+setInterval(() => {
+  dropSpeed += 1.5;
+}, 5000);
+
+// Chaos-Waves
+setInterval(() => {
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => spawnDropItem(), i * 120);
+  }
+}, 12000);
+
+// Adaptive Difficulty
+setInterval(() => {
+  if (dropTime > 0 && Math.floor(dropTime) % 10 === 0) {
+    dropSpeed += 0.8;
+  }
+}, 1000);
+
+// Multi-Drops direkt in spawnDropItem einbauen
+const originalSpawn = spawnDropItem;
+spawnDropItem = function() {
+  originalSpawn();
+
+  const roll = Math.random();
+
+  if (roll < 0.15) {
+    setTimeout(() => originalSpawn(), 150);
+  }
+
+  if (roll < 0.05) {
+    setTimeout(() => originalSpawn(), 300);
+  }
+};
