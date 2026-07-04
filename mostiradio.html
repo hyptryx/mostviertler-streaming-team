@@ -21,7 +21,7 @@
 </nav>
 
 <section class="radio-page">
-  <h2 class="section-title">MostiRadio</h2>
+  <h2 class="section-title">MostiRadio - Der Sound im Mostviertel</h2>
 
   <div class="radio-box">
     <div class="radio-status" id="radio-status">🔴 OFF AIR</div>
@@ -32,12 +32,10 @@
 
     <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
 
+    <!-- HTML5 Audio Player -->
     <audio id="mosti-radio-player" preload="none"></audio>
   </div>
 </section>
-
-<!-- StreamingCloud Player Script -->
-<script src="https://s13.streamingcloud.online/dist/widgets.js" defer></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", async function() {
@@ -47,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   const playBtn = document.getElementById("radio-play-btn");
   const audioPlayer = document.getElementById("mosti-radio-player");
 
-  // JSON-URL
+  // JSON API für Stream-Status
   const apiUrl = "https://s13.streamingcloud.online/json/stream/32138";
 
   async function checkStatus() {
@@ -84,13 +82,14 @@ document.addEventListener("DOMContentLoaded", async function() {
       return;
     }
 
+    // Stream URL direkt einbinden
     audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
     audioPlayer.play();
 
     playBtn.textContent = "🎧 Läuft…";
   });
 
-  // Initial Status Check
+  // Initialer Status-Check
   checkStatus();
 });
 </script>
