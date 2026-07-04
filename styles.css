@@ -1542,8 +1542,10 @@ body {
 .dj-status {
   font-family: "Orbitron", sans-serif;
   font-size: 1rem;
-  color: #ffcc00;
-  margin-top: 10px;
+  color: #ff4444;
   text-align: center;
+  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(255,0,0,0.7);
 }
+
 
