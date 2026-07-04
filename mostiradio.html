@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>MostiRadio – Der Sound im Mostviertel</title>
+  <title>MostiRadio 🎧</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Orbitron & Audiowide -->
@@ -25,6 +25,9 @@
 <section class="radio-page">
   <h2 class="section-title">MostiRadio 🎧</h2>
 
+  <!-- HRX BADGE -->
+  <img src="img/mostiradio.png" alt="MostiRadio Badge" class="radio-badge">
+
   <div class="radio-box">
 
     <!-- ON AIR + Listener -->
@@ -37,6 +40,12 @@
     <div class="radio-eq" id="radio-eq">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
+
+    <!-- COVER IMAGE -->
+    <img id="radio-cover" class="radio-cover" src="img/mostiradio.png" alt="Cover">
+
+    <!-- Mini Visualizer Wave -->
+    <div class="radio-wave"></div>
 
     <!-- Now Playing -->
     <div class="radio-nowplaying">
@@ -73,6 +82,7 @@ const radioListeners = document.getElementById("radio-listeners");
 const radioTitleEl   = document.getElementById("radio-title");
 const radioArtistEl  = document.getElementById("radio-artist");
 const radioEq        = document.getElementById("radio-eq");
+const radioCover     = document.getElementById("radio-cover");
 
 // Dein Icecast-Mount (MP3)
 const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
@@ -128,6 +138,9 @@ async function updateRadioStatus() {
     radioListeners.textContent = `👥 ${listeners} Listener`;
     radioTitleEl.textContent   = title;
     radioArtistEl.textContent  = artist;
+
+    /* Cover setzen – Icecast liefert kein Cover → Badge bleibt */
+    radioCover.src = "img/mostiradio.png";
 
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
