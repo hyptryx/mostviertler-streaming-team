@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
   }
 
-  // Play Button
-  playBtn.addEventListener("click", async () => {
-    const isOnline = await checkStatus();
+  // Play Button – spielt IMMER
+playBtn.addEventListener("click", () => {
 
-    if (!isOnline) {
-      playBtn.textContent = "⚠ Kein Stream verfügbar";
-      return;
-    }
+  audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
+  audioPlayer.play();
+
+  playBtn.textContent = "🎧 Läuft…";
+});
 
     // Stream URL direkt einbinden
     audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
