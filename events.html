@@ -72,8 +72,18 @@ function openEvent(type) {
 }
 
 function closeEvent() {
-  document.getElementById("event-overlay").style.display = "none";
+  const overlay = document.getElementById("event-overlay");
+  overlay.style.display = "none";
 }
+
+/* OPTIONALER PC-FIX – falls Klicks hängen bleiben */
+document.getElementById("event-overlay").addEventListener("click", (e) => {
+  // Wenn man außerhalb des Inhalts klickt → schließen
+  if (e.target.id === "event-overlay") {
+    closeEvent();
+  }
+});
+
 </script>
 
 </body>
