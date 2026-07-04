@@ -32,7 +32,7 @@
 
     <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
 
-    <div id="mosti-radio-player"></div>
+    <audio id="mosti-radio-player" preload="none"></audio>
   </div>
 </section>
 
@@ -40,43 +40,58 @@
 <script src="https://s13.streamingcloud.online/dist/widgets.js" defer></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // HRX-Player einbinden
-  StreamingCloudWidgets.player({
-    elementId: "mosti-radio-player",
-    streamId: "32138",
-    width: "100%",
-    height: "180px",
-    theme: "dark"
-  });
+document.addEventListener("DOMContentLoaded", async function() {
 
   const statusEl = document.getElementById("radio-status");
   const eqEl = document.querySelector(".radio-eq");
   const playBtn = document.getElementById("radio-play-btn");
+  const audioPlayer = document.getElementById("mosti-radio-player");
 
-  // 🔍 Stream-Status prüfen (einfacher Check über die öffentliche Seite)
-  fetch("https://s13.streamingcloud.online/public/32138")
-    .then(() => {
-      // Seite erreichbar → wir gehen von ON AIR aus
-      statusEl.textContent = "🟢 ON AIR";
-      statusEl.classList.add("on");
-      eqEl.classList.add("active");
-    })
-    .catch(() => {
+  // JSON-URL
+  const apiUrl = "https://s13.streamingcloud.online/json/stream/32138";
+
+  async function checkStatus() {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      if (data.status === "online" && data.source === "connected") {
+        statusEl.textContent = "🟢 ON AIR";
+        statusEl.classList.add("on");
+        eqEl.classList.add("active");
+        return true;
+      } else {
+        statusEl.textContent = "🔴 OFF AIR";
+        statusEl.classList.remove("on");
+        eqEl.classList.remove("active");
+        return false;
+      }
+
+    } catch (e) {
       statusEl.textContent = "🔴 OFF AIR";
       statusEl.classList.remove("on");
       eqEl.classList.remove("active");
-    });
-
-  // HRX-Play-Button Verhalten
-  playBtn.addEventListener("click", () => {
-    if (statusEl.classList.contains("on")) {
-      playBtn.textContent = "🎧 Läuft…";
-    } else {
-      playBtn.textContent = "⚠ Kein Stream verfügbar";
+      return false;
     }
-    document.getElementById("mosti-radio-player").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Play Button
+  playBtn.addEventListener("click", async () => {
+    const isOnline = await checkStatus();
+
+    if (!isOnline) {
+      playBtn.textContent = "⚠ Kein Stream verfügbar";
+      return;
+    }
+
+    audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
+    audioPlayer.play();
+
+    playBtn.textContent = "🎧 Läuft…";
   });
+
+  // Initial Status Check
+  checkStatus();
 });
 </script>
 
