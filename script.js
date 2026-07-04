@@ -754,6 +754,18 @@ async function updateRadioStatus() {
     radioTitleEl.textContent   = title;
     radioArtistEl.textContent  = artist;
 
+   // LIVE DJ CHECK
+    const description = source.server_description || "";
+    const djStatusEl = document.getElementById("dj-status");
+
+    if (description.toLowerCase().includes("source")) {
+        djStatusEl.innerText = "LIVE DJ ist ON AIR";
+        djStatusEl.style.display = "block";
+    } else {
+        djStatusEl.innerText = "";
+        djStatusEl.style.display = "none";
+    }
+
     // Optional: Status anhand listeners
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
@@ -772,16 +784,3 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateRadioStatus, 15000);
 });
 
-const description = data.icestats?.source?.server_description || "";
-
-const djStatusEl = document.getElementById("dj-status");
-
-// Wenn ein Live-DJ connected ist
-if (description.toLowerCase().includes("source")) {
-    djStatusEl.innerText = "LIVE DJ ist ON AIR";
-    djStatusEl.style.display = "block";
-} else {
-    // AutoDJ → nichts anzeigen
-    djStatusEl.innerText = "";
-    djStatusEl.style.display = "none";
-}
