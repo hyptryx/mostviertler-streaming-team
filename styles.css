@@ -1210,3 +1210,42 @@ body {
 body {
   padding-top: 70px; /* damit der Inhalt nicht unter dem Menü klebt */
 }
+
+.events-page {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-card {
+  background: rgba(20,20,20,0.85);
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,215,0,0.35);
+  box-shadow: 0 0 20px rgba(255,215,0,0.25);
+}
+
+.event-img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.event-title {
+  font-family: "Orbitron", sans-serif;
+  color: #ffcc00;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.event-desc {
+  color: #fff;
+  font-size: 1.1rem;
+}
