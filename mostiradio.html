@@ -39,7 +39,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  StreamingCloudWidgets.radio({
+  StreamingCloudWidgets.player({
     elementId: "mosti-radio-player",
     streamId: "32138",
     width: "100%",
@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const playBtn = document.getElementById("radio-play-btn");
   playBtn.addEventListener("click", () => {
-    // Player wird sichtbar, Button ändert Text
     document.getElementById("mosti-radio-player").scrollIntoView({ behavior: "smooth" });
     playBtn.textContent = "🎧 Läuft…";
   });
