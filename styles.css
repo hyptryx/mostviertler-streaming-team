@@ -1590,7 +1590,7 @@ body {
   font-family: "Orbitron", sans-serif;
   color: #ffcc00;
   text-shadow: 0 0 12px rgba(255,215,0,0.6);
-  font-size: 2rem !important;   /* ← WICHTIG */
+  font-size: 2rem !important;
   margin-bottom: 25px;
 }
 
@@ -1672,20 +1672,37 @@ body {
   box-shadow: 0 0 18px rgba(255,215,0,0.7);
 }
 
+/* ---------------------------------------
+   MOBILE FIX – Events
+--------------------------------------- */
 @media (max-width: 600px) {
 
+  /* Titel kleiner */
   .events-page .section-title {
     font-size: 1.6rem !important;
     margin-bottom: 15px !important;
   }
 
+  /* Menü größer */
   .main-nav a {
     font-size: 1.1rem !important;
   }
 
-  .event-card {
-    max-width: 90%;
+  /* Cards untereinander */
+  .events-page .event-grid {
+    grid-template-columns: 1fr !important;
   }
 
+  /* Cards kompakter */
+  .event-card {
+    max-width: 300px !important;
+    margin-bottom: 20px;
+  }
+
+  /* Titel in Cards kleiner */
+  .event-title {
+    font-size: 1.2rem !important;
+  }
 }
+
 
