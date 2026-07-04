@@ -772,9 +772,16 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateRadioStatus, 15000);
 });
 
-if (description && description.toLowerCase().includes("source")) {
-    djStatus = "LIVE DJ ist ON AIR";
-    document.getElementById("dj-status").classList.add("live");
+const description = data.icestats?.source?.server_description || "";
+
+const djStatusEl = document.getElementById("dj-status");
+
+// Wenn ein Live-DJ connected ist
+if (description.toLowerCase().includes("source")) {
+    djStatusEl.innerText = "LIVE DJ ist ON AIR";
+    djStatusEl.style.display = "block";
 } else {
-    document.getElementById("dj-status").classList.remove("live");
+    // AutoDJ → nichts anzeigen
+    djStatusEl.innerText = "";
+    djStatusEl.style.display = "none";
 }
