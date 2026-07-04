@@ -1541,7 +1541,7 @@ body {
 
 /* Mobile Fix */
 @media (max-width: 600px) {
-  .section-title {
+  .radio-page .section-title {
     margin-bottom: 10px !important;
   }
 }
