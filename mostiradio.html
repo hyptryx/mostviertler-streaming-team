@@ -25,7 +25,7 @@
 <section class="radio-page">
   <h2 class="section-title">MostiRadio 🎧</h2>
 
-  <!-- HRX BADGE -->
+  <!-- MOSTI BADGE -->
   <img src="img/mostiradio.png" alt="MostiRadio Badge" class="radio-badge">
 
   <div class="radio-box">
@@ -42,7 +42,9 @@
     </div>
 
     <!-- COVER IMAGE -->
-    <img id="radio-cover" class="radio-cover" src="img/mostiradio.png" alt="Cover">
+    <div class="radio-cover-wrapper">
+      <img id="radio-cover" class="radio-cover" src="img/mostiradio.png" alt="Cover">
+    </div>
 
     <!-- Mini Visualizer Wave -->
     <div class="radio-wave"></div>
@@ -70,7 +72,7 @@
 
 <script>
 /* ---------------------------------------------------
-   MOSTIRADIO – HRX PLAYER LOGIC
+   MOSTIRADIO – HRX PLAYER (STABLE EPIC VERSION)
 --------------------------------------------------- */
 
 const radioAudio     = document.getElementById("mosti-radio-player");
@@ -81,47 +83,55 @@ const radioStatusEl  = document.getElementById("radio-status");
 const radioListeners = document.getElementById("radio-listeners");
 const radioTitleEl   = document.getElementById("radio-title");
 const radioArtistEl  = document.getElementById("radio-artist");
+
 const radioEq        = document.getElementById("radio-eq");
 const radioCover     = document.getElementById("radio-cover");
+const radioWave      = document.querySelector(".radio-wave");
 
-// Dein Icecast-Mount (MP3)
+// Stream URL
 const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
 
-// Icecast JSON-Status
+// Icecast Status JSON
 const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xsl";
 
-/* Play – immer spielen */
+/* PLAY */
 radioPlayBtn.addEventListener("click", () => {
   radioAudio.src = RADIO_STREAM_URL;
+
   radioAudio.play()
     .then(() => {
       radioStatusEl.textContent = "🔴 ON AIR";
       radioStatusEl.classList.add("on");
+
       radioEq.classList.add("active");
+
       radioPlayBtn.textContent = "⏸ Pause";
     })
     .catch(err => {
       console.error("Fehler beim Starten:", err);
-      radioStatusEl.textContent = "⚠ Fehler";
+      radioStatusEl.textContent = "⚠ Fehler beim Starten";
     });
 });
 
-/* Stop */
+/* STOP */
 radioStopBtn.addEventListener("click", () => {
   radioAudio.pause();
   radioAudio.currentTime = 0;
+
   radioStatusEl.textContent = "🟡 Gestoppt";
   radioStatusEl.classList.remove("on");
+
   radioEq.classList.remove("active");
+
   radioPlayBtn.textContent = "▶ Play";
 });
 
-/* Volume */
+/* VOLUME */
 radioVolume.addEventListener("input", () => {
   radioAudio.volume = parseFloat(radioVolume.value);
 });
 
-/* Status / Now Playing */
+/* STATUS + NOW PLAYING */
 async function updateRadioStatus() {
   try {
     const res = await fetch(RADIO_STATUS_URL);
@@ -139,9 +149,16 @@ async function updateRadioStatus() {
     radioTitleEl.textContent   = title;
     radioArtistEl.textContent  = artist;
 
-    /* Cover setzen – Icecast liefert kein Cover → Badge bleibt */
+    /* COVER – Icecast liefert kein Cover → MostiBadge bleibt */
     radioCover.src = "img/mostiradio.png";
 
+    /* WAVE dynamisch */
+    if (radioWave) {
+      const speed = 2 - Math.min(listeners * 0.1, 1.2);
+      radioWave.style.animationDuration = `${speed}s`;
+    }
+
+    /* ON-AIR Status */
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
       radioStatusEl.classList.add("on");
@@ -155,6 +172,7 @@ async function updateRadioStatus() {
   }
 }
 
+/* INIT */
 document.addEventListener("DOMContentLoaded", () => {
   updateRadioStatus();
   setInterval(updateRadioStatus, 15000);
