@@ -87,6 +87,7 @@ const radioListeners = document.getElementById("radio-listeners");
 const radioTitleEl   = document.getElementById("radio-title");
 const radioArtistEl  = document.getElementById("radio-artist");
 const radioEq        = document.getElementById("radio-eq");
+const radioHint      = document.getElementById("radio-hint");   // ⭐ NEU
 
 // Dein Icecast-Mount (MP3)
 const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
@@ -96,6 +97,9 @@ const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xs
 
 /* Play – immer spielen */
 radioPlayBtn.addEventListener("click", () => {
+  // Hinweis sofort anzeigen
+  radioHint.style.display = "block";
+
   radioAudio.src = RADIO_STREAM_URL;
   radioAudio.play()
     .then(() => {
@@ -103,6 +107,9 @@ radioPlayBtn.addEventListener("click", () => {
       radioStatusEl.classList.add("on");
       radioEq.classList.add("active");
       radioPlayBtn.textContent = "⏸ Pause";
+
+      // Hinweis ausblenden, sobald der Stream läuft
+      radioHint.style.display = "none";
     })
     .catch(err => {
       console.error("Fehler beim Starten:", err);
@@ -118,6 +125,9 @@ radioStopBtn.addEventListener("click", () => {
   radioStatusEl.classList.remove("on");
   radioEq.classList.remove("active");
   radioPlayBtn.textContent = "▶ Play";
+
+  // Hinweis ausblenden, falls er noch sichtbar ist
+  radioHint.style.display = "none";
 });
 
 /* Volume */
