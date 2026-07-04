@@ -1535,6 +1535,6 @@ body {
   .radio-badge {
     width: 160px;
     max-width: 75%;
-    margin: 8px auto 20px auto;  /* oben leicht reduziert */
+    margin: 6px auto 20px auto;  /* oben leicht reduziert */
   }
 }
