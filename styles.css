@@ -1555,4 +1555,47 @@ body {
   text-shadow: 0 0 10px rgba(255,0,0,0.7);
 }
 
+/* NAV – gleiche Größe wie MostiRadio */
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px 0;
+}
 
+.main-nav a {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  color: #ffcc00;
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(255,215,0,0.6);
+  transition: 0.25s;
+}
+
+.main-nav a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+
+/* ---------------------------------------
+   MOSTI EVENT CSS
+--------------------------------------- */
+.events-page {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.events-page .section-title {
+  font-family: "Orbitron", sans-serif;
+  color: #ffcc00;
+  text-shadow: 0 0 12px rgba(255,215,0,0.6);
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 600px) {
+  .events-page .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+}
