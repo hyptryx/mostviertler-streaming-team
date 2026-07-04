@@ -686,7 +686,7 @@ document.getElementById("event-popup-close").addEventListener("click", () => {
 });
 
 /* ---------------------------------------------------
-   MOSTIRADIO – HRX PLAYER (STABLE EPIC VERSION)
+   MOSTIRADIO – PLAYER
 --------------------------------------------------- */
 
 const radioAudio     = document.getElementById("mosti-radio-player");
@@ -698,60 +698,51 @@ const radioListeners = document.getElementById("radio-listeners");
 const radioTitleEl   = document.getElementById("radio-title");
 const radioArtistEl  = document.getElementById("radio-artist");
 
-const radioEq        = document.getElementById("radio-eq");
-const radioCover     = document.getElementById("radio-cover");
-const radioWave      = document.querySelector(".radio-wave");
-
-// Stream URL
+// Dein Icecast-Mount (MP3)
 const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
 
-// Icecast Status JSON
+// Icecast JSON-Status (ohne Port, weil meist über Proxy)
 const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xsl";
 
-/* PLAY */
+/* Play-Button – immer spielen */
 radioPlayBtn.addEventListener("click", () => {
   radioAudio.src = RADIO_STREAM_URL;
-
   radioAudio.play()
     .then(() => {
       radioStatusEl.textContent = "🔴 ON AIR";
-      radioStatusEl.classList.add("on");
-
-      radioEq.classList.add("active");
-
       radioPlayBtn.textContent = "⏸ Pause";
     })
     .catch(err => {
-      console.error("Fehler beim Starten:", err);
+      console.error("Fehler beim Starten des Streams:", err);
       radioStatusEl.textContent = "⚠ Fehler beim Starten";
     });
 });
 
-/* STOP */
+/* Stop-Button */
 radioStopBtn.addEventListener("click", () => {
   radioAudio.pause();
   radioAudio.currentTime = 0;
-
   radioStatusEl.textContent = "🟡 Gestoppt";
-  radioStatusEl.classList.remove("on");
-
-  radioEq.classList.remove("active");
-
   radioPlayBtn.textContent = "▶ Play";
 });
 
-/* VOLUME */
+/* Volume-Regler */
 radioVolume.addEventListener("input", () => {
   radioAudio.volume = parseFloat(radioVolume.value);
 });
 
-/* STATUS + NOW PLAYING */
+/* Status / Now Playing aus Icecast holen */
 async function updateRadioStatus() {
   try {
     const res = await fetch(RADIO_STATUS_URL);
-    if (!res.ok) return;
+    if (!res.ok) {
+      console.warn("Icecast Status Fehler:", res.status);
+      return;
+    }
 
     const data = await res.json();
+
+    // Icecast KH JSON-Struktur
     const source = data.icestats && data.icestats.source;
     if (!source) return;
 
@@ -763,32 +754,20 @@ async function updateRadioStatus() {
     radioTitleEl.textContent   = title;
     radioArtistEl.textContent  = artist;
 
-    /* COVER – Icecast liefert kein Cover → Mosti bleibt */
-    radioCover.src = "img/mostiradio.png";
-
-    /* WAVE dynamisch */
-    if (radioWave) {
-      const speed = 2 - Math.min(listeners * 0.1, 1.2);
-      radioWave.style.animationDuration = `${speed}s`;
-    }
-
-    /* ON-AIR Status */
+    // Optional: Status anhand listeners
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
-      radioStatusEl.classList.add("on");
     } else {
-      radioStatusEl.textContent = "🟡 Online";
-      radioStatusEl.classList.remove("on");
+      radioStatusEl.textContent = "🟡 Online (keine Listener)";
     }
 
   } catch (err) {
-    console.error("Status Fehler:", err);
+    console.error("Fehler beim Abrufen des Radio-Status:", err);
   }
 }
 
-/* INIT */
+// Beim Laden einmal holen, dann alle 15 Sekunden aktualisieren
 document.addEventListener("DOMContentLoaded", () => {
   updateRadioStatus();
   setInterval(updateRadioStatus, 15000);
 });
-
