@@ -1302,7 +1302,22 @@ body {
   cursor: pointer;
 }
 
-/* HRX RADIO PLAYER BOX */
+/* ---------------------------------------
+   MOSTIRADIO – HRX RADIO PLAYER
+--------------------------------------- */
+
+.radio-page {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.radio-page .section-title {
+  font-family: "Orbitron", sans-serif;
+  color: #ffcc00;
+  text-shadow: 0 0 12px rgba(255,215,0,0.5);
+}
+
+/* HRX RADIO BOX */
 .radio-box {
   background: rgba(20,20,20,0.85);
   padding: 25px;
@@ -1312,23 +1327,16 @@ body {
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
+  animation: radioGlow 3s ease-in-out infinite;
 }
 
-/* HRX RADIO TITLE */
-.radio-page .section-title {
-  font-family: "Orbitron", sans-serif;
-  color: #ffcc00;
-  text-shadow: 0 0 12px rgba(255,215,0,0.5);
+@keyframes radioGlow {
+  0% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
+  50% { box-shadow: 0 0 35px rgba(255,215,0,0.6); }
+  100% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
 }
 
-/* HRX PLAYER GLOW */
-#mosti-radio-player {
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(255,215,0,0.35);
-}
-
+/* ON-AIR STATUS */
 .radio-status {
   font-family: "Orbitron", sans-serif;
   font-size: 1rem;
@@ -1341,11 +1349,17 @@ body {
   color: #4dff4d;
 }
 
+/* EQUALIZER */
 .radio-eq {
   display: flex;
   justify-content: center;
   gap: 4px;
   margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+.radio-eq.active {
+  opacity: 1;
 }
 
 .radio-eq span {
@@ -1367,6 +1381,7 @@ body {
   100% { transform: scaleY(0.6); }
 }
 
+/* HRX PLAY BUTTON */
 .radio-play-btn {
   margin-bottom: 15px;
   padding: 10px 22px;
@@ -1386,20 +1401,10 @@ body {
   transform: translateY(-1px);
 }
 
-.radio-box {
-  background: rgba(20,20,20,0.85);
-  padding: 25px;
-  border-radius: 14px;
-  border: 2px solid rgba(255,215,0,0.35);
-  box-shadow: 0 0 25px rgba(255,215,0,0.25);
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-  animation: radioGlow 3s ease-in-out infinite;
-}
-
-@keyframes radioGlow {
-  0% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
-  50% { box-shadow: 0 0 35px rgba(255,215,0,0.6); }
-  100% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
+/* PLAYER CONTAINER GLOW */
+#mosti-radio-player {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,215,0,0.35);
 }
