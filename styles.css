@@ -1462,11 +1462,49 @@ body {
   transform: translateY(-2px);
 }
 
-/* VOLUME */
+/* VOLUME – Cross-Browser Fix */
 #radio-volume {
   width: 80%;
   margin-top: 10px;
-  accent-color: #ffcc00;
+  height: 6px;
+  background: linear-gradient(90deg, #ffcc00, #fff4c2);
+  border-radius: 999px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Chrome / Edge / Safari */
+#radio-volume::-webkit-slider-runnable-track {
+  height: 6px;
+  background: linear-gradient(90deg, #ffcc00, #fff4c2);
+  border-radius: 999px;
+}
+
+#radio-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #ffcc00;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,215,0,0.8);
+  margin-top: -6px;
+}
+
+/* Firefox */
+#radio-volume::-moz-range-track {
+  height: 6px;
+  background: linear-gradient(90deg, #ffcc00, #fff4c2);
+  border-radius: 999px;
+}
+
+#radio-volume::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #ffcc00;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255,215,0,0.8);
 }
 
 /* AUDIO ELEMENT GLOW */
