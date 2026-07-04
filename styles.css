@@ -1578,26 +1578,23 @@ body {
 }
 
 /* ---------------------------------------
-   EVENTS – Mosti STYLE
+   EVENTS – HRX STYLE
 --------------------------------------- */
 
-/* Events Page Layout */
 .events-page {
   text-align: center;
-  padding: 40px 20px; /* gleich wie MostiRadio */
+  padding: 40px 20px;
 }
 
-/* Events Überschrift – identisch zu MostiRadio */
 .events-page .section-title {
   font-family: "Orbitron", sans-serif;
   color: #ffcc00;
   text-shadow: 0 0 12px rgba(255,215,0,0.6);
   font-size: 2rem;
   margin-bottom: 25px;
-  text-align: center;
 }
 
-/* Event Grid – Cards am PC kleiner */
+/* Event Grid */
 .events-page .event-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1609,26 +1606,23 @@ body {
 /* Event Cards */
 .event-card {
   width: 100%;
-  max-width: 350px; /* Cards kleiner am PC */
+  max-width: 350px;
   margin: 0 auto;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Hover Effekt */
 .event-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 25px rgba(255,215,0,0.6);
 }
 
-/* Event Card Image */
 .event-img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255,215,0,0.4);
 }
 
-/* Event Title */
 .event-title {
   font-family: "Orbitron", sans-serif;
   color: #ffcc00;
@@ -1636,10 +1630,7 @@ body {
   text-shadow: 0 0 10px rgba(255,215,0,0.5);
 }
 
-/* ---------------------------------------
-   OVERLAY – FIX für PC
---------------------------------------- */
-
+/* Overlay */
 .event-overlay {
   position: fixed;
   top: 0;
@@ -1650,7 +1641,7 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* wichtig */
+  z-index: 9999;
 }
 
 .event-overlay-content {
@@ -1658,20 +1649,18 @@ body {
   padding: 25px;
   border-radius: 12px;
   text-align: center;
-  max-width: 500px; /* Overlay nicht riesig */
+  max-width: 500px;
   box-shadow: 0 0 25px rgba(255,215,0,0.5);
   z-index: 10000;
 }
 
-/* Overlay Image */
 .event-overlay-content img {
-  max-width: 450px; /* Bild nicht zu groß */
+  max-width: 450px;
   width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
 
-/* Close Button */
 .overlay-close {
   margin-top: 20px;
   padding: 10px 22px;
@@ -1683,10 +1672,7 @@ body {
   box-shadow: 0 0 18px rgba(255,215,0,0.7);
 }
 
-/* ---------------------------------------
-   MOBILE FIX – Menü + Überschrift groß
---------------------------------------- */
-
+/* Mobile Fix – Events */
 @media (max-width: 600px) {
 
   .events-page .section-title {
@@ -1699,6 +1685,6 @@ body {
   }
 
   .event-card {
-    max-width: 90%; /* mobil schön breit */
+    max-width: 90%;
   }
 }
