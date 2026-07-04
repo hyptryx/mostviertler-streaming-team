@@ -1525,9 +1525,9 @@ body {
   width: 220px;
   max-width: 70%;
   height: auto;
-  margin: 0 auto 25px auto;
+  margin: 10px auto 25px auto;   /* vorher 0 → jetzt 10px */
   display: block;
-  filter: none; /* Glow entfernt */
+  filter: none;
 }
 
 /* Mobile Fix */
@@ -1535,8 +1535,6 @@ body {
   .radio-badge {
     width: 160px;
     max-width: 75%;
-    margin-bottom: 20px;
+    margin: 8px auto 20px auto;  /* oben leicht reduziert */
   }
 }
-
-
