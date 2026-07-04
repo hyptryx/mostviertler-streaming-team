@@ -766,6 +766,15 @@ async function updateRadioStatus() {
         djStatusEl.style.display = "none";
     }
 
+   // ⭐ CHAT automatisch ein-/ausblenden
+const djChat = document.getElementById("dj-chat");
+
+if (description.toLowerCase().includes("source")) {
+    djChat.style.display = "block";   // DJ LIVE → Chat anzeigen
+} else {
+    djChat.style.display = "none";    // AutoDJ → Chat verstecken
+}
+
     // Optional: Status anhand listeners
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
