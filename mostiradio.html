@@ -24,14 +24,16 @@
   <h2 class="section-title">MostiRadio</h2>
 
   <div class="radio-box">
-  <div class="radio-status" id="radio-status">🔴 OFF AIR</div>
-  <div class="radio-eq">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
-  <div id="mosti-radio-player"></div>
-</div>
+    <div class="radio-status" id="radio-status">🔴 OFF AIR</div>
 
+    <div class="radio-eq">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
+
+    <div id="mosti-radio-player"></div>
+  </div>
 </section>
 
 <!-- StreamingCloud Player Script -->
@@ -39,6 +41,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // HRX-Player einbinden
   StreamingCloudWidgets.player({
     elementId: "mosti-radio-player",
     streamId: "32138",
@@ -48,13 +51,31 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   const statusEl = document.getElementById("radio-status");
-  statusEl.textContent = "🟢 ON AIR";
-  statusEl.classList.add("on");
-
+  const eqEl = document.querySelector(".radio-eq");
   const playBtn = document.getElementById("radio-play-btn");
+
+  // 🔍 Stream-Status prüfen (einfacher Check über die öffentliche Seite)
+  fetch("https://s13.streamingcloud.online/public/32138")
+    .then(() => {
+      // Seite erreichbar → wir gehen von ON AIR aus
+      statusEl.textContent = "🟢 ON AIR";
+      statusEl.classList.add("on");
+      eqEl.classList.add("active");
+    })
+    .catch(() => {
+      statusEl.textContent = "🔴 OFF AIR";
+      statusEl.classList.remove("on");
+      eqEl.classList.remove("active");
+    });
+
+  // HRX-Play-Button Verhalten
   playBtn.addEventListener("click", () => {
+    if (statusEl.classList.contains("on")) {
+      playBtn.textContent = "🎧 Läuft…";
+    } else {
+      playBtn.textContent = "⚠ Kein Stream verfügbar";
+    }
     document.getElementById("mosti-radio-player").scrollIntoView({ behavior: "smooth" });
-    playBtn.textContent = "🎧 Läuft…";
   });
 });
 </script>
