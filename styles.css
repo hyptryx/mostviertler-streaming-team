@@ -1303,7 +1303,7 @@ body {
 }
 
 /* ---------------------------------------
-   MOSTIRADIO – HRX RADIO PLAYER
+   MOSTIRADIO – HRX RADIO PLAYER (EPIC)
 --------------------------------------- */
 
 .radio-page {
@@ -1314,48 +1314,69 @@ body {
 .radio-page .section-title {
   font-family: "Orbitron", sans-serif;
   color: #ffcc00;
-  text-shadow: 0 0 12px rgba(255,215,0,0.5);
+  text-shadow: 0 0 12px rgba(255,215,0,0.6);
+  font-size: 2rem;
+  margin-bottom: 25px;
 }
 
 /* HRX RADIO BOX */
 .radio-box {
-  background: rgba(20,20,20,0.85);
-  padding: 25px;
-  border-radius: 14px;
-  border: 2px solid rgba(255,215,0,0.35);
-  box-shadow: 0 0 25px rgba(255,215,0,0.25);
+  background: rgba(15, 15, 20, 0.9);
+  padding: 30px;
+  border-radius: 18px;
+  border: 2px solid rgba(255,215,0,0.45);
+  box-shadow: 0 0 35px rgba(255,215,0,0.45), inset 0 0 25px rgba(255,215,0,0.15);
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
-  animation: radioGlow 3s ease-in-out infinite;
+  animation: radioGlow 4s ease-in-out infinite;
 }
 
 @keyframes radioGlow {
-  0% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
-  50% { box-shadow: 0 0 35px rgba(255,215,0,0.6); }
-  100% { box-shadow: 0 0 15px rgba(255,215,0,0.25); }
+  0% { box-shadow: 0 0 20px rgba(255,215,0,0.25); }
+  50% { box-shadow: 0 0 45px rgba(255,215,0,0.7); }
+  100% { box-shadow: 0 0 20px rgba(255,215,0,0.25); }
+}
+
+/* STATUS WRAPPER */
+.radio-status-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 0 10px;
 }
 
 /* ON-AIR STATUS */
 .radio-status {
   font-family: "Orbitron", sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #ff4d4d;
-  margin-bottom: 10px;
   letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(255,0,0,0.6);
+  transition: 0.3s;
 }
 
 .radio-status.on {
   color: #4dff4d;
+  text-shadow: 0 0 12px rgba(0,255,0,0.9), 0 0 25px rgba(0,255,0,0.6);
+}
+
+/* LISTENER */
+.radio-listeners {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  color: #ffcc00;
+  text-shadow: 0 0 6px rgba(255,215,0,0.5);
 }
 
 /* EQUALIZER */
 .radio-eq {
   display: flex;
   justify-content: center;
-  gap: 4px;
-  margin-bottom: 12px;
-  opacity: 0.3;
+  gap: 6px;
+  margin-bottom: 18px;
+  opacity: 0.25;
+  transition: 0.3s;
 }
 
 .radio-eq.active {
@@ -1363,11 +1384,13 @@ body {
 }
 
 .radio-eq span {
-  width: 4px;
-  height: 16px;
-  background: #ffcc00;
+  width: 6px;
+  height: 22px;
+  background: linear-gradient(to top, #ffcc00, #fff4c2);
+  border-radius: 3px;
   display: inline-block;
   animation: eqBounce 0.8s infinite ease-in-out;
+  box-shadow: 0 0 8px rgba(255,215,0,0.6);
 }
 
 .radio-eq span:nth-child(2) { animation-delay: 0.1s; }
@@ -1376,35 +1399,81 @@ body {
 .radio-eq span:nth-child(5) { animation-delay: 0.4s; }
 
 @keyframes eqBounce {
-  0% { transform: scaleY(0.6); }
-  50% { transform: scaleY(1.4); }
-  100% { transform: scaleY(0.6); }
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1.5); }
+  100% { transform: scaleY(0.4); }
 }
 
-/* HRX PLAY BUTTON */
+/* NOW PLAYING */
+.radio-nowplaying {
+  margin-bottom: 20px;
+  font-family: "Audiowide", sans-serif;
+}
+
+.radio-title {
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  margin-bottom: 5px;
+}
+
+.radio-artist {
+  font-size: 1rem;
+  color: #cccccc;
+}
+
+/* PLAY BUTTON */
 .radio-play-btn {
   margin-bottom: 15px;
-  padding: 10px 22px;
+  padding: 12px 28px;
   background: #ffcc00;
+  border: none;
+  border-radius: 999px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000;
+  box-shadow: 0 0 18px rgba(255,215,0,0.7);
+  transition: 0.25s;
+}
+
+.radio-play-btn:hover {
+  box-shadow: 0 0 30px rgba(255,215,0,0.9);
+  transform: translateY(-2px);
+}
+
+/* STOP BUTTON */
+.radio-stop-btn {
+  margin-bottom: 15px;
+  padding: 10px 22px;
+  background: #444;
   border: none;
   border-radius: 999px;
   font-family: "Orbitron", sans-serif;
   font-size: 1rem;
   cursor: pointer;
-  color: #000;
-  box-shadow: 0 0 15px rgba(255,215,0,0.5);
-  transition: 0.2s;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+  transition: 0.25s;
 }
 
-.radio-play-btn:hover {
-  box-shadow: 0 0 25px rgba(255,215,0,0.8);
-  transform: translateY(-1px);
+.radio-stop-btn:hover {
+  background: #666;
+  transform: translateY(-2px);
 }
 
-/* PLAYER CONTAINER GLOW */
+/* VOLUME */
+#radio-volume {
+  width: 80%;
+  margin-top: 10px;
+  accent-color: #ffcc00;
+}
+
+/* AUDIO ELEMENT GLOW */
 #mosti-radio-player {
   margin-top: 20px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(255,215,0,0.35);
+  box-shadow: 0 0 25px rgba(255,215,0,0.45);
 }
+
