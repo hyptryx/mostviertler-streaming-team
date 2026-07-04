@@ -1522,6 +1522,17 @@ body {
   text-shadow: 0 0 6px rgba(255,215,0,0.5);
 }
 
+/* ⭐ HIER GENAU KOMMT DER BLOCK HIN ⭐ */
+.radio-hint {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  color: #ffcc00;
+  margin-top: 10px;
+  opacity: 0.8;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255,215,0,0.4);
+}
+
 /* AUDIO ELEMENT GLOW */
 #mosti-radio-player {
   margin-top: 20px;
