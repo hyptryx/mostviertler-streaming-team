@@ -1515,3 +1515,10 @@ body {
   box-shadow: 0 0 25px rgba(255,215,0,0.45);
 }
 
+.radio-badge {
+  width: 180px;
+  max-width: 60%;
+  margin: 0 auto 25px auto;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(255,215,0,0.7));
+}
