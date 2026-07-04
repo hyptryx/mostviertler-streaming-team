@@ -1319,7 +1319,7 @@ body {
   margin-bottom: 15px;
 }
 
-/* HRX RADIO BOX */
+/* MOSTI RADIO BOX */
 .radio-box {
   background: rgba(15, 15, 20, 0.9);
   padding: 30px;
@@ -1369,12 +1369,13 @@ body {
   text-shadow: 0 0 6px rgba(255,215,0,0.5);
 }
 
-/* EQUALIZER */
+/* NEW EQUALIZER – Balken fahren von unten nach oben */
 .radio-eq {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin-bottom: 18px;
+  height: 40px; /* Höhe der Balken */
+  margin: 15px 0;
   opacity: 0.25;
   transition: 0.3s;
 }
@@ -1385,23 +1386,28 @@ body {
 
 .radio-eq span {
   width: 6px;
-  height: 22px;
-  background: linear-gradient(to top, #ffcc00, #fff4c2);
+  background: #ffcc00;
   border-radius: 3px;
   display: inline-block;
-  animation: eqBounce 0.8s infinite ease-in-out;
+  transform-origin: bottom; /* WICHTIG: Animation startet unten */
+  animation: eqWave 1.2s ease-in-out infinite;
   box-shadow: 0 0 8px rgba(255,215,0,0.6);
 }
 
-.radio-eq span:nth-child(2) { animation-delay: 0.1s; }
-.radio-eq span:nth-child(3) { animation-delay: 0.2s; }
-.radio-eq span:nth-child(4) { animation-delay: 0.3s; }
-.radio-eq span:nth-child(5) { animation-delay: 0.4s; }
+/* Verzögerungen für dynamischen Effekt */
+.radio-eq span:nth-child(1) { animation-delay: 0s; }
+.radio-eq span:nth-child(2) { animation-delay: 0.2s; }
+.radio-eq span:nth-child(3) { animation-delay: 0.4s; }
+.radio-eq span:nth-child(4) { animation-delay: 0.6s; }
+.radio-eq span:nth-child(5) { animation-delay: 0.8s; }
 
-@keyframes eqBounce {
-  0% { transform: scaleY(0.4); }
-  50% { transform: scaleY(1.5); }
-  100% { transform: scaleY(0.4); }
+/* Animation */
+@keyframes eqWave {
+  0%   { transform: scaleY(0.2); }
+  25%  { transform: scaleY(1); }
+  50%  { transform: scaleY(0.4); }
+  75%  { transform: scaleY(0.9); }
+  100% { transform: scaleY(0.2); }
 }
 
 /* NOW PLAYING */
