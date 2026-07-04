@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>MostiRadio – Der Sound im Mostviertel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Orbitron Schrift -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Orbitron & Audiowide -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&display=swap" rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css?v=999">
 </head>
 
@@ -21,76 +23,128 @@
 </nav>
 
 <section class="radio-page">
-  <h2 class="section-title">MostiRadio - Der Sound im Mostviertel</h2>
+  <h2 class="section-title">MostiRadio 🎧</h2>
 
   <div class="radio-box">
-    <div class="radio-status" id="radio-status">🔴 OFF AIR</div>
 
-    <div class="radio-eq">
+    <!-- ON AIR + Listener -->
+    <div class="radio-status-wrapper">
+      <span id="radio-status" class="radio-status">🟡 OFFLINE</span>
+      <span id="radio-listeners" class="radio-listeners">👥 0 Listener</span>
+    </div>
+
+    <!-- Equalizer -->
+    <div class="radio-eq" id="radio-eq">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
+    <!-- Now Playing -->
+    <div class="radio-nowplaying">
+      <div id="radio-title" class="radio-title">Titel wird geladen…</div>
+      <div id="radio-artist" class="radio-artist">Artist wird geladen…</div>
+    </div>
 
-    <!-- HTML5 Audio Player -->
-    <audio id="mosti-radio-player" preload="none"></audio>
+    <!-- Play Button -->
+    <button id="radio-play" class="radio-play-btn">▶ Play</button>
+
+    <!-- Stop Button -->
+    <button id="radio-stop" class="radio-stop-btn">⏹ Stop</button>
+
+    <!-- Volume -->
+    <input id="radio-volume" type="range" min="0" max="1" step="0.01" value="0.8">
+
+    <!-- Hidden Audio Element -->
+    <audio id="mosti-radio-player"></audio>
+
   </div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", async function() {
+/* ---------------------------------------------------
+   MOSTIRADIO – HRX PLAYER LOGIC
+--------------------------------------------------- */
 
-  const statusEl = document.getElementById("radio-status");
-  const eqEl = document.querySelector(".radio-eq");
-  const playBtn = document.getElementById("radio-play-btn");
-  const audioPlayer = document.getElementById("mosti-radio-player");
+const radioAudio     = document.getElementById("mosti-radio-player");
+const radioPlayBtn   = document.getElementById("radio-play");
+const radioStopBtn   = document.getElementById("radio-stop");
+const radioVolume    = document.getElementById("radio-volume");
+const radioStatusEl  = document.getElementById("radio-status");
+const radioListeners = document.getElementById("radio-listeners");
+const radioTitleEl   = document.getElementById("radio-title");
+const radioArtistEl  = document.getElementById("radio-artist");
+const radioEq        = document.getElementById("radio-eq");
 
-  // JSON API für Stream-Status
-  const apiUrl = "https://s13.streamingcloud.online/json/stream/32138";
+// Dein Icecast-Mount (MP3)
+const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
 
-  async function checkStatus() {
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
+// Icecast JSON-Status
+const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xsl";
 
-      if (data.status === "online" && data.source === "connected") {
-        statusEl.textContent = "🟢 ON AIR";
-        statusEl.classList.add("on");
-        eqEl.classList.add("active");
-        return true;
-      } else {
-        statusEl.textContent = "🔴 OFF AIR";
-        statusEl.classList.remove("on");
-        eqEl.classList.remove("active");
-        return false;
-      }
-
-    } catch (e) {
-      statusEl.textContent = "🔴 OFF AIR";
-      statusEl.classList.remove("on");
-      eqEl.classList.remove("active");
-      return false;
-    }
-  }
-
-  // Play Button – spielt IMMER
-playBtn.addEventListener("click", () => {
-
-  audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
-  audioPlayer.play();
-
-  playBtn.textContent = "🎧 Läuft…";
+/* Play – immer spielen */
+radioPlayBtn.addEventListener("click", () => {
+  radioAudio.src = RADIO_STREAM_URL;
+  radioAudio.play()
+    .then(() => {
+      radioStatusEl.textContent = "🔴 ON AIR";
+      radioStatusEl.classList.add("on");
+      radioEq.classList.add("active");
+      radioPlayBtn.textContent = "⏸ Pause";
+    })
+    .catch(err => {
+      console.error("Fehler beim Starten:", err);
+      radioStatusEl.textContent = "⚠ Fehler";
+    });
 });
 
-    // Stream URL direkt einbinden
-    audioPlayer.src = "https://s13.streamingcloud.online/stream/32138";
-    audioPlayer.play();
+/* Stop */
+radioStopBtn.addEventListener("click", () => {
+  radioAudio.pause();
+  radioAudio.currentTime = 0;
+  radioStatusEl.textContent = "🟡 Gestoppt";
+  radioStatusEl.classList.remove("on");
+  radioEq.classList.remove("active");
+  radioPlayBtn.textContent = "▶ Play";
+});
 
-    playBtn.textContent = "🎧 Läuft…";
-  });
+/* Volume */
+radioVolume.addEventListener("input", () => {
+  radioAudio.volume = parseFloat(radioVolume.value);
+});
 
-  // Initialer Status-Check
-  checkStatus();
+/* Status / Now Playing */
+async function updateRadioStatus() {
+  try {
+    const res = await fetch(RADIO_STATUS_URL);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    const source = data.icestats && data.icestats.source;
+    if (!source) return;
+
+    const listeners = source.listeners || 0;
+    const title     = source.title || "Unbekannter Titel";
+    const artist    = source.artist || "Unbekannter Artist";
+
+    radioListeners.textContent = `👥 ${listeners} Listener`;
+    radioTitleEl.textContent   = title;
+    radioArtistEl.textContent  = artist;
+
+    if (listeners > 0) {
+      radioStatusEl.textContent = "🔴 ON AIR";
+      radioStatusEl.classList.add("on");
+    } else {
+      radioStatusEl.textContent = "🟡 Online";
+      radioStatusEl.classList.remove("on");
+    }
+
+  } catch (err) {
+    console.error("Status Fehler:", err);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateRadioStatus();
+  setInterval(updateRadioStatus, 15000);
 });
 </script>
 
