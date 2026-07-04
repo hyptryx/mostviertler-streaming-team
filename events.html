@@ -2,7 +2,11 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <h2 class="section-title">Events</h2>
+  <title>Events – Mostviertler Streaming Team</title>
+
+  <!-- Orbitron Schrift -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css?v=999">
 </head>
 
@@ -23,20 +27,20 @@
 
     <!-- Juli Event -->
     <div class="event-card" onclick="openEvent('juli')">
-  <img src="img/event-juli.png" class="event-img">
-  <h3 class="event-title">🔥 Mega Event im Juli! 🔥</h3>
-</div>
+      <img src="img/event-juli.png" class="event-img">
+      <h3 class="event-title">🔥 Mega Event im Juli! 🔥</h3>
+    </div>
 
     <!-- Gewinnspiel -->
     <div class="event-card" onclick="openEvent('gewinnspiel')">
-  <img src="img/gewinnspiel.png" class="event-img">
-  <h3 class="event-title">🎁 Gewinnspiel</h3>
-</div>
+      <img src="img/gewinnspiel.png" class="event-img">
+      <h3 class="event-title">🎁 Gewinnspiel</h3>
+    </div>
 
   </div>
 </section>
 
-  <div id="event-overlay" class="event-overlay">
+<div id="event-overlay" class="event-overlay">
   <div class="event-overlay-content">
     <img id="event-overlay-img" src="">
     <h3 id="event-overlay-title"></h3>
@@ -45,6 +49,32 @@
   </div>
 </div>
 
+<script>
+function openEvent(type) {
+  const overlay = document.getElementById("event-overlay");
+  const img = document.getElementById("event-overlay-img");
+  const title = document.getElementById("event-overlay-title");
+  const desc = document.getElementById("event-overlay-desc");
+
+  if (type === "juli") {
+    img.src = "img/event-juli.png";
+    title.textContent = "🔥 Mega Event im Juli! 🔥";
+    desc.textContent = "Sei dabei – es wird legendär!";
+  }
+
+  if (type === "gewinnspiel") {
+    img.src = "img/gewinnspiel.png";
+    title.textContent = "🎁 Gewinnspiel";
+    desc.textContent = "Mach mit und gewinne epische Preise!";
+  }
+
+  overlay.style.display = "flex";
+}
+
+function closeEvent() {
+  document.getElementById("event-overlay").style.display = "none";
+}
+</script>
+
 </body>
 </html>
-
