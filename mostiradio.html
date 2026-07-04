@@ -24,8 +24,14 @@
   <h2 class="section-title">MostiRadio</h2>
 
   <div class="radio-box">
-    <div id="mosti-radio-player"></div>
+  <div class="radio-status" id="radio-status">🔴 OFF AIR</div>
+  <div class="radio-eq">
+    <span></span><span></span><span></span><span></span><span></span>
   </div>
+  <button class="radio-play-btn" id="radio-play-btn">▶ Play MostiRadio</button>
+  <div id="mosti-radio-player"></div>
+</div>
+
 </section>
 
 <!-- StreamingCloud Player Script -->
@@ -39,6 +45,17 @@ document.addEventListener("DOMContentLoaded", function() {
     width: "100%",
     height: "180px",
     theme: "dark"
+  });
+
+  const statusEl = document.getElementById("radio-status");
+  statusEl.textContent = "🟢 ON AIR";
+  statusEl.classList.add("on");
+
+  const playBtn = document.getElementById("radio-play-btn");
+  playBtn.addEventListener("click", () => {
+    // Player wird sichtbar, Button ändert Text
+    document.getElementById("mosti-radio-player").scrollIntoView({ behavior: "smooth" });
+    playBtn.textContent = "🎧 Läuft…";
   });
 });
 </script>
