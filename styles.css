@@ -1522,20 +1522,21 @@ body {
 }
 
 .radio-badge {
-  width: 220px;        /* vorher 180px → jetzt größer */
-  max-width: 70%;      /* Handy darf ihn automatisch verkleinern */
+  width: 220px;
+  max-width: 70%;
   height: auto;
   margin: 0 auto 25px auto;
   display: block;
-  filter: drop-shadow(0 0 18px rgba(255,215,0,0.7));
+  filter: none; /* Glow entfernt */
 }
 
 /* Mobile Fix */
 @media (max-width: 600px) {
   .radio-badge {
-    width: 160px;      /* vorher 130px → jetzt auch größer */
+    width: 160px;
     max-width: 75%;
     margin-bottom: 20px;
   }
 }
+
 
