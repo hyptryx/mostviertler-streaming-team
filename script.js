@@ -772,3 +772,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateRadioStatus, 15000);
 });
 
+if (description && description.toLowerCase().includes("source")) {
+    djStatus = "LIVE DJ ist ON AIR";
+    document.getElementById("dj-status").classList.add("live");
+} else {
+    document.getElementById("dj-status").classList.remove("live");
+}
