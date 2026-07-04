@@ -1578,7 +1578,7 @@ body {
 }
 
 /* ---------------------------------------
-   EVENTS – HRX STYLE
+   EVENTS – Mosti STYLE
 --------------------------------------- */
 
 .events-page {
@@ -1590,7 +1590,7 @@ body {
   font-family: "Orbitron", sans-serif;
   color: #ffcc00;
   text-shadow: 0 0 12px rgba(255,215,0,0.6);
-  font-size: 2rem;
+  font-size: 2rem !important;   /* ← WICHTIG */
   margin-bottom: 25px;
 }
 
@@ -1674,13 +1674,10 @@ body {
 
 /* Mobile Fix – Events */
 @media (max-width: 600px) {
-
   .events-page .section-title {
-  font-family: "Orbitron", sans-serif;
-  color: #ffcc00;
-  text-shadow: 0 0 12px rgba(255,215,0,0.6);
-  font-size: 2rem !important;   /* ← WICHTIG */
-  margin-bottom: 25px;
+    font-size: 1.6rem !important;   /* bleibt */
+    margin-bottom: 15px !important;
+  }
 }
 
   .main-nav a {
