@@ -1672,13 +1672,12 @@ body {
   box-shadow: 0 0 18px rgba(255,215,0,0.7);
 }
 
-/* Mobile Fix – Events */
 @media (max-width: 600px) {
+
   .events-page .section-title {
-    font-size: 1.6rem !important;   /* bleibt */
+    font-size: 1.6rem !important;
     margin-bottom: 15px !important;
   }
-}
 
   .main-nav a {
     font-size: 1.1rem !important;
@@ -1687,4 +1686,6 @@ body {
   .event-card {
     max-width: 90%;
   }
+
 }
+
