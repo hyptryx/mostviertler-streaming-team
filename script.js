@@ -684,34 +684,3 @@ document.getElementById("event-popup-close").addEventListener("click", () => {
   document.getElementById("event-popup-overlay").style.display = "none";
   document.getElementById("event-popup").classList.remove("show");
 });
-
-/* ---------------------------------------------------
-   Öffnen für events.html
---------------------------------------------------- */
-
-<script>
-function openEvent(type) {
-  const overlay = document.getElementById("event-overlay");
-  const img = document.getElementById("event-overlay-img");
-  const title = document.getElementById("event-overlay-title");
-  const desc = document.getElementById("event-overlay-desc");
-
-  if (type === "juli") {
-    img.src = "img/event-juli.png";
-    title.textContent = "🔥 Mega Event im Juli! 🔥";
-    desc.textContent = "Sei dabei – es wird legendär!";
-  }
-
-  if (type === "gewinnspiel") {
-    img.src = "img/gewinnspiel.png";
-    title.textContent = "🎁 Gewinnspiel";
-    desc.textContent = "Mach mit und gewinne epische Preise!";
-  }
-
-  overlay.style.display = "flex";
-}
-
-function closeEvent() {
-  document.getElementById("event-overlay").style.display = "none";
-}
-</script>
