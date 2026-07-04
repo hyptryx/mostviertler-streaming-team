@@ -1517,8 +1517,9 @@ body {
 
 .radio-badge {
   width: 180px;
-  max-width: 60%;
+  max-width: 55%;
   margin: 0 auto 25px auto;
   display: block;
   filter: drop-shadow(0 0 18px rgba(255,215,0,0.7));
 }
+
