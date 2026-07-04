@@ -1263,3 +1263,41 @@ body {
   max-width: 800px;
   margin: 0 auto;
 }
+
+.event-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.event-overlay-content {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ffcc00;
+  text-align: center;
+  max-width: 600px;
+}
+
+.event-overlay-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.overlay-close {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  font-family: Orbitron;
+  cursor: pointer;
+}
