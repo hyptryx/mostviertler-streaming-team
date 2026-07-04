@@ -1535,6 +1535,14 @@ body {
   .radio-badge {
     width: 160px;
     max-width: 75%;
-    margin: 6px auto 20px auto;  /* oben leicht reduziert */
+    margin: 8px auto 20px auto;  /* oben leicht reduziert */
   }
+}
+
+.dj-status {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  color: #ffcc00;
+  margin-top: 10px;
+  text-align: center;
 }
