@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>MostiRadio 🎧</title>
+  <title>MostiRadio – Der Sound im Mostviertel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Orbitron & Audiowide -->
@@ -25,9 +25,6 @@
 <section class="radio-page">
   <h2 class="section-title">MostiRadio 🎧</h2>
 
-  <!-- MOSTI BADGE -->
-  <img src="img/mostiradio.png" alt="MostiRadio Badge" class="radio-badge">
-
   <div class="radio-box">
 
     <!-- ON AIR + Listener -->
@@ -40,14 +37,6 @@
     <div class="radio-eq" id="radio-eq">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
-
-    <!-- COVER IMAGE -->
-    <div class="radio-cover-wrapper">
-      <img id="radio-cover" class="radio-cover" src="img/mostiradio.png" alt="Cover">
-    </div>
-
-    <!-- Mini Visualizer Wave -->
-    <div class="radio-wave"></div>
 
     <!-- Now Playing -->
     <div class="radio-nowplaying">
@@ -71,113 +60,3 @@
 </section>
 
 <script>
-/* ---------------------------------------------------
-   MOSTIRADIO – HRX PLAYER (STABLE EPIC VERSION)
---------------------------------------------------- */
-
-const radioAudio     = document.getElementById("mosti-radio-player");
-const radioPlayBtn   = document.getElementById("radio-play");
-const radioStopBtn   = document.getElementById("radio-stop");
-const radioVolume    = document.getElementById("radio-volume");
-const radioStatusEl  = document.getElementById("radio-status");
-const radioListeners = document.getElementById("radio-listeners");
-const radioTitleEl   = document.getElementById("radio-title");
-const radioArtistEl  = document.getElementById("radio-artist");
-
-const radioEq        = document.getElementById("radio-eq");
-const radioCover     = document.getElementById("radio-cover");
-const radioWave      = document.querySelector(".radio-wave");
-
-// Stream URL
-const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
-
-// Icecast Status JSON
-const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xsl";
-
-/* PLAY */
-radioPlayBtn.addEventListener("click", () => {
-  radioAudio.src = RADIO_STREAM_URL;
-
-  radioAudio.play()
-    .then(() => {
-      radioStatusEl.textContent = "🔴 ON AIR";
-      radioStatusEl.classList.add("on");
-
-      radioEq.classList.add("active");
-
-      radioPlayBtn.textContent = "⏸ Pause";
-    })
-    .catch(err => {
-      console.error("Fehler beim Starten:", err);
-      radioStatusEl.textContent = "⚠ Fehler beim Starten";
-    });
-});
-
-/* STOP */
-radioStopBtn.addEventListener("click", () => {
-  radioAudio.pause();
-  radioAudio.currentTime = 0;
-
-  radioStatusEl.textContent = "🟡 Gestoppt";
-  radioStatusEl.classList.remove("on");
-
-  radioEq.classList.remove("active");
-
-  radioPlayBtn.textContent = "▶ Play";
-});
-
-/* VOLUME */
-radioVolume.addEventListener("input", () => {
-  radioAudio.volume = parseFloat(radioVolume.value);
-});
-
-/* STATUS + NOW PLAYING */
-async function updateRadioStatus() {
-  try {
-    const res = await fetch(RADIO_STATUS_URL);
-    if (!res.ok) return;
-
-    const data = await res.json();
-    const source = data.icestats && data.icestats.source;
-    if (!source) return;
-
-    const listeners = source.listeners || 0;
-    const title     = source.title || "Unbekannter Titel";
-    const artist    = source.artist || "Unbekannter Artist";
-
-    radioListeners.textContent = `👥 ${listeners} Listener`;
-    radioTitleEl.textContent   = title;
-    radioArtistEl.textContent  = artist;
-
-    /* COVER – Icecast liefert kein Cover → MostiBadge bleibt */
-    radioCover.src = "img/mostiradio.png";
-
-    /* WAVE dynamisch */
-    if (radioWave) {
-      const speed = 2 - Math.min(listeners * 0.1, 1.2);
-      radioWave.style.animationDuration = `${speed}s`;
-    }
-
-    /* ON-AIR Status */
-    if (listeners > 0) {
-      radioStatusEl.textContent = "🔴 ON AIR";
-      radioStatusEl.classList.add("on");
-    } else {
-      radioStatusEl.textContent = "🟡 Online";
-      radioStatusEl.classList.remove("on");
-    }
-
-  } catch (err) {
-    console.error("Status Fehler:", err);
-  }
-}
-
-/* INIT */
-document.addEventListener("DOMContentLoaded", () => {
-  updateRadioStatus();
-  setInterval(updateRadioStatus, 15000);
-});
-</script>
-
-</body>
-</html>
