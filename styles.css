@@ -1588,6 +1588,53 @@ body {
   text-shadow: 0 0 15px rgba(255,255,255,0.8);
 }
 
+.dj-chat {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(20,20,25,0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255,215,0,0.45);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chat-title {
+  font-family: "Orbitron", sans-serif;
+  color: #ffcc00;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255,215,0,0.6);
+}
+
+.chat-messages {
+  height: 250px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.3);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-family: "Audiowide", sans-serif;
+  color: #fff;
+}
+
+.chat-input {
+  width: 70%;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  font-family: "Orbitron", sans-serif;
+}
+
+.chat-send {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #ffcc00;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+}
+
 /* ---------------------------------------
    EVENTS – Mosti STYLE
 --------------------------------------- */
