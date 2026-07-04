@@ -180,8 +180,59 @@ document.addEventListener("DOMContentLoaded", () => {
   updateRadioStatus();
   setInterval(updateRadioStatus, 15000);
 });
+  </script> 
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+<!-- Deine firebaseConfig -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC7N6WFwP1MeRtQuXSP_f5r8chATxDJkG0",
+  authDomain: "mostiradiochat.firebaseapp.com",
+  databaseURL: "https://mostiradiochat-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "mostiradiochat",
+  storageBucket: "mostiradiochat.firebasestorage.app",
+  messagingSenderId: "388321549158",
+  appId: "1:388321549158:web:ea32c29fc670689de746a7"
+};
 </script>
 
+<script>
+// Firebase starten
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Elemente
+const chatBox = document.getElementById("dj-chat");
+const chatMessages = document.getElementById("chat-messages");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+
+// Nachricht senden
+chatSend.addEventListener("click", () => {
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+
+  db.ref("chat").push({
+    user: "Listener",
+    text: msg,
+    time: Date.now()
+  });
+
+  chatInput.value = "";
+});
+
+// Nachrichten empfangen
+db.ref("chat").on("child_added", snapshot => {
+  const data = snapshot.val();
+  const div = document.createElement("div");
+  div.textContent = `${data.user}: ${data.text}`;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+</script>
+  
 </body>
 </html>
 
