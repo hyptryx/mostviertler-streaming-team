@@ -1532,10 +1532,8 @@ body {
 
 /* Mobile Fix */
 @media (max-width: 600px) {
-  .radio-badge {
-    width: 160px;
-    max-width: 75%;
-    margin: 8px auto 20px auto;  /* oben leicht reduziert */
+  .section-title {
+    margin-bottom: 10px !important;
   }
 }
 
