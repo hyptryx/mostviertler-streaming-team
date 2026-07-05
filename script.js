@@ -751,29 +751,40 @@ async function updateRadioStatus() {
     const artist    = source.artist || "Unbekannter Artist";
 
     radioListeners.textContent = `👥 ${listeners} Listener`;
-    radioTitleEl.textContent   = title;
-    radioArtistEl.textContent  = artist;
+     
+    // DJ Name aus Icecast holen
+const description = source.server_description || "";
+const djName = source.server_name || "DJ LIVE";
 
-   // LIVE DJ CHECK
-    const description = source.server_description || "";
-    const djStatusEl = document.getElementById("dj-status");
+// DJ ist live, wenn server_description NICHT leer ist
+const isDJLive =
+    description &&
+    !description.toLowerCase().includes("auto") &&
+    !description.toLowerCase().includes("mount") &&
+    description.trim() !== "";
 
-    if (description.toLowerCase().includes("source")) {
-        djStatusEl.innerText = "LIVE DJ ist ON AIR";
-        djStatusEl.style.display = "block";
-    } else {
-        djStatusEl.innerText = "";
-        djStatusEl.style.display = "none";
-    }
-
-   // ⭐ CHAT automatisch ein-/ausblenden
-const djChat = document.getElementById("dj-chat");
-
-if (description.toLowerCase().includes("source")) {
-    djChat.style.display = "block";   // DJ LIVE → Chat anzeigen
+// Titel/Artist ersetzen, wenn DJ live ist
+if (isDJLive) {
+    radioTitleEl.textContent = `${djName} legt gerade live auf 🎧`;
+    radioArtistEl.textContent = "";
 } else {
-    djChat.style.display = "none";    // AutoDJ → Chat verstecken
+    radioTitleEl.textContent = title;
+    radioArtistEl.textContent = artist;
 }
+
+// DJ‑Status anzeigen
+const djStatusEl = document.getElementById("dj-status");
+if (isDJLive) {
+    djStatusEl.innerText = `${djName} ist LIVE ON AIR 🔥`;
+    djStatusEl.style.display = "block";
+} else {
+    djStatusEl.innerText = "";
+    djStatusEl.style.display = "none";
+}
+
+// Chat ein-/ausblenden
+const djChat = document.getElementById("dj-chat");
+djChat.style.display = isDJLive ? "block" : "none";
 
     // Optional: Status anhand listeners
     if (listeners > 0) {
