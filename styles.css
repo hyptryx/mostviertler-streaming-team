@@ -1762,3 +1762,11 @@ body {
     font-size: 1.2rem !important;
   }
 }
+
+/* 📱 Volume-Regler beim MostiRadio am Handy komplett ausblenden */
+@media (max-width: 768px) {
+    .volume-label,
+    #radio-volume {
+        display: none !important;
+    }
+}
