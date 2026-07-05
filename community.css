@@ -217,3 +217,133 @@
     line-height:1.8;
 
 }
+
+/* ======================================
+   COMMUNITY PROJECT
+====================================== */
+
+.community-project{
+
+    padding:120px 30px;
+
+}
+
+.project-card{
+
+    max-width:950px;
+
+    margin:60px auto;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,215,0,.20);
+
+    box-shadow:0 0 40px rgba(255,215,0,.08);
+
+}
+
+.project-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.project-top h3{
+
+    color:white;
+
+    font-size:36px;
+
+    margin-bottom:8px;
+
+}
+
+.project-top p{
+
+    color:#cfcfcf;
+
+}
+
+.project-percent{
+
+    font-size:48px;
+
+    color:#FFD700;
+
+    font-weight:bold;
+
+}
+
+.progress-bar{
+
+    height:18px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+
+    margin:40px 0;
+
+}
+
+.progress-fill{
+
+    width:0;
+
+    height:100%;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        90deg,
+        #FFD700,
+        #ffbf00,
+        #FFD700
+    );
+
+    transition:width 1.2s ease;
+
+    box-shadow:0 0 25px rgba(255,215,0,.45);
+
+}
+
+.progress-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:white;
+
+    font-size:20px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.progress-footer strong{
+
+    color:#FFD700;
+
+}
+
