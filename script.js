@@ -751,40 +751,46 @@ async function updateRadioStatus() {
     const artist    = source.artist || "Unbekannter Artist";
 
     radioListeners.textContent = `👥 ${listeners} Listener`;
-     
-    // DJ Name aus Icecast holen
-const description = source.server_description || "";
-const djName = source.server_name || "DJ LIVE";
 
-// DJ ist live, wenn server_description NICHT leer ist
-const isDJLive =
-    description &&
-    !description.toLowerCase().includes("auto") &&
-    !description.toLowerCase().includes("mount") &&
-    description.trim() !== "";
+    // DJ Name + Beschreibung holen
+    const description = source.server_description || "";
+    const djNameRaw   = source.server_name || "";
+    
+    // DJ Name bestimmen
+    let finalDJName = djNameRaw.trim();
+    if (!finalDJName) finalDJName = description.trim();
+    if (!finalDJName) finalDJName = "DJ LIVE";
 
-// Titel/Artist ersetzen, wenn DJ live ist
-if (isDJLive) {
-    radioTitleEl.textContent = `${djName} legt gerade live auf 🎧`;
-    radioArtistEl.textContent = "";
-} else {
-    radioTitleEl.textContent = title;
-    radioArtistEl.textContent = artist;
-}
+    // DJ ist live, wenn description NICHT leer ist
+    const isDJLive =
+      description &&
+      description.trim() !== "" &&
+      !description.toLowerCase().includes("auto") &&
+      !description.toLowerCase().includes("mount") &&
+      !description.toLowerCase().includes("fallback");
 
-// DJ‑Status anzeigen
-const djStatusEl = document.getElementById("dj-status");
-if (isDJLive) {
-    djStatusEl.innerText = `${djName} ist LIVE ON AIR 🔥`;
-    djStatusEl.style.display = "block";
-} else {
-    djStatusEl.innerText = "";
-    djStatusEl.style.display = "none";
-}
+    // Titel/Artist ersetzen, wenn DJ live ist
+    if (isDJLive) {
+      radioTitleEl.textContent = `${finalDJName} legt gerade live auf 🎧`;
+      radioArtistEl.textContent = "";
+    } else {
+      radioTitleEl.textContent = title;
+      radioArtistEl.textContent = artist;
+    }
 
-// Chat ein-/ausblenden
-const djChat = document.getElementById("dj-chat");
-djChat.style.display = isDJLive ? "block" : "none";
+    // DJ‑Status anzeigen
+    const djStatusEl = document.getElementById("dj-status");
+    if (isDJLive) {
+      djStatusEl.innerText = `${finalDJName} ist LIVE ON AIR 🔥`;
+      djStatusEl.style.display = "block";
+    } else {
+      djStatusEl.innerText = "";
+      djStatusEl.style.display = "none";
+    }
+
+    // Chat ein-/ausblenden
+    const djChat = document.getElementById("dj-chat");
+    djChat.style.display = isDJLive ? "block" : "none";
 
     // Optional: Status anhand listeners
     if (listeners > 0) {
