@@ -1,0 +1,219 @@
+/* ======================================
+   COMMUNITY PAGE
+====================================== */
+
+.community-hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 30px;
+
+}
+
+.community-glass{
+
+    max-width:900px;
+
+    width:100%;
+
+    padding:60px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,215,0,.25);
+
+    text-align:center;
+
+    box-shadow:
+
+        0 0 50px rgba(255,215,0,.08);
+
+}
+
+.hero-small{
+
+    color:#FFD700;
+
+    letter-spacing:4px;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+.community-glass h1{
+
+    font-size:68px;
+
+    color:white;
+
+    margin-bottom:30px;
+
+    text-shadow:
+
+        0 0 20px rgba(255,215,0,.25);
+
+}
+
+.hero-text{
+
+    color:#d8d8d8;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.hero-buttons{
+
+    margin-top:55px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-btn{
+
+    background:linear-gradient(135deg,#FFD700,#ffb300);
+
+    color:black;
+
+    padding:18px 40px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+}
+
+.hero-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 0 35px rgba(255,215,0,.5);
+
+}
+
+.hero-btn-outline{
+
+    border:2px solid #FFD700;
+
+    color:white;
+
+    padding:18px 40px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    transition:.35s;
+
+}
+
+.hero-btn-outline:hover{
+
+    background:#FFD700;
+
+    color:black;
+
+}
+
+.vision{
+
+    padding:120px 30px;
+
+}
+
+.vision-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:35px;
+
+    margin-top:70px;
+
+}
+
+.vision-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,215,0,.2);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    transition:.35s;
+
+}
+
+.vision-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:#FFD700;
+
+    box-shadow:
+
+        0 0 35px rgba(255,215,0,.25);
+
+}
+
+.vision-icon{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+}
+
+.vision-card h3{
+
+    color:white;
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
+}
+
+.vision-card p{
+
+    color:#cfcfcf;
+
+    line-height:1.8;
+
+}
