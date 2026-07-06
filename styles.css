@@ -1771,3 +1771,12 @@ body {
     }
 }
 
+.legal-section a {
+    color: #b400ff !important;     /* HRX-Lila */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.legal-section a:hover {
+    opacity: 0.8;
+}
