@@ -1771,13 +1771,15 @@ body {
     }
 }
 
+/* Impressum – Linkfarbe fixen */
 .legal-section a {
-    color: #b400ff !important;     /* HRX-Lila */
-    text-decoration: none;
-    font-weight: 600;
+    color: #fff !important;        /* Weiß */
+    text-decoration: none;         /* Unterstreichung weg */
+    font-weight: 600;              /* Leicht hervorgehoben */
 }
 
 .legal-section a:hover {
     opacity: 0.8;
 }
+
 
