@@ -139,3 +139,25 @@ function animateProgress(percent){
     },18);
 
 }
+
+/* ==========================================
+   PAYPAL
+========================================== */
+
+const paypalLink = "https://paypal.me/haraldgoebl";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const buttons = document.querySelectorAll(".support-btn");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            openSupportPopup();
+
+        });
+
+    });
+
+});
