@@ -1,16 +1,141 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ==========================================
+   COMMUNITY PAGE
+   Mostviertler Streaming Team
+========================================== */
 
-    const fill = document.getElementById("progressFill");
 
-    if(!fill) return;
+/* ------------------------------------------
+   Firebase Config
 
-    const percent = 68;
+   HIER später einfach deine bestehende
+   Firebase Config aus script.js einfügen.
+------------------------------------------ */
 
-    setTimeout(()=>{
 
-        fill.style.width = percent + "%";
 
-    },500);
+// const firebaseConfig = {
+// ...
+// };
+
+
+// firebase.initializeApp(firebaseConfig);
+
+// const db = firebase.database();
+
+
+
+/* ==========================================
+   AKTUELLES COMMUNITY PROJEKT
+========================================== */
+
+const communityGoal = {
+
+    title: "Ausbau MostiRadio",
+
+    description:
+    "Gemeinsam möchten wir unser MostiRadio weiter ausbauen. Neue Funktionen, bessere Audioqualität und viele neue Ideen.",
+
+    current:684,
+
+    goal:1000
+
+};
+
+
+
+/* ==========================================
+   INITIALISIERUNG
+========================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    updateCommunityGoal();
 
 });
 
+
+
+/* ==========================================
+   COMMUNITY ZIEL
+========================================== */
+
+function updateCommunityGoal(){
+
+    document.getElementById("goal-title").innerHTML =
+    communityGoal.title;
+
+    document.querySelector(".goal-description").innerHTML =
+    communityGoal.description;
+
+    document.getElementById("currentValue").innerHTML =
+    communityGoal.current.toLocaleString("de-DE")+" €";
+
+    document.getElementById("goalValue").innerHTML =
+    communityGoal.goal.toLocaleString("de-DE")+" €";
+
+
+
+    const percent =
+    Math.min(
+
+        Math.round(
+            communityGoal.current /
+            communityGoal.goal *100
+        ),
+
+        100
+
+    );
+
+
+
+    animateProgress(percent);
+
+}
+
+
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+function animateProgress(percent){
+
+    const bar =
+    document.getElementById("progressFill");
+
+    const text =
+    document.getElementById("goalPercent");
+
+
+
+    bar.style.width="0%";
+
+    text.innerHTML="0 %";
+
+
+
+    let current=0;
+
+
+
+    const animation =
+    setInterval(()=>{
+
+        current++;
+
+        bar.style.width=current+"%";
+
+        text.innerHTML=current+" %";
+
+
+
+        if(current>=percent){
+
+            clearInterval(animation);
+
+        }
+
+    },18);
+
+}
