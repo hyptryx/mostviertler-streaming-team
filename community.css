@@ -785,3 +785,107 @@ box-shadow:
 0 0 35px rgba(255,215,0,.45);
 
 }
+
+/* ==========================================
+   SUPPORT POPUP
+========================================== */
+
+.support-popup{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(0,0,0,.82);
+
+backdrop-filter:blur(8px);
+
+z-index:99999;
+
+}
+
+.support-popup-card{
+
+width:90%;
+
+max-width:600px;
+
+padding:50px;
+
+border-radius:25px;
+
+background:rgba(20,20,20,.85);
+
+border:1px solid rgba(255,215,0,.3);
+
+text-align:center;
+
+position:relative;
+
+box-shadow:
+
+0 0 40px rgba(255,215,0,.25);
+
+}
+
+.popup-close{
+
+position:absolute;
+
+top:15px;
+
+right:20px;
+
+background:none;
+
+border:none;
+
+font-size:24px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.paypal-button{
+
+display:inline-block;
+
+margin-top:35px;
+
+padding:18px 45px;
+
+border-radius:50px;
+
+background:
+
+linear-gradient(90deg,#ff9900,#ffd700);
+
+text-decoration:none;
+
+font-family:"Orbitron";
+
+font-weight:bold;
+
+color:black;
+
+transition:.35s;
+
+}
+
+.paypal-button:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+
+0 0 25px rgba(255,215,0,.45);
+
+}
