@@ -1,0 +1,301 @@
+/* ==========================================
+   COMMUNITY OVERLAY
+========================================== */
+
+#communityOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999999;
+
+    animation:fadeOverlay .5s;
+
+}
+
+
+
+/* ==========================================
+   POPUP
+========================================== */
+
+.communityAnimation{
+
+    text-align:center;
+
+    max-width:700px;
+
+    padding:60px;
+
+    border-radius:25px;
+
+    background:rgba(25,25,25,.75);
+
+    border:1px solid rgba(255,215,0,.30);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+
+        0 0 60px rgba(255,215,0,.20);
+
+}
+
+.communityAnimation h2{
+
+    margin-top:30px;
+
+    margin-bottom:25px;
+
+    font-family:"Orbitron";
+
+    font-size:2.3rem;
+
+    background:linear-gradient(90deg,#ff9900,#ffd700);
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+.communityAnimation p{
+
+    line-height:2;
+
+    font-size:1.15rem;
+
+    color:white;
+
+}
+
+
+
+/* ==========================================
+   MAIN HEART
+========================================== */
+
+#mainHeart{
+
+    font-size:130px;
+
+    animation:heartbeat 1.5s infinite;
+
+    filter:drop-shadow(0 0 25px red);
+
+}
+
+
+
+@keyframes heartbeat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+20%{
+
+transform:scale(1.18);
+
+}
+
+40%{
+
+transform:scale(1);
+
+}
+
+60%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+
+
+/* ==========================================
+   FLYING HEARTS
+========================================== */
+
+.flyingHeart{
+
+    position:fixed;
+
+    bottom:-50px;
+
+    z-index:999998;
+
+    pointer-events:none;
+
+    animation:flyHeart linear forwards;
+
+}
+
+
+
+@keyframes flyHeart{
+
+0%{
+
+transform:translateY(0) scale(.5);
+
+opacity:0;
+
+}
+
+15%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120vh) rotate(360deg) scale(1.6);
+
+opacity:0;
+
+}
+
+}
+
+
+
+/* ==========================================
+   GOLD PARTICLES
+========================================== */
+
+.goldParticle{
+
+    position:fixed;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:#FFD700;
+
+    box-shadow:
+
+        0 0 12px #FFD700,
+
+        0 0 22px #FFD700;
+
+    animation:particleFloat 5s linear forwards;
+
+    pointer-events:none;
+
+    z-index:999997;
+
+}
+
+
+
+@keyframes particleFloat{
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-250px);
+
+opacity:0;
+
+}
+
+}
+
+
+
+/* ==========================================
+   OVERLAY
+========================================== */
+
+@keyframes fadeOverlay{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.communityAnimation{
+
+padding:35px;
+
+margin:25px;
+
+}
+
+.communityAnimation h2{
+
+font-size:1.6rem;
+
+}
+
+.communityAnimation p{
+
+font-size:1rem;
+
+line-height:1.7;
+
+}
+
+#mainHeart{
+
+font-size:90px;
+
+}
+
+}
