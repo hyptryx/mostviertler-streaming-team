@@ -144,8 +144,6 @@ function animateProgress(percent){
    PAYPAL
 ========================================== */
 
-const paypalLink = "https://paypal.me/haraldgoebl";
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const buttons = document.querySelectorAll(".support-btn");
@@ -169,8 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function openSupportPopup(){
 
     document.getElementById("supportPopup").style.display="flex";
-
-    document.getElementById("paypalButton").href=paypalLink;
 
 }
 
