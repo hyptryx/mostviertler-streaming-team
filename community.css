@@ -460,3 +460,145 @@
     letter-spacing:1px;
 
 }
+
+/* ======================================
+   JOIN COMMUNITY
+====================================== */
+
+.join-section{
+
+    padding:140px 30px;
+
+}
+
+.join-card{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:70px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,215,0,.25);
+
+    text-align:center;
+
+    box-shadow:
+
+        0 0 45px rgba(255,215,0,.08);
+
+}
+
+.join-tag{
+
+    display:inline-block;
+
+    color:#FFD700;
+
+    letter-spacing:3px;
+
+    margin-bottom:25px;
+
+}
+
+.join-card h2{
+
+    color:white;
+
+    font-size:52px;
+
+    margin-bottom:35px;
+
+}
+
+.join-card p{
+
+    color:#d5d5d5;
+
+    font-size:21px;
+
+    line-height:1.9;
+
+    max-width:720px;
+
+    margin:auto;
+
+}
+
+.support-buttons{
+
+    margin-top:55px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.support-main-btn{
+
+    padding:18px 45px;
+
+    border:none;
+
+    border-radius:60px;
+
+    background:linear-gradient(135deg,#FFD700,#ffb700);
+
+    color:black;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.support-main-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 0 35px rgba(255,215,0,.5);
+
+}
+
+.support-secondary-btn{
+
+    padding:18px 45px;
+
+    border-radius:60px;
+
+    border:2px solid #FFD700;
+
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.support-secondary-btn:hover{
+
+    background:#FFD700;
+
+    color:black;
+
+}
