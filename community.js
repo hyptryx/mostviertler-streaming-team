@@ -161,3 +161,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ==========================================
+   SUPPORT POPUP
+========================================== */
+
+function openSupportPopup(){
+
+    document.getElementById("supportPopup").style.display="flex";
+
+    document.getElementById("paypalButton").href=paypalLink;
+
+}
+
+document
+.getElementById("closeSupportPopup")
+.addEventListener("click",()=>{
+
+    document.getElementById("supportPopup").style.display="none";
+
+});
