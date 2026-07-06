@@ -347,3 +347,116 @@
 
 }
 
+/* ======================================
+   SUPPORT AREAS
+====================================== */
+
+.support-areas{
+
+    padding:120px 30px;
+
+}
+
+.support-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:35px;
+
+    margin-top:70px;
+
+}
+
+.support-card{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,215,0,.18);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    transition:.35s;
+
+}
+
+.support-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#FFD700;
+
+    box-shadow:0 0 35px rgba(255,215,0,.25);
+
+}
+
+.support-icon{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+
+}
+
+.support-card h3{
+
+    color:white;
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
+}
+
+.support-card p{
+
+    color:#d0d0d0;
+
+    line-height:1.8;
+
+    min-height:90px;
+
+}
+
+.mini-progress{
+
+    height:8px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+
+    margin-top:25px;
+
+}
+
+.mini-fill{
+
+    height:100%;
+
+    background:linear-gradient(90deg,#FFD700,#ffb800);
+
+    box-shadow:0 0 20px rgba(255,215,0,.4);
+
+}
+
+.mini-label{
+
+    display:block;
+
+    margin-top:12px;
+
+    color:#FFD700;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+}
