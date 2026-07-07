@@ -743,12 +743,12 @@ async function updateRadioStatus() {
     const data = await res.json();
 
     // Icecast KH JSON-Struktur
-    const source = data.icestats && data.icestats.source;
+    const source = data.source;
     if (!source) return;
 
-    const listeners = source.listeners || 0;
-    const title     = source.title || "Unbekannter Titel";
-    const artist    = source.artist || "Unbekannter Artist";
+    const listeners = source.listeners ?? 0;
+   const title     = source.title ?? "Unbekannter Titel";
+   const artist    = source.artist ?? "Unbekannter Artist";
 
     radioListeners.textContent = `👥 ${listeners} Listener`;
 
