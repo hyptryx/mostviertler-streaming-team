@@ -699,10 +699,10 @@ const radioTitleEl   = document.getElementById("radio-title");
 const radioArtistEl  = document.getElementById("radio-artist");
 
 // Dein Icecast-Mount (MP3)
-const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32138/stream";
+const RADIO_STREAM_URL = "https://s13.streamingcloud.online:32130/stream";
 
 // Icecast JSON-Status (ohne Port, weil meist über Proxy)
-const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32138/status-json.xsl";
+const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32130/status-json.xsl";
 
 /* Play-Button – immer spielen */
 radioPlayBtn.addEventListener("click", () => {
