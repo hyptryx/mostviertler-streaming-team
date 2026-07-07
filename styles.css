@@ -1782,4 +1782,60 @@ body {
     opacity: 0.8;
 }
 
+/* ==========================================
+   MENU HEART
+========================================== */
 
+.menu-heart{
+
+display:inline-block;
+
+animation:heartPulse 2.8s ease-in-out infinite;
+
+transform-origin:center;
+
+}
+
+.menu-heart:hover{
+
+animation-play-state:paused;
+
+transform:scale(1.25);
+
+}
+
+@keyframes heartPulse{
+
+0%{
+
+transform:scale(1);
+
+filter:drop-shadow(0 0 0 rgba(255,70,70,.0));
+
+}
+
+15%{
+
+transform:scale(1.18);
+
+filter:drop-shadow(0 0 10px rgba(255,60,60,.7));
+
+}
+
+30%{
+
+transform:scale(1);
+
+filter:drop-shadow(0 0 4px rgba(255,60,60,.35));
+
+}
+
+100%{
+
+transform:scale(1);
+
+filter:drop-shadow(0 0 0 rgba(255,60,60,0));
+
+}
+
+}
