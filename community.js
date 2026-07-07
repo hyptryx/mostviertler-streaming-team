@@ -42,6 +42,14 @@ function loadCommunityGoal(){
 
 function updateCommunityGoal(){
 
+    if(
+        !communityGoal ||
+        communityGoal.current == null ||
+        communityGoal.goal == null
+    ){
+        return;
+    }
+
     document.getElementById("goal-title").innerHTML =
     communityGoal.title;
 
