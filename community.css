@@ -793,13 +793,11 @@ box-shadow:
 .support-popup{
 
 position:fixed;
-
 inset:0;
 
-display:none;
+display:flex;
 
 justify-content:center;
-
 align-items:center;
 
 background:rgba(0,0,0,.82);
@@ -807,6 +805,20 @@ background:rgba(0,0,0,.82);
 backdrop-filter:blur(8px);
 
 z-index:99999;
+
+opacity:0;
+visibility:hidden;
+
+transition:opacity .35s ease,
+visibility .35s ease;
+
+}
+
+.support-popup.show{
+
+opacity:1;
+
+visibility:visible;
 
 }
 
@@ -831,6 +843,20 @@ position:relative;
 box-shadow:
 
 0 0 40px rgba(255,215,0,.25);
+
+transform:scale(.92);
+
+transition:
+
+transform .35s ease,
+
+opacity .35s ease;
+
+}
+
+.support-popup.show .support-popup-card{
+
+transform:scale(1);
 
 }
 
