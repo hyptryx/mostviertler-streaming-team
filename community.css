@@ -902,17 +902,21 @@ cursor:pointer;
 
 .paypal-button{
 
-display:inline-block;
+display:flex;
 
-margin-top:35px;
+justify-content:center;
+
+align-items:center;
+
+margin:35px auto 0;
+
+width:fit-content;
 
 padding:18px 45px;
 
 border-radius:50px;
 
-background:
-
-linear-gradient(90deg,#ff9900,#ffd700);
+background:linear-gradient(90deg,#ff9900,#ffd700);
 
 text-decoration:none;
 
