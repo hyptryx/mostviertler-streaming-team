@@ -177,7 +177,9 @@ const paypalLinks = {
 function openSupportPopup(){
 
     // Popup anzeigen
-    document.getElementById("supportPopup").style.display = "flex";
+    document
+.getElementById("supportPopup")
+.classList.add("show");
 
     // Standardmäßig 5 € auswählen
     selectedAmount = "5";
@@ -197,7 +199,9 @@ function openSupportPopup(){
 
 function closeSupportPopup(){
 
-    document.getElementById("supportPopup").style.display = "none";
+    document
+.getElementById("supportPopup")
+.classList.remove("show");
 
     selectedAmount = "5";
 
