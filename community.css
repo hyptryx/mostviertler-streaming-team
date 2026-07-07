@@ -432,20 +432,20 @@ position:absolute;
 
 top:0;
 
-left:-120%;
+left:-60%;
 
-width:70%;
+width:30%;
 
 height:100%;
 
 background:linear-gradient(
 90deg,
 transparent,
-rgba(255,255,255,.65),
+rgba(255,255,255,.75),
 transparent
 );
 
-transform:skewX(-25deg);
+transform:skewX(-20deg);
 
 animation:progressShine 3s linear infinite;
 
@@ -455,13 +455,13 @@ animation:progressShine 3s linear infinite;
 
 0%{
 
-left:-120%;
+left:-30%;
 
 }
 
 100%{
 
-left:150%;
+left:100%;
 
 }
 
