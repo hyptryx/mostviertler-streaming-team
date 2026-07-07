@@ -508,9 +508,19 @@ font-size:1.05rem;
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+grid-template-columns:repeat(2,1fr);
 
 gap:35px;
+
+}
+
+@media(max-width:900px){
+
+.support-option-grid{
+
+grid-template-columns:1fr;
+
+}
 
 }
 
@@ -840,7 +850,19 @@ max-width:600px;
 
 width:100%;
 
-}
+padding:40px;
+
+border-radius:25px;
+
+background:rgba(20,20,20,.90);
+
+border:1px solid rgba(255,215,0,.30);
+
+box-shadow:0 0 40px rgba(255,215,0,.25);
+
+position:relative;
+
+} 
 
 .support-popup.show .support-popup-card{
 
