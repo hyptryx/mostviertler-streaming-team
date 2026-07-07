@@ -176,7 +176,19 @@ const paypalLinks = {
 
 function openSupportPopup(){
 
+    // Popup anzeigen
     document.getElementById("supportPopup").style.display = "flex";
+
+    // Standardmäßig 5 € auswählen
+    selectedAmount = "5";
+
+    document.querySelectorAll(".popupAmount").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document
+        .querySelector('.popupAmount[data-amount="5"]')
+        .classList.add("active");
 
     document.getElementById("paypalButton").href =
         paypalLinks[selectedAmount];
@@ -211,6 +223,16 @@ window.addEventListener("click", (event) => {
     const popup = document.getElementById("supportPopup");
 
     if (event.target === popup) {
+
+        closeSupportPopup();
+
+    }
+
+});
+
+document.addEventListener("keydown", (event) => {
+
+    if(event.key === "Escape"){
 
         closeSupportPopup();
 
