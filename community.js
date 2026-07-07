@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
    SUPPORT POPUP
 ========================================== */
 
-let selectedAmount = "custom";
+let selectedAmount = "5";
 
 const paypalLinks = {
 
@@ -177,6 +177,9 @@ const paypalLinks = {
 function openSupportPopup(){
 
     document.getElementById("supportPopup").style.display = "flex";
+
+    document.getElementById("paypalButton").href =
+        paypalLinks[selectedAmount];
 
 }
 
@@ -198,6 +201,19 @@ function selectAmount(event){
 
     selectedAmount = event.currentTarget.dataset.amount;
 
-    console.log("Gewählter Betrag:", selectedAmount);
+    document.getElementById("paypalButton").href =
+        paypalLinks[selectedAmount];
 
 }
+
+window.addEventListener("click", (event) => {
+
+    const popup = document.getElementById("supportPopup");
+
+    if (event.target === popup) {
+
+        closeSupportPopup();
+
+    }
+
+});
