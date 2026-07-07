@@ -118,6 +118,16 @@ margin-top:50px;
 
 }
 
+@media(max-width:768px){
+
+.support-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
 .support-card{
 
 background:rgba(20,20,20,.70);
