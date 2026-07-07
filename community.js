@@ -199,6 +199,19 @@ function closeSupportPopup(){
 
     document.getElementById("supportPopup").style.display = "none";
 
+    selectedAmount = "5";
+
+    document.querySelectorAll(".popupAmount").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document
+        .querySelector('.popupAmount[data-amount="5"]')
+        .classList.add("active");
+
+    document.getElementById("paypalButton").href =
+        paypalLinks["5"];
+
 }
 
 function selectAmount(event){
