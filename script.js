@@ -739,6 +739,7 @@ async function updateRadioStatus() {
 
     const data = await res.json();
 
+    // KH-Struktur: icestats.source
     const source = data.icestats?.source;
     if (!source) return;
 
@@ -748,16 +749,15 @@ async function updateRadioStatus() {
 
     radioListeners.textContent = `👥 ${listeners} Listener`;
 
-    // DJ Name + Beschreibung holen (neue Struktur)
+    // DJ Name + Beschreibung
     const djNameRaw = source.server_name ?? "";
-    const description = source.genre ?? "";   // fallback, weil server_description fehlt
+    const description = source.genre ?? "";
 
-    // DJ Name bestimmen
     let finalDJName = djNameRaw.trim();
     if (!finalDJName) finalDJName = description.trim();
     if (!finalDJName) finalDJName = "DJ LIVE";
 
-    // DJ ist live, wenn genre NICHT leer ist
+    // DJ live?
     const isDJLive =
       description &&
       description.trim() !== "" &&
