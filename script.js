@@ -735,33 +735,29 @@ radioVolume.addEventListener("input", () => {
 async function updateRadioStatus() {
   try {
     const res = await fetch(RADIO_STATUS_URL);
-    if (!res.ok) {
-      console.warn("Icecast Status Fehler:", res.status);
-      return;
-    }
+    if (!res.ok) return;
 
     const data = await res.json();
 
-    // Icecast KH JSON-Struktur
     const source = data.source;
     if (!source) return;
 
     const listeners = source.listeners ?? 0;
-   const title     = source.title ?? "Unbekannter Titel";
-   const artist    = source.artist ?? "Unbekannter Artist";
+    const title     = source.title ?? "Unbekannter Titel";
+    const artist    = source.artist ?? "Unbekannter Artist";
 
     radioListeners.textContent = `👥 ${listeners} Listener`;
 
-    // DJ Name + Beschreibung holen
-    const description = source.server_description || "";
-    const djNameRaw   = source.server_name || "";
-    
+    // DJ Name + Beschreibung holen (neue Struktur)
+    const djNameRaw = source.server_name ?? "";
+    const description = source.genre ?? "";   // fallback, weil server_description fehlt
+
     // DJ Name bestimmen
     let finalDJName = djNameRaw.trim();
     if (!finalDJName) finalDJName = description.trim();
     if (!finalDJName) finalDJName = "DJ LIVE";
 
-    // DJ ist live, wenn description NICHT leer ist
+    // DJ ist live, wenn genre NICHT leer ist
     const isDJLive =
       description &&
       description.trim() !== "" &&
@@ -780,24 +776,15 @@ async function updateRadioStatus() {
 
     // DJ‑Status anzeigen
     const djStatusEl = document.getElementById("dj-status");
-    if (isDJLive) {
-      djStatusEl.innerText = `${finalDJName} ist LIVE ON AIR 🔥`;
-      djStatusEl.style.display = "block";
-    } else {
-      djStatusEl.innerText = "";
-      djStatusEl.style.display = "none";
-    }
+    djStatusEl.style.display = isDJLive ? "block" : "none";
+    djStatusEl.innerText = isDJLive ? `${finalDJName} ist LIVE ON AIR 🔥` : "";
 
     // Chat ein-/ausblenden
     const djChat = document.getElementById("dj-chat");
     djChat.style.display = isDJLive ? "block" : "none";
 
-    // Optional: Status anhand listeners
-    if (listeners > 0) {
-      radioStatusEl.textContent = "🔴 ON AIR";
-    } else {
-      radioStatusEl.textContent = "🟡 Online (keine Listener)";
-    }
+    // Status anhand listeners
+    radioStatusEl.textContent = listeners > 0 ? "🔴 ON AIR" : "🟡 Online (keine Listener)";
 
   } catch (err) {
     console.error("Fehler beim Abrufen des Radio-Status:", err);
