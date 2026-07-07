@@ -739,7 +739,7 @@ async function updateRadioStatus() {
 
     const data = await res.json();
 
-    const source = data.source;
+    const source = data.icestats?.source;
     if (!source) return;
 
     const listeners = source.listeners ?? 0;
