@@ -162,6 +162,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let selectedAmount = "custom";
 
+const paypalLinks = {
+
+    "5":"https://paypal.me/haraldgoebl/5",
+
+    "10":"https://paypal.me/haraldgoebl/10",
+
+    "20":"https://paypal.me/haraldgoebl/20",
+
+    "custom":"https://paypal.me/haraldgoebl"
+
+};
+
 function openSupportPopup(){
 
     document.getElementById("supportPopup").style.display = "flex";
