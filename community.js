@@ -42,19 +42,6 @@ const communityGoal = {
 };
 
 
-
-/* ==========================================
-   INITIALISIERUNG
-========================================== */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    updateCommunityGoal();
-
-});
-
-
-
 /* ==========================================
    COMMUNITY ZIEL
 ========================================== */
@@ -141,20 +128,29 @@ function animateProgress(percent){
 }
 
 /* ==========================================
-   PAYPAL
+   INITIALISIERUNG
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const buttons = document.querySelectorAll(".support-btn");
+    updateCommunityGoal();
 
-    buttons.forEach(button => {
+    // Support-Karten
+    document.querySelectorAll(".support-btn").forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", openSupportPopup);
 
-            openSupportPopup();
+    });
 
-        });
+    // Popup schließen
+    document
+        .getElementById("closeSupportPopup")
+        .addEventListener("click", closeSupportPopup);
+
+    // Betragsauswahl
+    document.querySelectorAll(".popupAmount").forEach(button => {
+
+        button.addEventListener("click", selectAmount);
 
     });
 
@@ -164,16 +160,32 @@ document.addEventListener("DOMContentLoaded", () => {
    SUPPORT POPUP
 ========================================== */
 
+let selectedAmount = "custom";
+
 function openSupportPopup(){
 
-    document.getElementById("supportPopup").style.display="flex";
+    document.getElementById("supportPopup").style.display = "flex";
 
 }
 
-document
-.getElementById("closeSupportPopup")
-.addEventListener("click",()=>{
+function closeSupportPopup(){
 
-    document.getElementById("supportPopup").style.display="none";
+    document.getElementById("supportPopup").style.display = "none";
 
-});
+}
+
+function selectAmount(event){
+
+    document.querySelectorAll(".popupAmount").forEach(button=>{
+
+        button.classList.remove("active");
+
+    });
+
+    event.currentTarget.classList.add("active");
+
+    selectedAmount = event.currentTarget.dataset.amount;
+
+    console.log("Gewählter Betrag:", selectedAmount);
+
+}
