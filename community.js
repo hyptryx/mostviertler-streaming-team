@@ -4,42 +4,36 @@
 ========================================== */
 
 
-/* ------------------------------------------
-   Firebase Config
+/* ==========================================
+   FIREBASE
+========================================== */
 
-   HIER später einfach deine bestehende
-   Firebase Config aus script.js einfügen.
------------------------------------------- */
-
-
-
-// const firebaseConfig = {
-// ...
-// };
-
-
-// firebase.initializeApp(firebaseConfig);
-
-// const db = firebase.database();
-
+const db = firebase.database();
 
 
 /* ==========================================
    AKTUELLES COMMUNITY PROJEKT
 ========================================== */
 
-const communityGoal = {
+let communityGoal = {};
 
-    title: "Ausbau MostiRadio",
+/* ==========================================
+   FIREBASE COMMUNITY
+========================================== */
 
-    description:
-    "Gemeinsam möchten wir unser MostiRadio weiter ausbauen. Neue Funktionen, bessere Audioqualität und viele neue Ideen.",
+function loadCommunityGoal(){
 
-    current: 684,
+    db.ref("community").on("value", (snapshot)=>{
 
-    goal: 1000
+        communityGoal = snapshot.val();
 
-};
+        if(!communityGoal) return;
+
+        updateCommunityGoal();
+
+    });
+
+}
 
 
 /* ==========================================
@@ -60,8 +54,6 @@ function updateCommunityGoal(){
     document.getElementById("goalValue").innerHTML =
     communityGoal.goal.toLocaleString("de-DE")+" €";
 
-
-
     const percent =
     Math.min(
 
@@ -74,12 +66,9 @@ function updateCommunityGoal(){
 
     );
 
-
-
     animateProgress(percent);
 
 }
-
 
 
 /* ==========================================
@@ -133,7 +122,7 @@ function animateProgress(percent){
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    updateCommunityGoal();
+    loadCommunityGoal();
 
     // Support-Karten
     document.querySelectorAll(".support-btn").forEach(button => {
