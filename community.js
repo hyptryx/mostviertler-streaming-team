@@ -5,50 +5,21 @@
 
 
 /* ==========================================
-   FIREBASE
-========================================== */
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAhdTxRsm0qNUTw-iN8AHJI5ZYSA2m9oII",
-    authDomain: "mosti-catch.firebaseapp.com",
-    databaseURL: "https://mosti-catch-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "mosti-catch",
-    storageBucket: "mosti-catch.appspot.com",
-    messagingSenderId: "100463668785",
-    appId: "1:100463668785:web:3e4bb19ea88a99905d6f10"
-};
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-
-const db = firebase.database();
-
-
-/* ==========================================
    AKTUELLES COMMUNITY PROJEKT
 ========================================== */
 
-let communityGoal = {};
+const communityGoal = {
 
-/* ==========================================
-   FIREBASE COMMUNITY
-========================================== */
+    title: "Ausbau MostiRadio",
 
-function loadCommunityGoal(){
+    description:
+    "Gemeinsam möchten wir unser MostiRadio weiter ausbauen. Neue Funktionen, bessere Audioqualität und viele neue Ideen.",
 
-    db.ref("community").on("value", (snapshot)=>{
+    current: 155,
 
-        communityGoal = snapshot.val();
+    goal: 1000
 
-        if(!communityGoal) return;
-
-        updateCommunityGoal();
-
-    });
-
-}
-
+};
 
 /* ==========================================
    COMMUNITY ZIEL
@@ -144,7 +115,7 @@ function animateProgress(percent){
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    loadCommunityGoal();
+    updateCommunityGoal();
 
     // Support-Karten
     document.querySelectorAll(".support-btn").forEach(button => {
