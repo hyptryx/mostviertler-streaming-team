@@ -28,11 +28,18 @@
    AKTUELLES COMMUNITY PROJEKT
 ========================================== */
 
-firebase.database()
+const communityGoal = {
 
-.ref("community")
+    title: "Ausbau MostiRadio",
 
-.on("value", ...)
+    description:
+    "Gemeinsam möchten wir unser MostiRadio weiter ausbauen. Neue Funktionen, bessere Audioqualität und viele neue Ideen.",
+
+    current: 684,
+
+    goal: 1000
+
+};
 
 
 /* ==========================================
@@ -134,6 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", openSupportPopup);
 
     });
+
+   document
+    .querySelector(".community-main-button")
+    .addEventListener("click", openSupportPopup);
 
     // Popup schließen
     document
