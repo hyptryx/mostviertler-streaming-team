@@ -153,17 +153,80 @@ async function updateRadioStatus() {
     if (!res.ok) return;
 
     const data = await res.json();
-    const source = data.icestats && data.icestats.source;
-    if (!source) return;
+    let source = data.icestats.source;
+
+if (Array.isArray(source)) {
+    source = source[0];
+}
+
+if (!source) return;
+
+    console.log(source);
 
     const listeners = source.listeners || 0;
-    const title     = source.title || "Unbekannter Titel";
-    const artist    = source.artist || "Unbekannter Artist";
+const title =
+    source.title ||
+    source.server_name ||
+    source.server_description ||
+    "Unbekannter Titel";
+const artist = source.artist || "";
 
-    radioListeners.textContent = `👥 ${listeners} Listener`;
-    radioTitleEl.textContent   = title;
-    radioArtistEl.textContent  = artist;
+// Live-DJ erkennen
+const upperTitle = title.toUpperCase();
 
+const isDJLive =
+    upperTitle.includes("LIVE");
+
+// DJ-Name ermitteln
+let djName = title
+    .replace(/LIVE ON AIR/gi, "")
+    .replace(/\bLIVE\b/gi, "")
+    .trim();
+
+    djName = djName
+    .replace(/^-/, "")
+    .replace(/-$/, "")
+    .trim();
+
+if (isDJLive && djName === "") {
+    djName = "Live DJ";
+}
+
+radioListeners.textContent = `👥 ${listeners} Listener`;
+
+if (isDJLive) {
+
+    radioTitleEl.textContent = `🎙 ${djName}`;
+
+    radioArtistEl.textContent = "Jetzt live für euch auf MostiRadio";
+
+} else {
+
+    radioTitleEl.textContent = title;
+
+    radioArtistEl.textContent =
+        artist || "";
+
+}
+
+const djStatus = document.getElementById("dj-status");
+const djChat = document.getElementById("dj-chat");
+
+if (isDJLive) {
+
+    djStatus.style.display = "block";
+    djStatus.innerHTML =
+        `🎙 <strong>${djName}</strong><br>LIVE ON AIR`;
+
+    djChat.style.display = "block";
+
+} else {
+
+    djStatus.style.display = "none";
+    djChat.style.display = "none";
+
+}
+    
     if (listeners > 0) {
       radioStatusEl.textContent = "🔴 ON AIR";
       radioStatusEl.classList.add("on");
@@ -202,7 +265,9 @@ const firebaseConfig = {
 
 <script>
 // Firebase starten
-const app = firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 const db = firebase.database();
 
 // Elemente
