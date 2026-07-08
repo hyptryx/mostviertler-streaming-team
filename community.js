@@ -254,3 +254,26 @@ document.addEventListener("keydown", (event) => {
     }
 
 });
+
+document.getElementById("paypalButton").addEventListener("click",(e)=>{
+
+    if(selectedAmount!=="custom") return;
+
+    e.preventDefault();
+
+    const value=document.getElementById("customAmount").value;
+
+    if(!value || value<=0){
+
+        alert("Bitte einen Betrag eingeben.");
+
+        return;
+
+    }
+
+    window.open(
+        "https://paypal.me/haraldgoebl/"+value,
+        "_blank"
+    );
+
+});
