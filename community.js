@@ -207,17 +207,29 @@ function closeSupportPopup(){
 function selectAmount(event){
 
     document.querySelectorAll(".popupAmount").forEach(button=>{
-
         button.classList.remove("active");
-
     });
 
     event.currentTarget.classList.add("active");
 
     selectedAmount = event.currentTarget.dataset.amount;
 
-    document.getElementById("paypalButton").href =
+    const wrapper = document.getElementById("customAmountWrapper");
+
+    if(selectedAmount === "custom"){
+
+        wrapper.style.display="block";
+
+        document.getElementById("paypalButton").href="#";
+
+    }else{
+
+        wrapper.style.display="none";
+
+        document.getElementById("paypalButton").href =
         paypalLinks[selectedAmount];
+
+    }
 
 }
 
