@@ -1208,6 +1208,18 @@ body {
   text-shadow: 0 0 10px #ffcc00;
 }
 
+@media (max-width: 768px) {
+
+  .main-nav ul {
+    padding: 0 10px;
+  }
+
+  .main-nav a {
+    font-size: 1rem;
+  }
+
+}
+
 body {
   padding-top: 70px; /* damit der Inhalt nicht unter dem Menü klebt */
 }
