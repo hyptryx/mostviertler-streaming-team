@@ -1637,7 +1637,7 @@ body {
   border: none;
   outline: none;
   font-family: "Orbitron", sans-serif;
-   font-size: 16px;
+  font-size: 16px;
 }
 
 .chat-send {
