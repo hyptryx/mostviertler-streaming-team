@@ -1603,7 +1603,7 @@ body {
 
 .dj-chat {
   margin-top: 25px;
-  padding: 20px;
+  padding: 15px;
   background: rgba(20,20,25,0.9);
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(255,215,0,0.45);
@@ -1620,7 +1620,7 @@ body {
 }
 
 .chat-messages {
-  height: 250px;
+  height: 360px;
   overflow-y: auto;
   background: rgba(0,0,0,0.3);
   padding: 10px;
@@ -1777,12 +1777,31 @@ body {
   }
 }
 
-/* 📱 Volume-Regler beim MostiRadio am Handy komplett ausblenden */
+/* 📱 MostiRadio Mobile */
 @media (max-width: 768px) {
+
+    /* Volume ausblenden */
     .volume-label,
     #radio-volume {
         display: none !important;
     }
+
+    /* Chat kompakter */
+    .chat-messages {
+        height: 260px;
+    }
+
+    /* Eingabefeld untereinander */
+    .chat-input {
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .chat-send {
+        width: 100%;
+    }
+
 }
 
 /* Impressum – Linkfarbe fixen */
@@ -1976,9 +1995,9 @@ transform:scale(1.04);
 
 .chat-message{
 
-margin-bottom:18px;
+margin-bottom:8px;
 
-padding-bottom:15px;
+padding-bottom:8px;
 
 border-bottom:1px solid rgba(255,255,255,.08);
 
@@ -1988,11 +2007,11 @@ border-bottom:1px solid rgba(255,255,255,.08);
 
 font-family:"Orbitron";
 
-font-size:.95rem;
+font-size:.82rem;
 
 color:#ffd700;
 
-margin-bottom:6px;
+margin-bottom:3px;
 
 }
 
@@ -2000,7 +2019,7 @@ margin-bottom:6px;
 
 font-size:1rem;
 
-line-height:1.6;
+line-height:1.35;
 
 color:#ffffff;
 
