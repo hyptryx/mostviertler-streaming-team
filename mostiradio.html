@@ -233,10 +233,23 @@ if (isDJLive) {
 
     djChat.style.display = "block";
 
+    // Name noch nicht vergeben?
+    if (!localStorage.getItem("mostiChatName")) {
+
+        document
+            .getElementById("chatNamePopup")
+            .classList.add("show");
+
+    }
+
 } else {
 
     djStatus.style.display = "none";
     djChat.style.display = "none";
+
+    document
+        .getElementById("chatNamePopup")
+        .classList.remove("show");
 
 }
     
@@ -319,16 +332,6 @@ const chatUsername = document.getElementById("chatUsername");
 const saveChatName = document.getElementById("saveChatName");
 
 let username = localStorage.getItem("mostiChatName") || "";
-
-if(username){
-
-    chatNamePopup.style.display = "none";
-
-}else{
-
-    chatNamePopup.classList.add("show");
-
-}
 
 saveChatName.addEventListener("click", ()=>{
 
