@@ -261,6 +261,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
   </script> 
 
+<!-- CHAT NAME POPUP -->
+<div id="chatNamePopup" class="chat-name-popup">
+
+  <div class="chat-name-card">
+
+    <h2>👋 Willkommen</h2>
+
+    <p>
+      Wie möchtest du im MostiRadio Chat heißen?
+    </p>
+
+    <input
+      id="chatUsername"
+      type="text"
+      maxlength="20"
+      placeholder="Dein Name">
+
+    <button id="saveChatName">
+      Chat betreten
+    </button>
+
+  </div>
+
+</div>
+  
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
@@ -291,13 +316,49 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
 
+const chatNamePopup = document.getElementById("chatNamePopup");
+const chatUsername = document.getElementById("chatUsername");
+const saveChatName = document.getElementById("saveChatName");
+
+let username = localStorage.getItem("mostiChatName") || "";
+
+if(username){
+
+    chatNamePopup.style.display = "none";
+
+}else{
+
+    chatNamePopup.classList.add("show");
+
+}
+
+saveChatName.addEventListener("click", ()=>{
+
+    const name = chatUsername.value.trim();
+
+    if(name.length < 3){
+
+        alert("Bitte mindestens 3 Zeichen eingeben.");
+
+        return;
+
+    }
+
+    username = name;
+
+    localStorage.setItem("mostiChatName", username);
+
+    chatNamePopup.classList.remove("show");
+
+});
+
 // Nachricht senden
 chatSend.addEventListener("click", () => {
   const msg = chatInput.value.trim();
   if (!msg) return;
 
   db.ref("chat").push({
-    user: "Listener",
+   user: username,
     text: msg,
     time: Date.now()
   });
