@@ -1969,3 +1969,41 @@ transition:.3s;
 transform:scale(1.04);
 
 }
+
+/* ==========================================
+   CHAT MESSAGES
+========================================== */
+
+.chat-message{
+
+margin-bottom:18px;
+
+padding-bottom:15px;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.chat-user{
+
+font-family:"Orbitron";
+
+font-size:.95rem;
+
+color:#ffd700;
+
+margin-bottom:6px;
+
+}
+
+.chat-text{
+
+font-size:1rem;
+
+line-height:1.6;
+
+color:#ffffff;
+
+word-break:break-word;
+
+}
