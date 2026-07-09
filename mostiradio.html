@@ -305,6 +305,19 @@ chatSend.addEventListener("click", () => {
   chatInput.value = "";
 });
 
+  // ENTER sendet Nachricht
+chatInput.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        chatSend.click();
+
+    }
+
+});
+
 // Nachrichten empfangen
 db.ref("chat").on("child_added", snapshot => {
   const data = snapshot.val();
