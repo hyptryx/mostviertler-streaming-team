@@ -382,11 +382,51 @@ chatInput.addEventListener("keydown", (event) => {
 
 // Nachrichten empfangen
 db.ref("chat").on("child_added", snapshot => {
-  const data = snapshot.val();
-  const div = document.createElement("div");
-  div.textContent = `${data.user}: ${data.text}`;
-  chatMessages.appendChild(div);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    const data = snapshot.val();
+
+    const message = document.createElement("div");
+    message.className = "chat-message";
+
+    const user = document.createElement("div");
+    user.className = "chat-user";
+
+    let icon = "👤";
+
+    if (data.user === "HyptryX") {
+
+        icon = "👑";
+
+    } else {
+
+        const djStatus =
+            document.getElementById("dj-status");
+
+        if (
+            djStatus.style.display !== "none" &&
+            djStatus.innerText.includes(data.user)
+        ) {
+
+            icon = "🎙";
+
+        }
+
+    }
+
+    user.textContent = `${icon} ${data.user}`;
+
+    const text = document.createElement("div");
+    text.className = "chat-text";
+    text.textContent = data.text;
+
+    message.appendChild(user);
+    message.appendChild(text);
+
+    chatMessages.appendChild(message);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
 });
 </script>
   
