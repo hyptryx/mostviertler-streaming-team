@@ -326,7 +326,19 @@ const chatBox = document.getElementById("dj-chat");
 const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
+let autoScroll = true;
 
+chatMessages.addEventListener("scroll", () => {
+
+    const distanceFromBottom =
+        chatMessages.scrollHeight -
+        chatMessages.scrollTop -
+        chatMessages.clientHeight;
+
+    autoScroll = distanceFromBottom < 40;
+
+});
+  
 const chatNamePopup = document.getElementById("chatNamePopup");
 const chatUsername = document.getElementById("chatUsername");
 const saveChatName = document.getElementById("saveChatName");
@@ -424,8 +436,12 @@ db.ref("chat").on("child_added", snapshot => {
 
     chatMessages.appendChild(message);
 
+if (autoScroll) {
+
     chatMessages.scrollTop =
         chatMessages.scrollHeight;
+
+}
 
 });
   
