@@ -5,7 +5,10 @@
 const COMMANDS = {
 
     "!commands": showCommands,
-    "!party": partyCommand,
+    "!party": {
+    execute: partyCommand,
+    cooldown: 10000
+    }
     "!bier": beerCommand,
     "!dj": djCommand
 
