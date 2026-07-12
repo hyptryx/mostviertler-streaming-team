@@ -54,9 +54,16 @@ if (!message.startsWith("!")) {
 
     message = message.trim().toLowerCase();
 
-    if (COMMANDS[message]) {
-    COMMANDS[message].execute(user);
+    const command = COMMANDS[message];
+
+if (!command) {
+    debugLog(`Unbekannter Befehl: ${message}`);
+    return;
 }
+
+debugLog(`${user} → ${message}`);
+
+command.execute(user);
 
 }
 
