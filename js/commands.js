@@ -5,16 +5,15 @@
 const COMMANDS = {
 
     "!commands": showCommands,
-
     "!party": partyCommand,
-
     "!bier": beerCommand,
-
     "!dj": djCommand
 
 };
 
-// ----------------------------
+// =====================================
+// !commands
+// =====================================
 
 function showCommands(user) {
 
@@ -28,52 +27,50 @@ function showCommands(user) {
 
 }
 
-// ----------------------------
+// =====================================
+// !party
+// =====================================
 
 function partyCommand(user) {
 
-    const list = RESPONSES.party;
-
-    const random =
-        list[Math.floor(Math.random() * list.length)];
-
     sendBotMessage(
-        random.replace("{user}", user)
+        getRandomResponse("party", user)
     );
 
 }
 
-// ----------------------------
+// =====================================
+// !bier
+// =====================================
 
 function beerCommand(user) {
 
-    const list = RESPONSES.bier;
-
-    const random =
-        list[Math.floor(Math.random() * list.length)];
-
     sendBotMessage(
-        random.replace("{user}", user)
+        getRandomResponse("bier", user)
     );
 
 }
 
-// ----------------------------
+// =====================================
+// !dj
+// =====================================
 
 function djCommand(user) {
 
     const djStatus =
         document.getElementById("dj-status");
 
-    let dj = "Kein DJ";
+    let dj = "Momentan ist kein DJ live.";
 
-    if (djStatus &&
-        djStatus.style.display !== "none") {
+    if (
+        djStatus &&
+        djStatus.style.display !== "none"
+    ) {
 
         dj = djStatus.innerText;
 
     }
 
-    sendBotMessage(`🎧 ${dj}`);
+    sendBotMessage(dj);
 
 }
