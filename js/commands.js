@@ -4,13 +4,25 @@
 
 const COMMANDS = {
 
-    "!commands": showCommands,
+    "!commands": {
+        execute: showCommands,
+        cooldown: 3000
+    },
+
     "!party": {
-    execute: partyCommand,
-    cooldown: 10000
+        execute: partyCommand,
+        cooldown: 10000
+    },
+
+    "!bier": {
+        execute: beerCommand,
+        cooldown: 10000
+    },
+
+    "!dj": {
+        execute: djCommand,
+        cooldown: 5000
     }
-    "!bier": beerCommand,
-    "!dj": djCommand
 
 };
 
