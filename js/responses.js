@@ -1,8 +1,17 @@
 // =====================================
-// Antworten
+// MostiBot Konfiguration
 // =====================================
 
-const PARTY_MESSAGES = [];
+const BOT = {
 
-const BEER_MESSAGES = [];
+    // Bot-Informationen
+    name: "🤖 MostiBot",
+    version: "1.0",
 
+    // Entwicklung
+    debug: true,
+
+    // Cooldown in Millisekunden
+    cooldown: 10000
+
+};
