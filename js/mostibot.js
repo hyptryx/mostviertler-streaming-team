@@ -1,6 +1,6 @@
 console.log("🤖 MostiBot V1 gestartet");
 
-const BOT_NAME = "🤖 MostiBot";
+const BOT_NAME = BOT.name;
 
 // Bot-Nachricht senden
 function sendBotMessage(text) {
