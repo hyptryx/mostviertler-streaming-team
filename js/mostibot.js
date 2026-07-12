@@ -1,6 +1,15 @@
-console.log("🤖 MostiBot V1 gestartet");
-
 const BOT_NAME = BOT.name;
+
+// Debug-Ausgabe
+function debugLog(message) {
+
+    if (!BOT.debug) return;
+
+    console.log(`[MostiBot] ${message}`);
+
+}
+
+debugLog("Version " + BOT.version + " gestartet");
 
 // Bot-Nachricht senden
 function sendBotMessage(text) {
