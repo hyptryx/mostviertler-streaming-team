@@ -55,10 +55,8 @@ if (!message.startsWith("!")) {
     message = message.trim().toLowerCase();
 
     if (COMMANDS[message]) {
-
-        COMMANDS[message](user);
-
-    }
+    COMMANDS[message].execute(user);
+}
 
 }
 
