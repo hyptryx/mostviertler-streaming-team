@@ -443,6 +443,11 @@ if (autoScroll) {
 
 }
 
+  // Bot über neue Nachricht informieren
+if (typeof handleCommand === "function") {
+    handleCommand(data.user, data.text);
+}
+  
 });
   
 </script>
