@@ -38,4 +38,3 @@ function handleCommand(user, message) {
     }
 
 }
-
