@@ -47,6 +47,11 @@ if (!BOT.startupFinished) {
 
     if (!message) return;
 
+    // Keine normalen Nachrichten verarbeiten
+if (!message.startsWith("!")) {
+    return;
+}
+
     message = message.trim().toLowerCase();
 
     if (COMMANDS[message]) {
