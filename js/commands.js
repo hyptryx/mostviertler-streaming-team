@@ -32,7 +32,14 @@ function showCommands(user) {
 
 function partyCommand(user) {
 
-    sendBotMessage(`🎉 ${user} startet die Party!`);
+    const list = RESPONSES.party;
+
+    const random =
+        list[Math.floor(Math.random() * list.length)];
+
+    sendBotMessage(
+        random.replace("{user}", user)
+    );
 
 }
 
@@ -40,7 +47,14 @@ function partyCommand(user) {
 
 function beerCommand(user) {
 
-    sendBotMessage(`🍺 Prost ${user}!`);
+    const list = RESPONSES.bier;
+
+    const random =
+        list[Math.floor(Math.random() * list.length)];
+
+    sendBotMessage(
+        random.replace("{user}", user)
+    );
 
 }
 
