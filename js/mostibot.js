@@ -65,3 +65,4 @@ setTimeout(() => {
     debugLog("Bot ist bereit.");
 
 }, 2000);
+
