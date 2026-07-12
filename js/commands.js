@@ -17,8 +17,10 @@ const COMMANDS = {
 
 function showCommands(user) {
 
+    debugLog(user + " hat !commands ausgeführt.");
+
     sendBotMessage(
-`📜 Verfügbare Befehle:
+`📜 Verfügbare Befehle
 
 🎉 !party
 🍺 !bier
