@@ -40,6 +40,11 @@ if (user === BOT.name) {
     return;
 }
 
+    // Alte Nachrichten ignorieren
+if (!BOT.startupFinished) {
+    return;
+}
+
     if (!message) return;
 
     message = message.trim().toLowerCase();
