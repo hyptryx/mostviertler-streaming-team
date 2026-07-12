@@ -39,4 +39,3 @@ function handleCommand(user, message) {
 
 }
 
-sendBotMessage("🤖 MostiBot erfolgreich gestartet!");
