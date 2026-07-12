@@ -51,3 +51,12 @@ if (user === BOT.name) {
     }
 
 }
+
+// Bot ist nach kurzer Zeit bereit
+setTimeout(() => {
+
+    BOT.startupFinished = true;
+
+    debugLog("Bot ist bereit.");
+
+}, 2000);
