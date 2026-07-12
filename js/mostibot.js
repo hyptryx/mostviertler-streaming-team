@@ -14,12 +14,21 @@ debugLog("Version " + BOT.version + " gestartet");
 // Bot-Nachricht senden
 function sendBotMessage(text) {
 
+    if (!text) return;
+
     db.ref("chat").push({
-        user: BOT_NAME,
+
+        user: BOT.name,
+
         text: text,
+
         bot: true,
+
         time: Date.now()
+
     });
+
+    debugLog("Bot: " + text);
 
 }
 
