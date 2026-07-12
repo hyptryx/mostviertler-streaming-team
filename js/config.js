@@ -11,4 +11,3 @@ window.BOT = {
     cooldown: 10000
 
 };
-
