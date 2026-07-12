@@ -2,7 +2,7 @@
 // MostiBot Konfiguration
 // =====================================
 
-const BOT = {
+window.BOT = {
 
     name: "🤖 MostiBot",
 
