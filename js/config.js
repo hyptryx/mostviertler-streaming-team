@@ -11,3 +11,4 @@ const BOT = {
     cooldown: 10000
 
 };
+
