@@ -21,19 +21,9 @@ function handleCommand(user, message) {
 
     message = message.trim().toLowerCase();
 
-    switch (message) {
+    if (COMMANDS[message]) {
 
-        case "!commands":
-
-            sendBotMessage(
-`📜 Verfügbare Befehle:
-
-🎉 !party
-🍺 !bier
-🎧 !dj`
-            );
-
-            break;
+        COMMANDS[message](user);
 
     }
 
