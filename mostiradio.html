@@ -376,6 +376,25 @@ chatSend.addEventListener("click", () => {
     time: Date.now()
   });
 
+// Chat auf die letzten 30 Nachrichten begrenzen
+db.ref("chat")
+    .orderByChild("time")
+    .once("value", snapshot => {
+
+        const messages = [];
+
+        snapshot.forEach(child => {
+            messages.push(child);
+        });
+
+        while (messages.length > 30) {
+
+            messages.shift().ref.remove();
+
+        }
+
+    });
+  
   chatInput.value = "";
 });
 
