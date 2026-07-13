@@ -30,7 +30,7 @@ const RESPONSES = {
 "🪩 Licht aus, Musik an – {user} legt los!",
 "🔥 Jetzt wird das MostiRadio zur Partyzone!",
 "🎉 Achtung! {user} hat den Feiermodus aktiviert!",
-"🎧 Boxen aufdrehen! {user} ist bereit!"
+"🎧 Boxen aufdrehen! {user} ist bereit!",
 "🥳 Heute kennt die Stimmung nur eine Richtung: nach oben!",
 "🎶 Das klingt nach einer langen Partynacht, {user}!",
 "💃 Wer tanzt mit {user}?",
