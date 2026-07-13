@@ -58,7 +58,7 @@ if (!greetedUsers[user]) {
     greetedUsers[user] = true;
 
     sendBotMessage(
-        `👋 Servus ${user}! Schön, dass du bei MostiRadio dabei bist! 🍏`
+        `👋 Hi ${user}! Schön, dass du beim MostiRadio dabei bist! 🍏`
     );
 
 }
