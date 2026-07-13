@@ -463,7 +463,7 @@ db.ref("chat").on("child_added", snapshot => {
     const message = document.createElement("div");
     message.className = "chat-message";
 
-    const user = document.createElement("div");
+    const user = document.createElement("span");
     user.className = "chat-user";
 
     let icon = "👤";
