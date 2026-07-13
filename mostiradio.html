@@ -424,25 +424,35 @@ db.ref("chat").on("child_added", snapshot => {
 
     let icon = "👤";
 
-    if (data.user === "HyptryX") {
+// MostiBot
+if (data.bot === true) {
 
-        icon = "👑";
+    icon = "";
 
-    } else {
+}
+// Streamer
+else if (data.user === "HyptryX") {
 
-        const djStatus =
-            document.getElementById("dj-status");
+    icon = "👑";
 
-        if (
-            djStatus.style.display !== "none" &&
-            djStatus.innerText.includes(data.user)
-        ) {
+}
+// DJ
+else {
 
-            icon = "🎙";
+    const djStatus =
+        document.getElementById("dj-status");
 
-        }
+    if (
+        djStatus &&
+        djStatus.style.display !== "none" &&
+        djStatus.innerText.includes(data.user)
+    ) {
+
+        icon = "🎙";
 
     }
+
+}
 
     user.textContent = `${icon} ${data.user}`;
 
