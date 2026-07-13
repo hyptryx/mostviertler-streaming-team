@@ -498,18 +498,26 @@ else {
 
 }
 
-    user.textContent = icon
-    ? `${icon} ${data.user}`
-    : data.user;
+    const line = document.createElement("div");
+line.className = "chat-line";
 
-    user.style.color = getUserColor(data.user);
+const user = document.createElement("span");
+user.className = "chat-user";
 
-    const text = document.createElement("div");
-    text.className = "chat-text";
-    text.textContent = data.text;
+user.textContent = icon
+    ? `${icon} ${data.user}:`
+    : `${data.user}:`;
 
-    message.appendChild(user);
-    message.appendChild(text);
+user.style.color = getUserColor(data.user);
+
+const text = document.createElement("span");
+text.className = "chat-text";
+text.textContent = data.text;
+
+line.appendChild(user);
+line.appendChild(text);
+
+message.appendChild(line);
 
     chatMessages.appendChild(message);
 
