@@ -2039,7 +2039,15 @@ transform:scale(1.04);
 
 .schedule-container{
 
-    margin-top:20px;
+    max-width:520px;
+
+    margin:20px auto 0;
+
+}
+
+.schedule-container a{
+
+    display:block;
 
 }
 
@@ -2050,5 +2058,13 @@ transform:scale(1.04);
     display:block;
 
     border-radius:18px;
+
+    transition:.25s ease;
+
+}
+
+.schedule-image:hover{
+
+    transform:scale(1.02);
 
 }
