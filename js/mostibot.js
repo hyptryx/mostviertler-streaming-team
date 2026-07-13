@@ -6,6 +6,12 @@ const BOT_NAME = BOT.name;
 
 const userCooldowns = {};
 
+// =====================================
+// Begrüßte Benutzer
+// =====================================
+
+const greetedUsers = {};
+
 // Debug-Ausgabe
 function debugLog(message) {
 
