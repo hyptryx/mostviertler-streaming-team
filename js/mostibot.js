@@ -52,6 +52,17 @@ if (user === BOT.name) {
     return;
 }
 
+// Benutzer begrüßen
+if (!greetedUsers[user]) {
+
+    greetedUsers[user] = true;
+
+    sendBotMessage(
+        `👋 Servus ${user}! Schön, dass du bei MostiRadio dabei bist! 🍏`
+    );
+
+}
+
     // Alte Nachrichten ignorieren
 if (!BOT.startupFinished) {
     return;
