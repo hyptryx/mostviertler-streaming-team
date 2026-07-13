@@ -35,11 +35,7 @@ function showCommands(user) {
     debugLog(user + " hat !commands ausgeführt.");
 
     sendBotMessage(
-`📜 Verfügbare Befehle
-
-🎉 !party
-🍺 !bier
-🎧 !dj`
+`📜 Verfügbare Befehle: !party  !bier  !dj`
     );
 
 }
