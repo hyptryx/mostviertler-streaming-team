@@ -454,7 +454,9 @@ else {
 
 }
 
-    user.textContent = `${icon} ${data.user}`;
+    user.textContent = icon
+    ? `${icon} ${data.user}`
+    : data.user;
 
     const text = document.createElement("div");
     text.className = "chat-text";
