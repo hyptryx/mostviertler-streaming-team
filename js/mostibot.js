@@ -1,5 +1,11 @@
 const BOT_NAME = BOT.name;
 
+// =====================================
+// Cooldowns
+// =====================================
+
+const userCooldowns = {};
+
 // Debug-Ausgabe
 function debugLog(message) {
 
@@ -57,9 +63,33 @@ if (!message.startsWith("!")) {
     const command = COMMANDS[message];
 
 if (!command) {
+
     debugLog(`Unbekannter Befehl: ${message}`);
     return;
+
 }
+
+// ----------------------------
+// Cooldown prüfen
+// ----------------------------
+
+const key = `${user}:${message}`;
+const now = Date.now();
+
+if (
+    userCooldowns[key] &&
+    now < userCooldowns[key]
+) {
+
+    debugLog(`${user} hat Cooldown auf ${message}`);
+    return;
+
+}
+
+userCooldowns[key] =
+    now + command.cooldown;
+
+// ----------------------------
 
 debugLog(`${user} → ${message}`);
 
