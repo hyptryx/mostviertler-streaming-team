@@ -6,12 +6,6 @@ const BOT_NAME = BOT.name;
 
 const userCooldowns = {};
 
-// =====================================
-// Begrüßte Benutzer
-// =====================================
-
-const greetedUsers = {};
-
 // Debug-Ausgabe
 function debugLog(message) {
 
@@ -52,13 +46,15 @@ if (user === BOT.name) {
     return;
 }
 
-// Benutzer begrüßen
-if (!greetedUsers[user]) {
+// Benutzer pro Browser-Sitzung nur einmal begrüßen
+const greetedKey = `greeted_${user}`;
 
-    greetedUsers[user] = true;
+if (!sessionStorage.getItem(greetedKey)) {
+
+    sessionStorage.setItem(greetedKey, "true");
 
     sendBotMessage(
-        `👋 Hi ${user}! Schön, dass du beim MostiRadio dabei bist! 🍏`
+        `👋 Griasti ${user}! Schön, dass du beim MostiRadio dabei bist! 🍏`
     );
 
 }
