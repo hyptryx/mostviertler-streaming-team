@@ -2032,3 +2032,23 @@ transform:scale(1.04);
     overflow:hidden;
 
 }
+
+/* ==========================================
+   SENDEPLAN
+========================================== */
+
+.schedule-container{
+
+    margin-top:20px;
+
+}
+
+.schedule-image{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:18px;
+
+}
