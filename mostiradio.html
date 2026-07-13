@@ -411,6 +411,50 @@ chatInput.addEventListener("keydown", (event) => {
 
 });
 
+// =====================================
+// Benutzerfarben
+// =====================================
+
+const USER_COLORS = [
+    "#22c55e", // Grün
+    "#3b82f6", // Blau
+    "#f97316", // Orange
+    "#ec4899", // Pink
+    "#a855f7", // Lila
+    "#14b8a6", // Türkis
+    "#eab308", // Gelb
+    "#ef4444", // Rot
+    "#06b6d4", // Cyan
+    "#84cc16"  // Hellgrün
+];
+
+function getUserColor(username) {
+
+    // Feste Farben
+    if (username === "🤖 MostiBot") return "#22c55e";
+    if (username === "HyptryX") return "#FFD700";
+
+    // DJ immer hellblau
+    const djStatus = document.getElementById("dj-status");
+
+    if (
+        djStatus &&
+        djStatus.style.display !== "none" &&
+        djStatus.innerText.includes(username)
+    ) {
+        return "#38bdf8";
+    }
+
+    let hash = 0;
+
+    for (let i = 0; i < username.length; i++) {
+        hash = username.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    return USER_COLORS[Math.abs(hash) % USER_COLORS.length];
+
+}
+  
 // Nachrichten empfangen
 db.ref("chat").on("child_added", snapshot => {
 
@@ -457,6 +501,8 @@ else {
     user.textContent = icon
     ? `${icon} ${data.user}`
     : data.user;
+
+    user.style.color = getUserColor(data.user);
 
     const text = document.createElement("div");
     text.className = "chat-text";
