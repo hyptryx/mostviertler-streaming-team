@@ -11,17 +11,17 @@ const COMMANDS = {
 
     "!party": {
         execute: partyCommand,
-        cooldown: 10000
+        cooldown: 3000
     },
 
     "!bier": {
         execute: beerCommand,
-        cooldown: 10000
+        cooldown: 3000
     },
 
     "!dj": {
         execute: djCommand,
-        cooldown: 5000
+        cooldown: 3000
     }
 
 };
