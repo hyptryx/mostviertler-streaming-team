@@ -5,7 +5,7 @@
 window.BOT = {
 
     name: "🤖 MostiBot",
-    version: "1.0",
+    version: "1.0.0",
     debug: true,
     cooldown: 10000,
 
