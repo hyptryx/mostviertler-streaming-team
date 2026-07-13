@@ -2039,9 +2039,7 @@ transform:scale(1.04);
 
 .schedule-container{
 
-    max-width:520px;
-
-    margin:20px auto 0;
+    margin-top:20px;
 
 }
 
@@ -2057,9 +2055,11 @@ transform:scale(1.04);
 
     display:block;
 
-    border-radius:18px;
+    border-radius:16px;
 
-    transition:.25s ease;
+    cursor:pointer;
+
+    transition:transform .2s ease;
 
 }
 
