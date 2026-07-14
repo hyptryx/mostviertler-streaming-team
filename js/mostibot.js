@@ -41,6 +41,8 @@ function sendBotMessage(text) {
 // Befehle verarbeiten
 function handleCommand(user, message) {
 
+    console.count("handleCommand");
+
     // Eigene Nachrichten ignorieren
 if (user === BOT.name) {
     return;
