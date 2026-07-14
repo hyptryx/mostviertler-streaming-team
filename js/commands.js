@@ -32,8 +32,6 @@ const COMMANDS = {
 
 function showCommands(user) {
 
-    console.count("showCommands");
-
     debugLog(user + " hat !commands ausgeführt.");
 
     sendBotMessage(
@@ -47,8 +45,6 @@ function showCommands(user) {
 // =====================================
 
 function partyCommand(user) {
-
-    console.count("partyCommand");
 
     sendBotMessage(
         getRandomResponse("party", user)
