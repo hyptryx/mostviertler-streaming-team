@@ -32,10 +32,12 @@ const COMMANDS = {
 
 function showCommands(user) {
 
+    console.count("showCommands");
+
     debugLog(user + " hat !commands ausgeführt.");
 
     sendBotMessage(
-`📜 Verfügbare Befehle: !party  !bier  !dj`
+`📜 Verfügbare Befehle:  !party  !bier  !dj`
     );
 
 }
@@ -45,6 +47,8 @@ function showCommands(user) {
 // =====================================
 
 function partyCommand(user) {
+
+    console.count("partyCommand");
 
     sendBotMessage(
         getRandomResponse("party", user)
