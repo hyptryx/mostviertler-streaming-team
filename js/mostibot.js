@@ -37,6 +37,8 @@ function sendBotMessage(text) {
 
     });
 
+    debugLog("Bot: " + text);
+
 }
 
 // Befehle verarbeiten
