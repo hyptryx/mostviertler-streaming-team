@@ -44,6 +44,11 @@ function sendBotMessage(text) {
 // Befehle verarbeiten
 function handleCommand(user, message) {
 
+// Bot deaktiviert?
+if (!BOT.enabled) {
+    return;
+}
+
     // Eigene Nachrichten ignorieren
 if (user === BOT.name) {
     return;
