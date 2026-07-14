@@ -15,6 +15,7 @@ function debugLog(message) {
 
 }
 
+console.count("MostiBot geladen");
 debugLog("Version " + BOT.version + " gestartet");
 
 // Bot-Nachricht senden
