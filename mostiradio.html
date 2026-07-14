@@ -94,9 +94,6 @@
     <!-- Hidden Audio Element -->
     <audio id="mosti-radio-player"></audio>
 
-    <!-- Hidden Audio Element -->
-<audio id="mosti-radio-player"></audio>
-
 </div>
 
 <!-- SENDEPLAN -->
@@ -225,13 +222,13 @@ let djName = title
     .replace(/-$/, "")
     .trim();
 
-if (isDJLive && djName === "") {
+if ((isDJLive || BOT.developerMode) && djName === "") {
     djName = "Live DJ";
 }
 
 radioListeners.textContent = `👥 ${listeners} Listener`;
 
-if (isDJLive) {
+if (isDJLive || BOT.developerMode) {
 
     radioTitleEl.textContent = `🎙 ${djName}`;
 
@@ -249,11 +246,13 @@ if (isDJLive) {
 const djStatus = document.getElementById("dj-status");
 const djChat = document.getElementById("dj-chat");
 
-if (isDJLive) {
+if (isDJLive || BOT.developerMode) {
 
     djStatus.style.display = "block";
     djStatus.innerHTML =
-        `🎙 <strong>${djName}</strong><br>LIVE ON AIR`;
+    BOT.developerMode && !isDJLive
+        ? `🛠 <strong>Developer Mode</strong><br>Chat-Test`
+        : `🎙 <strong>${djName}</strong><br>LIVE ON AIR`;
 
     djChat.style.display = "block";
 
