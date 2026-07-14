@@ -522,23 +522,18 @@ else {
 
 }
 
-    const line = document.createElement("div");
-line.className = "chat-line";
-
-user.textContent = icon
-    ? `${icon} ${data.user}:`
-    : `${data.user}:`;
+    user.textContent = icon
+    ? `${icon} ${data.user}`
+    : data.user;
 
 user.style.color = getUserColor(data.user);
 
-const text = document.createElement("span");
+const text = document.createElement("div");
 text.className = "chat-text";
 text.textContent = data.text;
 
-line.appendChild(user);
-line.appendChild(text);
-
-message.appendChild(line);
+message.appendChild(user);
+message.appendChild(text);
 
     chatMessages.appendChild(message);
 
