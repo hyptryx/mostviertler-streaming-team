@@ -46,7 +46,12 @@ if (user === BOT.name) {
     return;
 }
 
-// Benutzer pro Browser-Sitzung nur einmal begrüßen
+    // Alte Nachrichten ignorieren
+if (!BOT.startupFinished) {
+    return;
+}
+
+    // Benutzer pro Browser-Sitzung nur einmal begrüßen
 const greetedKey = `greeted_${user}`;
 
 if (!sessionStorage.getItem(greetedKey)) {
@@ -57,11 +62,6 @@ if (!sessionStorage.getItem(greetedKey)) {
         `👋 Griasti ${user}! Schön, dass du beim MostiRadio dabei bist! 🍏`
     );
 
-}
-
-    // Alte Nachrichten ignorieren
-if (!BOT.startupFinished) {
-    return;
 }
 
     if (!message) return;
