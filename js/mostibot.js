@@ -21,8 +21,6 @@ debugLog("Version " + BOT.version + " gestartet");
 // Bot-Nachricht senden
 function sendBotMessage(text) {
 
-    console.log("sendBotMessage:", text);
-
     if (!text) return;
 
     db.ref("chat").push({
@@ -43,8 +41,6 @@ function sendBotMessage(text) {
 
 // Befehle verarbeiten
 function handleCommand(user, message) {
-
-    console.count("handleCommand");
 
     // Eigene Nachrichten ignorieren
 if (user === BOT.name) {
