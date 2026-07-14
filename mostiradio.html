@@ -483,6 +483,8 @@ db.ref("chat").on("child_added", snapshot => {
 
     const data = snapshot.val();
 
+    console.log("CHAT EMPFANGEN:", data.id, data.text);
+
     const message = document.createElement("div");
     message.className = "chat-message";
 
