@@ -21,6 +21,8 @@ debugLog("Version " + BOT.version + " gestartet");
 // Bot-Nachricht senden
 function sendBotMessage(text) {
 
+    console.count("sendBotMessage");
+
     if (!text) return;
 
     db.ref("chat").push({
