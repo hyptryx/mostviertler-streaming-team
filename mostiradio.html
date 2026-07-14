@@ -477,8 +477,7 @@ function getUserColor(username) {
     return USER_COLORS[Math.abs(hash) % USER_COLORS.length];
 
 }
-
-console.count("Firebase Listener registriert");  
+  
 // Nachrichten empfangen
 db.ref("chat").on("child_added", snapshot => {
 
