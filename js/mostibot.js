@@ -23,19 +23,19 @@ function sendBotMessage(text) {
 
     if (!text) return;
 
+    const id = Math.random().toString(36).substring(2,8);
+
+    console.log("BOT SEND:", id, text);
+
     db.ref("chat").push({
 
+        id: id,
         user: BOT.name,
-
         text: text,
-
         bot: true,
-
         time: Date.now()
 
     });
-
-    debugLog("Bot: " + text);
 
 }
 
