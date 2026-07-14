@@ -21,7 +21,7 @@ debugLog("Version " + BOT.version + " gestartet");
 // Bot-Nachricht senden
 function sendBotMessage(text) {
 
-    console.count("sendBotMessage");
+    console.log("sendBotMessage:", text);
 
     if (!text) return;
 
