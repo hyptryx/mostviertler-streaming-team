@@ -190,6 +190,7 @@ async function updateRadioStatus() {
 
     const data = await res.json();
     let source = data.icestats.source;
+    console.log("STREAMPLUS SOURCE:", source);
 
 if (Array.isArray(source)) {
     source = source[0];
