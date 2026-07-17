@@ -137,10 +137,10 @@ const radioEq        = document.getElementById("radio-eq");
 const radioHint      = document.getElementById("radio-hint");   // ⭐ NEU
 
 // Dein Icecast-Mount (MP3)
-const RADIO_STREAM_URL = "http://s13.streamingcloud.online:32130/stream";
+const RADIO_STREAM_URL = "https://server37508.streamplus.de:10850/stream.mp3";
 
 // Icecast JSON-Status
-const RADIO_STATUS_URL = "https://s13.streamingcloud.online:32130/status-json.xsl";
+const RADIO_STATUS_URL = "https://server37508.streamplus.de:10850/status-json.xsl";
 
 /* Play – immer spielen */
 radioPlayBtn.addEventListener("click", () => {
@@ -209,13 +209,12 @@ const artist = source.artist || "";
 const upperTitle = title.toUpperCase();
 
 const isDJLive =
-    upperTitle.includes("LIVE");
+    upperTitle !== "UNKNOWN" &&
+    upperTitle !== "" &&
+    listeners > 0;
 
 // DJ-Name ermitteln
-let djName = title
-    .replace(/LIVE ON AIR/gi, "")
-    .replace(/\bLIVE\b/gi, "")
-    .trim();
+let djName = title.trim();
 
     djName = djName
     .replace(/^-/, "")
