@@ -257,14 +257,16 @@ const title =
 let artist = source.artist || "";
 let songTitle = title;
 
-// Falls StreamPlus den Artist nicht separat liefert,
-// zerlegen wir "Artist - Song" automatisch.
-if (!artist && title.includes(" - ")) {
+if (!artist) {
 
-    const parts = title.split(" - ");
+    const parts = title.split("-");
 
-    artist = parts.shift().trim();
-    songTitle = parts.join(" - ").trim();
+    if (parts.length >= 2) {
+
+        artist = parts.shift().trim();
+        songTitle = parts.join("-").trim();
+
+    }
 
 }
     console.log("TITLE:", title);
