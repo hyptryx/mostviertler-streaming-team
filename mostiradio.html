@@ -226,7 +226,7 @@ if (isDJLive && djName === "") {
 
 radioListeners.textContent = `👥 ${listeners} Listener`;
 
-if (isDJLive || BOT.developerMode) {
+if (isDJLive) {
 
     radioTitleEl.textContent = `🎙 ${djName}`;
 
@@ -244,13 +244,11 @@ if (isDJLive || BOT.developerMode) {
 const djStatus = document.getElementById("dj-status");
 const djChat = document.getElementById("dj-chat");
 
-if (isDJLive || BOT.developerMode) {
+if (isDJLive) {
 
     djStatus.style.display = "block";
     djStatus.innerHTML =
-    BOT.developerMode && !isDJLive
-        ? `🛠 <strong>Developer Mode</strong><br>Chat-Test`
-        : `🎙 <strong>${djName}</strong><br>LIVE ON AIR`;
+    `🎙 <strong>${djName}</strong><br>LIVE ON AIR`;
 
     djChat.style.display = "block";
 
