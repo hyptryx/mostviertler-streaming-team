@@ -209,15 +209,14 @@ const artist = source.artist || "";
 // Live-DJ erkennen
 const upperTitle = title.toUpperCase();
 
-const isDJLive =
-    upperTitle !== "UNKNOWN" &&
-    upperTitle !== "" &&
-    listeners > 0;
+const isDJLive = upperTitle.includes("LIVE ON AIR");
 
 // DJ-Name ermitteln
-let djName = title.trim();
+let djName = title
+    .replace(/LIVE ON AIR/gi, "")
+    .trim();
 
-    djName = djName
+djName = djName
     .replace(/^-/, "")
     .replace(/-$/, "")
     .trim();
