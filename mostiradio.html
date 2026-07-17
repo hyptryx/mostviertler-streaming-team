@@ -220,7 +220,7 @@ djName = djName
     .replace(/-$/, "")
     .trim();
 
-if ((isDJLive || BOT.developerMode) && djName === "") {
+if (isDJLive && djName === "") {
     djName = "Live DJ";
 }
 
