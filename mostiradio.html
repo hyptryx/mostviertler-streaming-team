@@ -213,14 +213,41 @@ async function loadAlbumCover(artist, song) {
 
         if (data.results.length > 0) {
 
-            radioCover.src = data.results[0].artworkUrl100.replace(
-                "100x100",
-                "600x600"
-            );
+            const newCover =
+    data.results[0].artworkUrl100.replace(
+        "100x100",
+        "600x600"
+    );
+
+radioCover.classList.add("fade");
+
+setTimeout(() => {
+
+    radioCover.src = newCover;
+
+    radioCover.onload = () => {
+
+        radioCover.classList.remove("fade");
+
+    };
+
+}, 250);
 
         } else {
 
-            radioCover.src = "img/default-cover.png";
+            radioCover.classList.add("fade");
+
+setTimeout(() => {
+
+    radioCover.src = "img/default-cover.png";
+
+    radioCover.onload = () => {
+
+        radioCover.classList.remove("fade");
+
+    };
+
+}, 250);
 
         }
 
