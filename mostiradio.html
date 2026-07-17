@@ -144,6 +144,8 @@ const radioArtistEl  = document.getElementById("radio-artist");
 const radioCover     = document.getElementById("radio-cover");
 const radioEq        = document.getElementById("radio-eq");
 const radioHint      = document.getElementById("radio-hint");   // ⭐ NEU
+  
+let lastSong = "";
 
 // Dein Icecast-Mount (MP3)
 const RADIO_STREAM_URL = "https://server37508.streamplus.de:10850/stream.mp3";
@@ -192,6 +194,44 @@ radioVolume.addEventListener("input", () => {
 });
 
 /* Status / Now Playing */
+async function loadAlbumCover(artist, song) {
+
+    if (!artist || !song) {
+        radioCover.src = "img/default-cover.png";
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `https://itunes.apple.com/search?term=${encodeURIComponent(
+                artist + " " + song
+            )}&entity=song&limit=1`
+        );
+
+        const data = await response.json();
+
+        if (data.results.length > 0) {
+
+            radioCover.src = data.results[0].artworkUrl100.replace(
+                "100x100",
+                "600x600"
+            );
+
+        } else {
+
+            radioCover.src = "img/default-cover.png";
+
+        }
+
+    } catch (e) {
+
+        console.error(e);
+        radioCover.src = "img/default-cover.png";
+
+    }
+
+}
 async function updateRadioStatus() {
   try {
     const res = await fetch(RADIO_STATUS_URL);
@@ -214,7 +254,19 @@ const title =
     source.server_name ||
     source.server_description ||
     "Unbekannter Titel";
-const artist = source.artist || "";
+let artist = source.artist || "";
+let songTitle = title;
+
+// Falls StreamPlus den Artist nicht separat liefert,
+// zerlegen wir "Artist - Song" automatisch.
+if (!artist && title.includes(" - ")) {
+
+    const parts = title.split(" - ");
+
+    artist = parts.shift().trim();
+    songTitle = parts.join(" - ").trim();
+
+}
     console.log("TITLE:", title);
     console.log("ARTIST:", artist);
 
@@ -249,13 +301,11 @@ if (isDJLive) {
 
 } else {
   
-    radioTitleEl.textContent = title;
+    radioTitleEl.textContent = songTitle;
 
-    radioArtistEl.textContent =
-        artist || "";
+    radioArtistEl.textContent = artist;
 
     radioCover.style.display = "block";
-
 }
 
 const djStatus = document.getElementById("dj-status");
