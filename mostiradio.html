@@ -306,6 +306,16 @@ if (isDJLive) {
     radioArtistEl.textContent = artist;
 
     radioCover.style.display = "block";
+
+    const currentSong = artist + " - " + songTitle;
+
+if (currentSong !== lastSong) {
+
+    lastSong = currentSong;
+
+    loadAlbumCover(artist, songTitle);
+
+  }
 }
 
 const djStatus = document.getElementById("dj-status");
