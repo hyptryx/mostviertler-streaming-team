@@ -237,20 +237,20 @@ radioListeners.textContent = `👥 ${listeners} Listener`;
 
 if (isDJLive) {
 
-    radioCover.style.display = "none";
-
     radioTitleEl.textContent = `🎙 ${djName}`;
 
     radioArtistEl.textContent = "Jetzt live für euch auf MostiRadio";
 
-} else {
+    radioCover.style.display = "none";
 
-    radioCover.style.display = "block";
+} else {
   
     radioTitleEl.textContent = title;
 
     radioArtistEl.textContent =
         artist || "";
+
+    radioCover.style.display = "block";
 
 }
 
