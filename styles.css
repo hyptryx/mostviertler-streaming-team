@@ -1997,3 +1997,28 @@ transform:scale(1.04);
     box-shadow:0 0 30px rgba(255,215,0,.15);
 
 }
+
+/* =========================================
+   MOSTIRADIO - Album Cover
+========================================= */
+
+.radio-cover-wrapper{
+    display:flex;
+    justify-content:center;
+    margin:18px 0 14px;
+}
+
+.radio-cover{
+    width:170px;
+    height:170px;
+    border-radius:16px;
+    object-fit:cover;
+    box-shadow:
+        0 0 20px rgba(255,196,0,.35),
+        0 0 45px rgba(255,196,0,.15);
+    transition:.35s ease;
+}
+
+.radio-cover:hover{
+    transform:scale(1.03);
+}
