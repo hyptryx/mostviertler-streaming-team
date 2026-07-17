@@ -198,7 +198,9 @@ async function updateRadioStatus() {
     if (!res.ok) return;
 
     const data = await res.json();
+    console.log(data);
     let source = data.icestats.source;
+    console.log(source);
 
 if (Array.isArray(source)) {
     source = source[0];
@@ -213,6 +215,8 @@ const title =
     source.server_description ||
     "Unbekannter Titel";
 const artist = source.artist || "";
+    console.log("TITLE:", title);
+    console.log("ARTIST:", artist);
 
 // Live-DJ erkennen
 const upperTitle = title.toUpperCase();
