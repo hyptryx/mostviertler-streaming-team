@@ -2016,9 +2016,19 @@ transform:scale(1.04);
     box-shadow:
         0 0 20px rgba(255,196,0,.35),
         0 0 45px rgba(255,196,0,.15);
-    transition:.35s ease;
+    transition:
+    opacity .35s ease,
+    transform .35s ease;
+
+opacity:1;
 }
 
 .radio-cover:hover{
     transform:scale(1.03);
+}
+
+.radio-cover.fade{
+
+    opacity:0;
+
 }
