@@ -267,7 +267,7 @@ async function updateRadioStatus() {
     const data = await res.json();
     console.log(data);
     let source = data.icestats.source;
-    console.log(source);
+   console.log(JSON.stringify(source, null, 2));
 
 if (Array.isArray(source)) {
     source = source[0];
