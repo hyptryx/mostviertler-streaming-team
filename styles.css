@@ -2521,3 +2521,63 @@ opacity:1;
         0 0 45px rgba(255,215,0,.45);
 
 }
+
+/* =====================================================
+   MOBILE FIX
+===================================================== */
+
+@media screen and (max-width:600px){
+
+    .contact-hero{
+
+        padding:95px 12px 45px;
+
+    }
+
+    .contact-container{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:28px 18px;
+
+        border-radius:20px;
+
+        border:1px solid rgba(255,215,0,.18);
+
+        box-sizing:border-box;
+
+    }
+
+    .contact-cards{
+
+        display:grid;
+
+        grid-template-columns:1fr !important;
+
+        gap:18px;
+
+        margin:30px 0;
+
+    }
+
+    .contact-card{
+
+        width:100%;
+
+        max-width:none;
+
+    }
+
+    .contact-card:last-child{
+
+        grid-column:auto !important;
+
+        max-width:none;
+
+        justify-self:stretch;
+
+    }
+
+}
