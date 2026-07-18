@@ -143,7 +143,7 @@
 
 </div>
 
-        <form id="contactForm">
+        <form id="contactForm" novalidate>
 
             <input
             type="hidden"
@@ -266,6 +266,14 @@ const cards = document.querySelectorAll(".contact-card");
 const textarea = document.getElementById("message");
 const topic = document.getElementById("topic");
 
+const form = document.getElementById("contactForm");
+
+const button = document.querySelector(".contact-button");
+
+const modal = document.getElementById("successModal");
+
+const closeSuccess = document.getElementById("closeSuccess");
+
 const templates = {
 
     "MostiRadio":
@@ -291,23 +299,97 @@ ich möchte bezüglich einer Kooperation Kontakt aufnehmen:
 
 };
 
-cards.forEach(card => {
+/* Karten */
 
-    card.addEventListener("click", () => {
+cards.forEach(card=>{
 
-        cards.forEach(c => c.classList.remove("active"));
+    card.addEventListener("click",()=>{
+
+        cards.forEach(c=>c.classList.remove("active"));
 
         card.classList.add("active");
 
-        const selected = card.dataset.topic;
+        const selected=card.dataset.topic;
 
-        topic.value = selected;
+        topic.value=selected;
 
-        textarea.value = templates[selected];
+        textarea.value=templates[selected];
 
         textarea.focus();
 
     });
+
+});
+
+/* Formular */
+
+form.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    button.disabled=true;
+
+    button.innerHTML="⏳ Nachricht wird gesendet...";
+
+    try{
+
+        await emailjs.sendForm(
+
+            "service_9l8tyfh",
+
+            "template_7wr7coo",
+
+            form
+
+        );
+
+        button.innerHTML="✅ Erfolgreich gesendet";
+
+        form.reset();
+
+        cards.forEach(c=>c.classList.remove("active"));
+
+        modal.classList.add("show");
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Beim Senden ist leider ein Fehler aufgetreten.");
+
+    }
+
+    finally{
+
+        setTimeout(()=>{
+
+            button.disabled=false;
+
+            button.innerHTML="Nachricht senden";
+
+        },2000);
+
+    }
+
+});
+
+/* Popup schließen */
+
+closeSuccess.addEventListener("click",()=>{
+
+    modal.classList.remove("show");
+
+});
+
+modal.addEventListener("click",(e)=>{
+
+    if(e.target===modal){
+
+        modal.classList.remove("show");
+
+    }
 
 });
 
