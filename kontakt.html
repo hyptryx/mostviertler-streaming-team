@@ -6,72 +6,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h1 class="contact-title">
-    Kontakt
-</h1>
+    <title>Kontakt | MostiRadio</title>
 
-<!-- Orbitron Schrift -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <!-- Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=999">
+    <!-- Audiowide -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDR1KT0HK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=999">
 
-  gtag('config', 'G-6FDR1KT0HK');
-</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDR1KT0HK"></script>
 
-<div class="contact-divider"></div>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-<p class="contact-intro">
-
-    Du hast Fragen zu <strong>MostiRadio</strong>,
-    unserem <strong>Streaming Team</strong>,
-    möchtest mit uns zusammenarbeiten
-    oder dich als DJ bewerben?
-
-    <br><br>
-
-    Dann freuen wir uns auf deine Nachricht.
-
-</p>
-
-    <link rel="stylesheet" href="styles.css">
+        gtag('config', 'G-6FDR1KT0HK');
+    </script>
 
 </head>
 
 <body>
-    
+
+<!-- Navigation -->
+
 <nav class="main-nav">
-  <ul>
-    <li><a href="index.html">Start</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="mostiradio.html">MostiRadio</a></li>
-    <li><a href="community.html" class="menu-heart">❤️</a></li>
-  </ul>
+    <ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="mostiradio.html">MostiRadio</a></li>
+        <li><a href="community.html" class="menu-heart">❤️</a></li>
+    </ul>
 </nav>
+
+<!-- Kontakt -->
 
 <section class="contact-hero">
 
     <div class="contact-container">
 
-        <h1>Kontakt</h1>
+        <div class="contact-header">
 
-        <p class="contact-intro">
+            <div class="contact-icon">
+                ✉️
+            </div>
 
-            Du hast Fragen zu MostiRadio, Interesse als DJ,
-            unserem Streaming Team oder möchtest mit uns zusammenarbeiten?
+            <h1 class="contact-title">
+                Lass uns ins Gespräch kommen
+            </h1>
 
-            <br><br>
+            <div class="contact-divider"></div>
 
-            Dann freuen wir uns auf deine Nachricht.
+            <p class="contact-intro">
 
-        </p>
+                Ob Fragen zu <strong>MostiRadio</strong>,
+                unserem <strong>Streaming Team</strong>,
+                einer Zusammenarbeit
+                oder einer Bewerbung als DJ –
+
+                <br><br>
+
+                Wir freuen uns auf deine Nachricht
+                und melden uns so schnell wie möglich.
+
+            </p>
+
+        </div>
 
         <form id="contactForm">
 
@@ -131,15 +135,27 @@
 
 </section>
 
-    <footer class="footer">
-    <p>© <span id="year"></span> Mostviertler Streaming Team</p>
+<!-- Footer -->
+
+<footer class="footer">
 
     <p>
-        <a href="datenschutz.html">Datenschutz</a> ·
-        <a href="impressum.html">Impressum</a> ·
+        © <span id="year"></span> Mostviertler Streaming Team
+    </p>
+
+    <p>
+        <a href="datenschutz.html">Datenschutz</a>
+        ·
+        <a href="impressum.html">Impressum</a>
+        ·
         <a href="kontakt.html">Kontakt</a>
     </p>
+
 </footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 
