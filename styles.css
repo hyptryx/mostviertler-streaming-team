@@ -2581,3 +2581,168 @@ opacity:1;
     }
 
 }
+
+/* =====================================================
+   ERFOLGSFENSTER
+===================================================== */
+
+.success-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:99999;
+
+}
+
+.success-modal.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.success-box{
+
+    width:min(92%,460px);
+
+    background:linear-gradient(
+        180deg,
+        rgba(28,28,35,.98),
+        rgba(12,12,16,.98)
+    );
+
+    border:2px solid rgba(255,215,0,.35);
+
+    border-radius:22px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:
+        0 0 45px rgba(255,215,0,.25);
+
+    transform:translateY(25px) scale(.95);
+
+    transition:.35s;
+
+}
+
+.success-modal.show .success-box{
+
+    transform:translateY(0) scale(1);
+
+}
+
+.success-icon{
+
+    width:85px;
+
+    height:85px;
+
+    margin:0 auto 22px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    color:#fff;
+
+    background:#2db84d;
+
+    box-shadow:
+        0 0 25px rgba(45,184,77,.55);
+
+}
+
+.success-box h2{
+
+    color:#FFD700;
+
+    font-family:'Orbitron',sans-serif;
+
+    margin-bottom:18px;
+
+}
+
+.success-box p{
+
+    color:#ddd;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+.success-box button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#111;
+
+    background:linear-gradient(
+        180deg,
+        #FFD700,
+        #D6A600
+    );
+
+    transition:.25s;
+
+}
+
+.success-box button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(255,215,0,.45);
+
+}
+
+@media(max-width:600px){
+
+    .success-box{
+
+        padding:32px 22px;
+
+    }
+
+}
