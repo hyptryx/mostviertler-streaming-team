@@ -2092,3 +2092,189 @@ opacity:1;
     opacity:0;
 
 }
+
+/* =====================================================
+   KONTAKTSEITE
+===================================================== */
+
+.contact-hero{
+
+    padding:120px 20px 80px;
+
+}
+
+.contact-container{
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,215,0,.08),
+            transparent 55%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(25,25,32,.98),
+            rgba(12,12,16,.98)
+        );
+
+    border:2px solid rgba(255,215,0,.35);
+
+    border-radius:22px;
+
+    padding:45px;
+
+    box-shadow:
+        0 0 35px rgba(255,215,0,.18);
+
+}
+
+.contact-container h1{
+
+    font-size:42px;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    color:#FFD700;
+
+}
+
+.contact-intro{
+
+    text-align:center;
+
+    color:#d9d9d9;
+
+    line-height:1.8;
+
+    margin-bottom:45px;
+
+}
+
+.form-group{
+
+    margin-bottom:28px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:bold;
+
+    color:#FFD700;
+
+}
+
+.form-group span{
+
+    color:#ff4040;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    background:#111118;
+
+    color:#fff;
+
+    border:1px solid rgba(255,215,0,.25);
+
+    border-radius:12px;
+
+    padding:16px;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+    min-height:180px;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    outline:none;
+
+    border-color:#FFD700;
+
+    box-shadow:
+        0 0 15px rgba(255,215,0,.35);
+
+}
+
+.contact-button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#111;
+
+    background:linear-gradient(
+        180deg,
+        #FFD700,
+        #D6A600
+    );
+
+    transition:.25s;
+
+    box-shadow:
+        0 0 18px rgba(255,215,0,.35);
+
+}
+
+.contact-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 28px rgba(255,215,0,.55);
+
+}
+
+@media(max-width:700px){
+
+    .contact-container{
+
+        padding:28px;
+
+    }
+
+    .contact-container h1{
+
+        font-size:34px;
+
+    }
+
+}
