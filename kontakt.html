@@ -220,6 +220,59 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+<script>
+
+const cards = document.querySelectorAll(".contact-card");
+const textarea = document.getElementById("message");
+const topic = document.getElementById("topic");
+
+const templates = {
+
+    "MostiRadio":
+`Hallo MostiRadio-Team,
+
+ich habe eine Frage zu MostiRadio:
+
+`,
+
+    "Streaming Team":
+`Hallo Mostviertler Streaming Team,
+
+ich interessiere mich für eure Community:
+
+`,
+
+    "Kooperation":
+`Hallo,
+
+ich möchte bezüglich einer Kooperation Kontakt aufnehmen:
+
+`
+
+};
+
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        cards.forEach(c => c.classList.remove("active"));
+
+        card.classList.add("active");
+
+        const selected = card.dataset.topic;
+
+        topic.value = selected;
+
+        textarea.value = templates[selected];
+
+        textarea.focus();
+
+    });
+
+});
+
+</script>
+
 </body>
 
 </html>
