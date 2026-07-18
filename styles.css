@@ -2278,3 +2278,62 @@ opacity:1;
     }
 
 }
+
+.contact-title{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:48px;
+
+    text-align:center;
+
+    color:#FFD700;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:15px;
+
+}
+
+.contact-divider{
+
+    width:90px;
+
+    height:4px;
+
+    margin:0 auto 35px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #FFD700,
+        transparent
+    );
+
+}
+
+.contact-intro{
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    text-align:center;
+
+    color:#d8d8d8;
+
+    max-width:650px;
+
+    margin:0 auto 45px;
+
+}
+
+.contact-intro strong{
+
+    color:#FFD700;
+
+}
