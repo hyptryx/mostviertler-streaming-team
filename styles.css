@@ -2979,10 +2979,9 @@ opacity:1;
 
     border:1px solid rgba(255,213,74,.18);
 
-    background:#1c1c1c;
+      background:transparent;
 
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.28);
+       box-shadow:none;
 
 }
 
@@ -2998,6 +2997,10 @@ opacity:1;
     display:block;
 
     border-radius:18px;
+
+          box-shadow:none;
+
+          filter:none;
 
     transition:.35s ease;
 
