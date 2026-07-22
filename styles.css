@@ -2944,3 +2944,112 @@ opacity:1;
 
 }
 
+/* ==========================================
+   PREMIUM PARTNER CARD
+========================================== */
+
+.partner-logo-wrapper{
+
+    width:180px;
+    height:180px;
+
+    margin:0 auto 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,213,74,.15);
+
+    border-radius:18px;
+
+    transition:.35s;
+
+}
+
+.partner-card:hover .partner-logo-wrapper{
+
+    border-color:#FFD54A;
+
+    box-shadow:0 0 25px rgba(255,213,74,.15);
+
+}
+
+.partner-name{
+
+    color:#FFD54A;
+
+    font-size:1.8rem;
+
+    margin-bottom:12px;
+
+}
+
+.partner-status{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    margin-bottom:22px;
+
+    border-radius:50px;
+
+    background:rgba(255,213,74,.12);
+
+    color:#FFD54A;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    border:1px solid rgba(255,213,74,.25);
+
+}
+
+.partner-description-card{
+
+    color:#d8d8d8;
+
+    line-height:1.8;
+
+    min-height:110px;
+
+    margin-bottom:30px;
+
+}
+
+.partner-card-footer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.partner-since{
+
+    color:#bdbdbd;
+
+    font-size:.9rem;
+
+    letter-spacing:.4px;
+
+}
+
+@media(max-width:768px){
+
+    .partner-logo-wrapper{
+
+        width:150px;
+        height:150px;
+
+    }
+
+}
