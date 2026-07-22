@@ -2753,7 +2753,7 @@ opacity:1;
 
 .partner-hero{
     position:relative;
-    padding:140px 20px 80px;
+    padding:90px 20px 70px;
     text-align:center;
     z-index:2;
 }
@@ -2944,62 +2944,3 @@ opacity:1;
 
 }
 
-/* ==========================================
-   PARTNER INTRO
-========================================== */
-
-.partner-intro-section{
-
-    padding:20px 20px 70px;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-.partner-intro-content{
-
-    max-width:900px;
-
-    margin:auto;
-
-    text-align:center;
-
-}
-
-.partner-intro-content h2{
-
-    font-size:2rem;
-
-    color:#FFD54A;
-
-    margin-bottom:20px;
-
-}
-
-.partner-intro-divider{
-
-    width:90px;
-
-    height:4px;
-
-    margin:0 auto 30px;
-
-    background:linear-gradient(to right,#8f6b00,#FFD54A,#8f6b00);
-
-    border-radius:20px;
-
-}
-
-.partner-intro-content p{
-
-    color:#d8d8d8;
-
-    line-height:1.9;
-
-    font-size:1.1rem;
-
-    margin-bottom:18px;
-
-}
