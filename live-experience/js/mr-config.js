@@ -97,6 +97,17 @@ MR.config = {
     "❤️ zeigt der Community Liebe!",
     "💖 bringt jede Menge Herz mit!",
     "❤️ sorgt für Herzklopfen im Stream!"
+    ],
+
+    atomic_drop: [
+    "☢️ startet den Atomic Drop!",
+    "💥 bringt den Stream zum Beben!",
+    "⚡ löst eine gewaltige Explosion aus!",
+    "☢️ entfesselt pure Energie!",
+    "💥 zündet den Atomic Drop!",
+    "⚛️ sorgt für maximale Action!",
+    "🚀 hebt den Hype auf das nächste Level!",
+    "☢️ lässt es richtig krachen!"
 ]
 
 }

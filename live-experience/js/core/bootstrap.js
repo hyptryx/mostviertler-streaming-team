@@ -10,5 +10,6 @@ import "../scenes/beer.js";
 import "../scenes/firework.js";
 import "../scenes/apple.js";
 import "../scenes/heart.js";
+import "../scenes/atomic-drop.js";
 
 import "./mr-init.js";

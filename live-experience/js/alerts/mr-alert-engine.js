@@ -26,6 +26,10 @@ class MRAlertEngine {
                 await MR.scenes.heart.play(stage, alert);
                 break;
 
+            case "atomic_drop":
+                await MR.scenes.atomic_drop.play(stage, alert);
+                break;
+
             default:
                 console.warn("Keine Szene für:", alert.type);
                 break;
