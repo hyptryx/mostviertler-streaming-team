@@ -108,6 +108,17 @@ MR.config = {
     "⚛️ sorgt für maximale Action!",
     "🚀 hebt den Hype auf das nächste Level!",
     "☢️ lässt es richtig krachen!"
+],
+
+legend: [
+    "👑 ist eine wahre Legende!",
+    "✨ entfesselt den Legend-Moment!",
+    "🌟 setzt ein unvergessliches Zeichen!",
+    "👑 sorgt für den epischsten Moment des Streams!",
+    "💎 zeigt legendären Support!",
+    "🔥 breitet die Flügel aus!",
+    "⚜️ schreibt Stream-Geschichte!",
+    "👑 erreicht den Legend-Status!"
 ]
 
 }

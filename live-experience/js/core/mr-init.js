@@ -33,6 +33,12 @@ MR.sound.load(
 );
 
 MR.sound.load(
+    "legend",
+    "assets/sounds/legend.mp3",
+    1.00
+);
+
+MR.sound.load(
     "beerBubbles",
     "assets/sounds/beer-bubbles.wav",
     0.30
