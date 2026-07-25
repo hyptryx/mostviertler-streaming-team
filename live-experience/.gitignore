@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Environment
+.env
+
+# Firebase
+.firebase/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
