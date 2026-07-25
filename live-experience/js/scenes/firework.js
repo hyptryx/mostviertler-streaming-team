@@ -1,0 +1,170 @@
+/**
+ * =====================================================
+ * MostiRadio Live Experience
+ * Scene: FIREWORK
+ * =====================================================
+ */
+
+class FireworkScene {
+
+    async play(stage, alert) {
+
+        const fireworkMessages = MR.config.messages.firework;
+
+        const randomMessage =
+            fireworkMessages[Math.floor(Math.random() * fireworkMessages.length)];
+
+        stage.innerHTML = `
+
+        <div class="mr-firework-scene">
+
+            <video
+                class="mr-firework-video"
+                autoplay
+                playsinline>
+
+                <source
+                    src="assets/video/firework.webm"
+                    type="video/webm">
+
+            </video>
+
+            <div class="mr-firework-text">
+
+                <div class="mr-user-name">
+
+                    <span class="mr-name-text">
+                        ${alert.user}
+                    </span>
+
+                    <span class="mr-name-shine"></span>
+
+                </div>
+
+                <div class="mr-name-line"></div>
+
+                <div class="mr-message">
+
+                    ${randomMessage}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+        const video = stage.querySelector(".mr-firework-video");
+        const text = stage.querySelector(".mr-firework-text");
+        const userName = stage.querySelector(".mr-user-name");
+        const message = stage.querySelector(".mr-message");
+        const shine = stage.querySelector(".mr-name-shine");
+
+        gsap.set(text,{
+            opacity:0
+        });
+
+        gsap.set(userName,{
+            opacity:0,
+            y:20,
+            scale:0.85
+        });
+
+        gsap.set(message,{
+            opacity:0,
+            y:15
+        });
+
+        return new Promise(resolve=>{
+
+            const tl = gsap.timeline({
+
+                onComplete:()=>{
+
+                    stage.innerHTML="";
+
+                    resolve();
+
+                }
+
+            });
+
+            // Text erscheint
+
+            tl.to(text,{
+                opacity:1,
+                duration:.4
+            },0.3);
+
+            tl.to(userName,{
+                opacity:1,
+                y:0,
+                scale:1.05,
+                duration:.25,
+                ease:"back.out(2.5)"
+            });
+
+            tl.to(userName,{
+                scale:1,
+                duration:.10
+            });
+
+            tl.to(message,{
+                opacity:1,
+                y:0,
+                duration:.25
+            });
+
+            tl.call(()=>{
+
+                MR.sound.play("shine");
+
+            });
+
+            tl.fromTo(shine,
+            {
+                xPercent:-180,
+                opacity:0
+            },
+            {
+                xPercent:320,
+                opacity:1,
+                duration:.55,
+                ease:"power1.inOut"
+            });
+
+            tl.to(shine,{
+                opacity:0,
+                duration:.15
+            });
+
+            // Feuerwerk laufen lassen
+
+            tl.to({},{
+                duration:7.5
+            });
+
+            // Ausblenden
+
+            tl.to(text,{
+                opacity:0,
+                duration:.5
+            });
+
+            tl.to(video,{
+                opacity:0,
+                duration:.8
+            },"<");
+
+        });
+
+    }
+
+}
+
+window.MR = window.MR || {};
+
+MR.scenes = MR.scenes || {};
+
+MR.scenes.firework = new FireworkScene();

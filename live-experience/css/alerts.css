@@ -1,0 +1,310 @@
+/* =====================================================
+   MostiRadio Live Experience
+   Alerts & Scenes
+===================================================== */
+
+/* =====================================================
+   Stage
+===================================================== */
+
+#scene-stage{
+
+    position:relative;
+
+    width:100%;
+
+    height:520px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+/* =====================================================
+   Beer Scene
+===================================================== */
+
+.mr-beer-scene{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+}
+
+/* -------------------------
+   Beer Group
+------------------------- */
+
+.mr-beer-group{
+
+    position:absolute;
+
+    left:50%;
+    top:60%;
+
+    width:180px;
+    height:260px;
+
+    margin-left:-90px;
+    margin-top:-130px;
+
+    z-index:20;
+
+    will-change:transform;
+
+}
+
+/* -------------------------
+   Beer
+------------------------- */
+
+.mr-beer-object{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    filter:drop-shadow(0 20px 35px rgba(0,0,0,.45));
+
+}
+
+/* -------------------------
+   Foam
+------------------------- */
+
+.mr-foam{
+
+    position:absolute;
+
+    width:165px;
+
+    left:8px;
+    top:-35px;
+
+    opacity:0;
+
+    z-index:30;
+
+    transform-origin:center bottom;
+
+}
+
+/* -------------------------
+   Sparkle
+------------------------- */
+
+.mr-sparkle{
+
+    position:absolute;
+
+    width:120px;
+
+    left:28px;
+    top:-8px;
+
+    opacity:0;
+
+    z-index:40;
+
+    pointer-events:none;
+
+}
+
+/* -------------------------
+   Bubbles
+------------------------- */
+
+.mr-bubbles{
+
+    position:absolute;
+
+    width:190px;
+
+    left:50%;
+    top:50%;
+
+    margin-left:-95px;
+    margin-top:-185px;
+
+    opacity:0;
+
+    z-index:10;
+
+    pointer-events:none;
+
+}
+
+/* -------------------------
+   Text
+------------------------- */
+
+.mr-beer-text{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:28px;
+
+    text-align:center;
+
+    z-index:50;
+
+    pointer-events:none;
+
+}
+
+/* Name */
+
+.mr-user-name{
+
+    position:relative;
+
+    display:inline-block;
+
+    overflow:hidden;
+
+    padding:2px 6px;
+
+}
+
+.mr-name-text{
+
+    display:block;
+
+    font-family:"Luckiest Guy", cursive;
+
+    font-size:46px;
+
+    line-height:1;
+
+    letter-spacing:0.3px;
+
+    background:linear-gradient(
+        180deg,
+        #FFF8D5 0%,
+        #FFD96A 45%,
+        #D99A1F 100%
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 2px 0 rgba(120,80,0,.45),
+        0 4px 10px rgba(0,0,0,.40);
+
+}
+
+/* Shine */
+
+.mr-name-shine{
+
+    position:absolute;
+
+    top:-20%;
+
+    left:-60%;
+
+    width:35%;
+
+    height:140%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.95),
+        transparent
+    );
+
+    transform:skewX(-22deg);
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+/* Nachricht */
+
+.mr-message{
+
+    font-family:"Lilita One", cursive;
+
+    font-size:36px;
+
+    line-height:1.15;
+
+    color:#FFF2CC;
+
+    margin-top:10px;
+
+    letter-spacing:0.3px;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.35);
+
+}
+
+/* =====================================================
+   FIREWORK
+===================================================== */
+
+.mr-firework-scene{
+
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+
+}
+
+.mr-firework-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:1;
+
+}
+
+.mr-firework-text{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:35px;
+
+    text-align:center;
+
+    z-index:20;
+
+    pointer-events:none;
+
+}
