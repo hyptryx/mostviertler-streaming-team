@@ -73,7 +73,20 @@ MR.config = {
 
     "lässt die Funken fliegen! 💥"
 
-]
+    ],
+    
+    apple:[
+
+        "🍎 lässt rote Mostäpfel regnen!",
+        "bringt frischen Most aus dem Mostviertel! 🍎",
+        "🍎 erntet die Mostäpfel des Tages!",
+        "erntet den Mostapfel des Tages! 🌳",
+        "teilt die Früchte des Mostviertels! 🍎",
+        "🍎 bringt einen Mostapfel-Regen!!",
+        "sorgt für eine fruchtige Überraschung! 🍎",
+        "bringt ein Stück Mostviertel in den Stream! 💚"
+
+    ]
 
 }
 

@@ -8,5 +8,6 @@ import "../alerts/mr-alert-engine.js";
 
 import "../scenes/beer.js";
 import "../scenes/firework.js";
+import "../scenes/apple.js";
 
 import "./mr-init.js";

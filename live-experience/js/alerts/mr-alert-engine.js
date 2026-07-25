@@ -18,6 +18,10 @@ class MRAlertEngine {
                 await MR.scenes.firework.play(stage, alert);
                 break;
 
+            case "apple":
+            await MR.scenes.apple.play(stage, alert);
+            break;
+
             default:
                 console.warn("Keine Szene für:", alert.type);
                 break;

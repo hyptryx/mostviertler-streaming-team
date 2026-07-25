@@ -308,3 +308,52 @@
     pointer-events:none;
 
 }
+
+/* =====================================================
+   APPLE
+===================================================== */
+
+.mr-apple-scene{
+
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+
+}
+
+.mr-apple-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:1;
+
+}
+
+.mr-apple-text{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:35px;
+
+    text-align:center;
+
+    z-index:20;
+
+    pointer-events:none;
+
+}
