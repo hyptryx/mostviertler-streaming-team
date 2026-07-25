@@ -86,7 +86,18 @@ MR.config = {
         "sorgt für eine fruchtige Überraschung! 🍎",
         "bringt ein Stück Mostviertel in den Stream! 💚"
 
-    ]
+    ],
+
+    heart: [
+    "❤️ lässt Herzen regnen!",
+    "💖 schickt ganz viel Liebe!",
+    "❤️ verteilt Herzen im Stream!",
+    "💕 sendet einen Liebesgruß!",
+    "💗 macht den Stream noch herzlicher!",
+    "❤️ zeigt der Community Liebe!",
+    "💖 bringt jede Menge Herz mit!",
+    "❤️ sorgt für Herzklopfen im Stream!"
+]
 
 }
 

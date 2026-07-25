@@ -357,3 +357,52 @@
     pointer-events:none;
 
 }
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.mr-heart-scene{
+
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+
+}
+
+.mr-heart-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:1;
+
+}
+
+.mr-heart-text{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:35px;
+
+    text-align:center;
+
+    z-index:20;
+
+    pointer-events:none;
+
+}

@@ -19,8 +19,12 @@ class MRAlertEngine {
                 break;
 
             case "apple":
-            await MR.scenes.apple.play(stage, alert);
-            break;
+                await MR.scenes.apple.play(stage, alert);
+                break;
+
+            case "heart":
+                await MR.scenes.heart.play(stage, alert);
+                break;
 
             default:
                 console.warn("Keine Szene für:", alert.type);
