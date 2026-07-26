@@ -9,6 +9,7 @@ import {
     doc,
     getDoc,
     setDoc,
+    updateDoc,
     serverTimestamp
 } from "firebase/firestore";
 
@@ -26,6 +27,7 @@ export async function login() {
     if (!snapshot.exists()) {
         await setDoc(userRef, {
             displayName: user.displayName,
+            chatName: "",
             email: user.email,
             photoURL: user.photoURL,
             balance: 0,
@@ -42,9 +44,64 @@ export async function logout() {
     await signOut(auth);
 }
 
-export function onUserChanged(callback) {
-    return onAuthStateChanged(auth, callback);
+export async function getUserProfile(uid) {
+
+    const userRef = doc(db, "users", uid);
+    const snapshot = await getDoc(userRef);
+
+    if (!snapshot.exists()) {
+        return null;
+    }
+
+    return snapshot.data();
+
 }
 
-// ===== Nur zum Testen =====
-window.testLogin = login;
+export async function updateChatName(uid, chatName) {
+
+    const userRef = doc(db, "users", uid);
+
+    await updateDoc(userRef, {
+        chatName,
+        updatedAt: serverTimestamp()
+    });
+
+    return {
+        chatName
+    };
+
+}
+
+export function onUserChanged(callback) {
+
+    return onAuthStateChanged(auth, (user) => {
+
+        const userContent = document.getElementById("user-content");
+
+        if (userContent) {
+
+            if (user) {
+                userContent.innerHTML = `
+                    <div>
+                        👋 ${user.displayName}
+                    </div>
+                `;
+            } else {
+                userContent.innerHTML = `
+                    <button id="btnLogin">
+                        🔐 Mit Google anmelden
+                    </button>
+                `;
+
+                document
+                    .getElementById("btnLogin")
+                    ?.addEventListener("click", login);
+            }
+
+        }
+
+        callback(user);
+
+    });
+
+}
