@@ -1,3 +1,5 @@
+import { logout } from "../auth.js";
+
 export function renderWallet(profile) {
 
     console.log("Wallet:", profile);
@@ -13,16 +15,16 @@ export function renderWallet(profile) {
     <div class="wallet">
 
         <div class="wallet-header">
-            <h2>🪙 MostiWallet</h2>
+            <h2>MostiWallet</h2>
         </div>
 
         <div class="wallet-user">
 
-    <img
-        class="wallet-avatar"
-        src="${profile.photoURL}"
-        alt="${profile.displayName}"
-    >
+ <img
+    class="wallet-avatar"
+    src="${profile.photoURL}"
+    alt="${profile.displayName}"
+>
 
     <div class="wallet-user-info">
 
@@ -32,6 +34,10 @@ export function renderWallet(profile) {
 
         <div class="wallet-chatname">
             @${profile.chatName}
+        </div>
+
+        <div class="wallet-logout">
+         Abmelden
         </div>
 
     </div>
@@ -88,6 +94,7 @@ export function renderWallet(profile) {
 const buyButton = document.getElementById("buyCoinsButton");
 const modal = document.getElementById("shop-modal");
 const close = document.getElementById("closeShop");
+const logoutButton = document.querySelector(".wallet-logout");
 
 buyButton.addEventListener("click", () => {
 
@@ -98,6 +105,12 @@ buyButton.addEventListener("click", () => {
 close.addEventListener("click", () => {
 
     modal.classList.remove("show");
+
+});
+
+logoutButton.addEventListener("click", async () => {
+
+    await logout();
 
 });
 

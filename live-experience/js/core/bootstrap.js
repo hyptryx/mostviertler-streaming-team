@@ -28,8 +28,12 @@ onUserChanged(async (user) => {
     console.log("Auth geändert:", user?.displayName ?? "nicht angemeldet");
 
     if (!user) {
-        return;
-    }
+
+    document.getElementById("wallet-container").innerHTML = "";
+
+    return;
+
+}
 
    const profile = await getUserProfile(user.uid);
 
