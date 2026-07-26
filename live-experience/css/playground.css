@@ -95,3 +95,119 @@ button{
     width:100%;
 
 }
+
+/* ==========================================
+   CHAT NAME POPUP
+========================================== */
+
+.chat-name-popup{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.82);
+
+backdrop-filter:blur(8px);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999999;
+
+}
+
+.chat-name-popup.show{
+
+display:flex;
+
+}
+
+.chat-name-card{
+
+width:90%;
+
+max-width:420px;
+
+padding:35px;
+
+border-radius:22px;
+
+background:#1d1d1d;
+
+border:1px solid rgba(255,215,0,.35);
+
+text-align:center;
+
+box-shadow:0 0 30px rgba(255,215,0,.25);
+
+}
+
+.chat-name-card h2{
+
+font-family:"Orbitron";
+
+margin-bottom:15px;
+
+background:linear-gradient(90deg,#ff9900,#ffd700);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+.chat-name-card p{
+
+margin-bottom:25px;
+
+line-height:1.6;
+
+}
+
+.chat-name-card input{
+
+width:100%;
+
+padding:14px;
+
+border-radius:50px;
+
+border:none;
+
+outline:none;
+
+font-size:16px;
+
+margin-bottom:20px;
+
+text-align:center;
+
+}
+
+.chat-name-card button{
+
+padding:14px 32px;
+
+border:none;
+
+border-radius:50px;
+
+cursor:pointer;
+
+font-family:"Orbitron";
+
+background:linear-gradient(90deg,#ff9900,#ffd700);
+
+transition:.3s;
+
+}
+
+.chat-name-card button:hover{
+
+transform:scale(1.04);
+
+}

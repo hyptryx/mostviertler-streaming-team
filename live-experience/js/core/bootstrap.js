@@ -1,6 +1,10 @@
 import "../mr-config.js";
 
-import { onUserChanged, getUserProfile } from "../auth.js";
+import {
+    onUserChanged,
+    getUserProfile,
+    updateChatName
+} from "../auth.js";
 
 import "./mr-sound.js";
 import "./mr-camera.js";
@@ -30,9 +34,39 @@ onUserChanged(async (user) => {
 console.log("Profil:", profile);
 
 if (!profile.chatName) {
-    console.log("➡️ ChatName fehlt");
+
+    document
+        .getElementById("chatNamePopup")
+        .classList.add("show");
+        const saveButton = document.getElementById("saveChatName");
+        const usernameInput = document.getElementById("chatUsername");
+
+        saveButton.onclick = async () => {
+
+         const chatName = usernameInput.value.trim();
+
+    if (chatName.length < 3) {
+
+        alert("Bitte mindestens 3 Zeichen eingeben.");
+
+        return;
+
+    }
+
+    await updateChatName(user.uid, chatName);
+
+    document
+        .getElementById("chatNamePopup")
+        .classList.remove("show");
+
+    console.log("✅ ChatName gespeichert:", chatName);
+
+};
+
 } else {
+
     console.log("➡️ ChatName:", profile.chatName);
+
 }
 
 });
