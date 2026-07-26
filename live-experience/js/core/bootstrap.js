@@ -1,5 +1,7 @@
 import "../mr-config.js";
 
+import "../auth.js";
+
 import "./mr-sound.js";
 import "./mr-camera.js";
 import "./mr-queue.js";
