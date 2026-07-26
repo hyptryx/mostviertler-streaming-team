@@ -6,6 +6,8 @@ import {
     updateChatName
 } from "../auth.js";
 
+import { renderWallet } from "../components/wallet.js";
+
 import "./mr-sound.js";
 import "./mr-camera.js";
 import "./mr-queue.js";
@@ -65,7 +67,7 @@ if (!profile.chatName) {
 
 } else {
 
-    console.log("➡️ ChatName:", profile.chatName);
+    renderWallet(profile);
 
 }
 
