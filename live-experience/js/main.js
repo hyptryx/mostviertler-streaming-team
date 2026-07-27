@@ -13,6 +13,10 @@ import "./debug/mr-playground.js";
 // Services
 import { loadProducts } from "./service/products";
 import { playProduct } from "./service/player";
+import { buyCoinPackage } from "./service/shop";
+import { buyInteraction } from "./service/interaction";
+import { auth } from "./service/firebase.js";
+import { refreshWallet } from "./core/bootstrap.js";
 
 console.log("✅ MostiRadio Live Experience gestartet");
 
@@ -20,11 +24,33 @@ console.log("✅ MostiRadio Live Experience gestartet");
 // Produkt-Buttons
 // ======================================
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", async (e) => {
 
     if (!e.target.classList.contains("product-button")) return;
 
-    playProduct(e.target.dataset.animation);
+    const interactionId = e.target.dataset.animation;
+
+    try {
+
+        const result = await buyInteraction(interactionId);
+
+        await refreshWallet(auth.currentUser.uid);
+
+       console.log("🪙 Wallet:", result);
+
+if (result.interaction?.scene) {
+
+    console.log("🎬 Szene:", result.interaction.scene);
+
+    playProduct(result.interaction.scene);
+
+}
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
 
 });
 
@@ -33,3 +59,28 @@ document.addEventListener("click", (e) => {
 // ======================================
 
 await loadProducts();
+
+// ======================================
+// MostiShop
+// ======================================
+
+document.querySelectorAll(".shop-buy").forEach((button) => {
+
+    button.addEventListener("click", async () => {
+
+        const packageId = button.dataset.package;
+
+        try {
+
+            await buyCoinPackage(packageId);
+
+        } catch (error) {
+
+            console.error(error);
+            alert("Der Checkout konnte nicht gestartet werden.");
+
+        }
+
+    });
+
+});

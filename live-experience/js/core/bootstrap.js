@@ -76,3 +76,11 @@ if (!profile.chatName) {
 }
 
 });
+
+export async function refreshWallet(uid) {
+
+    const profile = await getUserProfile(uid);
+
+    renderWallet(profile);
+
+}
