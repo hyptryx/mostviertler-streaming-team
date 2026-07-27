@@ -40,9 +40,7 @@ document.addEventListener("click", async (e) => {
 
 if (result.interaction?.scene) {
 
-    console.log("🎬 Szene:", result.interaction.scene);
-
-    playProduct(result.interaction.scene);
+    console.log("🎬 Szene wird über die Live-Queue abgespielt:", result.interaction.scene);
 
 }
 

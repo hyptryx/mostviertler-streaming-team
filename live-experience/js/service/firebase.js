@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, query, orderBy, limit, onSnapshot } from "firebase/firestore";
 import { getFunctions } from "firebase/functions";
 import { getAuth } from "firebase/auth";
+import { playProduct } from "./player.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBymntqf8MXD17I5QuXrTuyGjhsxEIjF8k",
@@ -19,3 +20,34 @@ export const functions = getFunctions(app, "europe-west3");
 export const auth = getAuth(app);
 
 export default app;
+
+const liveQuery = query(
+  collection(db, "interactionQueue"),
+  orderBy("createdAt", "desc"),
+  limit(1)
+);
+
+let initialized = false;
+
+onSnapshot(liveQuery, (snapshot) => {
+
+  if (!initialized) {
+    initialized = true;
+    return;
+  }
+
+  snapshot.docChanges().forEach((change) => {
+    if (change.type !== "added") return;
+
+    const interaction = change.doc.data();
+
+console.log("📡 Neue Live-Interaktion:", interaction);
+
+playProduct(
+  interaction.animation,
+  interaction.user
+);
+
+  });
+
+});
