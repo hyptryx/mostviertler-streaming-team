@@ -28,26 +28,35 @@ const liveQuery = query(
 );
 
 let initialized = false;
+let listenerStarted = false;
 
-onSnapshot(liveQuery, (snapshot) => {
+export function startLiveListener() {
 
-  if (!initialized) {
-    initialized = true;
-    return;
-  }
+  if (listenerStarted) return;
+  listenerStarted = true;
 
-  snapshot.docChanges().forEach((change) => {
-    if (change.type !== "added") return;
+  onSnapshot(liveQuery, (snapshot) => {
 
-    const interaction = change.doc.data();
+    if (!initialized) {
+      initialized = true;
+      return;
+    }
 
-console.log("📡 Neue Live-Interaktion:", interaction);
+    snapshot.docChanges().forEach((change) => {
 
-playProduct(
-  interaction.animation,
-  interaction.user
-);
+      if (change.type !== "added") return;
+
+      const interaction = change.doc.data();
+
+      console.log("📡 Neue Live-Interaktion:", interaction);
+
+      playProduct(
+        interaction.animation,
+        interaction.user
+      );
+
+    });
 
   });
 
-});
+}

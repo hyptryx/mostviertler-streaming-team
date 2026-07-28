@@ -30,7 +30,7 @@ MR.sound = {
 
 },
 
-    play(name) {
+play(name) {
 
     if (!this.enabled) return;
 
@@ -38,9 +38,9 @@ MR.sound = {
 
     if (!sound) return;
 
-    const audio = new Audio(sound.audio.src);
+    const audio = sound.audio;
 
-    audio.preload = "auto";
+    audio.currentTime = 0;
 
     audio.volume = this.volume * sound.volume;
 

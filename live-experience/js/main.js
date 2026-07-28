@@ -20,6 +20,17 @@ import { refreshWallet } from "./core/bootstrap.js";
 
 console.log("✅ MostiRadio Live Experience gestartet");
 
+const params = new URLSearchParams(window.location.search);
+
+if (
+    params.get("payment") === "success" &&
+    auth.currentUser
+) {
+    await refreshWallet(auth.currentUser.uid);
+
+    console.log("💰 Wallet nach Stripe aktualisiert.");
+}
+
 // ======================================
 // Produkt-Buttons
 // ======================================

@@ -9,6 +9,8 @@ class AppleScene {
 
     async play(stage, alert) {
 
+        console.log("🍎 AppleScene gestartet", alert);
+
         const appleMessages = MR.config.messages.apple;
 
         const randomMessage =
@@ -117,6 +119,8 @@ class AppleScene {
             });
 
             tl.call(()=>{
+
+                console.log("🍎 Shine wird abgespielt");
 
                 MR.sound.play("shine");
 

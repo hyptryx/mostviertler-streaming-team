@@ -6,6 +6,8 @@ import {
     updateChatName
 } from "../auth.js";
 
+import { startLiveListener } from "../service/firebase.js";
+
 import { renderWallet } from "../components/wallet.js";
 
 import "./mr-sound.js";
@@ -22,6 +24,8 @@ import "../scenes/atomic-drop.js";
 import "../scenes/legend.js";
 
 import "./mr-init.js";
+
+startLiveListener();
 
 onUserChanged(async (user) => {
 
